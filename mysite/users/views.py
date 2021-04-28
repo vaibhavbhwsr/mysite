@@ -21,3 +21,5 @@ def sign_up(request):
 
 # for messages commented above to be displayed you have to let them print 
 # on every page and defined their scope on base.html of whole site.
+
+##########################
