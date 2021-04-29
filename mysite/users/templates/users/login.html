@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Log In</title>
+</head>
+<body>
+
+	<h1> Log In Here </h1>
+
+	<form action="" method="post">
+		<table>
+			{% csrf_token %}
+
+			{% if form.non_field_errors %}
+				{% for error in form.non_field_errors %}
+					<p style="color:red">{{ error }}</p>
+				{% endfor %}
+			{% endif %}
+
+			{% for field in form %}
+			<tr>
+				<td>{{ field.label_tag }}</td> <td> {{field}} </td> <td> {{ field.errors|striptags }}</td>
+			</tr>
+			{% endfor %}	
+		</table>
+		<br>	
+		<input type="submit" value="Log In">
+	</form>
+	<a href="{% url 'signup' %}">Sign Up</a>
+	
+</body>
+</html>
