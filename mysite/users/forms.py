@@ -14,5 +14,5 @@ class RegistrationForm(UserCreationForm):
     # Actually it Defines the top-bottom look of form fields
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email']
+        fields = ['username', 'first_name', 'last_name', 'email']
         label = {'email' : 'Email'}                                                 # Used for changing label
