@@ -24,3 +24,7 @@ class MyLoginView(LoginView):
 
 class MyLogoutView(LogoutView):
 	template_name = 'registration/logout.html'
+
+
+
+#############################################
