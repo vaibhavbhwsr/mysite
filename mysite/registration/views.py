@@ -11,7 +11,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 class SignupView(CreateView):
     form_class = RegistrationForm
     template_name = 'registration/signup.html/'
-    success_url = '/accounts/success/'
+    success_url = '/success/'
 
 @method_decorator(login_required, name='dispatch')
 class ProfileView(TemplateView):
@@ -23,4 +23,4 @@ class MyLoginView(LoginView):
 
 
 class MyLogoutView(LogoutView):
-	template_name='registration/logout.html'
+	template_name = 'registration/logout.html'
