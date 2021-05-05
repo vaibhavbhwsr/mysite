@@ -135,10 +135,10 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Added
+
 # Set Console as a Backend to reset password
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Extra added
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'

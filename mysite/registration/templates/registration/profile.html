@@ -5,7 +5,7 @@
 </head>
 <body>
 
-	<h1> Hello You have logged into your account. </h1><br>
+	<h1> Hello {{ username }} You have logged into your account. </h1><br>
 	<a href="{% url 'logout' %}">Log Out</a><br>
 	<a href="{% url 'password_change' %}">Change Password</a>
 
