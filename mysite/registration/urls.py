@@ -11,4 +11,7 @@ urlpatterns = [
 	path('accounts/logout/', views.MyLogoutView.as_view(), name='logout'),
 	# path('', include('django.contrib.auth.urls')),
 	path('', views.ProfileView.as_view(), name='profile'),
+
+	# Post urls
+	path('createpost/', views.PostCreateView.as_view(), name='createpost'),
 ]
