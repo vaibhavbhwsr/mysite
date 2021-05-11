@@ -1,12 +1,8 @@
-{% load crispy_forms_tags %}
+{% extends 'mysite/base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Post</title>
-</head>
-<body>
+{% load crispy_forms_tags %}
+{% block title %}Create Post{% endblock %}
+{% block body %}
     <h1>Create Your Post From Here!</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -15,5 +11,4 @@
         <input type="submit" value="Create Post">
     </form>
     <a href="{% url 'post' %}">Go Back to Profile</a>
-</body>
-</html>
+{% endblock %}

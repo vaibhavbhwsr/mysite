@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Hello! {{user.username}}</title>
-</head>
-<style>
+{% extends 'mysite/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Hello! {{user.username}}{% endblock %}
+
+{% block style %}
 	img {
 	  width: 45%;
 	  height: 35%;
 	}
-</style>
-<body>
+{% endblock %}
+{% block body %}
 <div>
 	<div>
 		{% if user.is_authenticated %}
@@ -38,5 +39,4 @@
 	<hr>
 	{% endfor %}
 </div>
-</body>
-</html>
+{% endblock %}

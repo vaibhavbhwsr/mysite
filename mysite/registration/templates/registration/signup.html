@@ -1,11 +1,12 @@
+{% extends 'mysite/base.html' %}
+
 {% load crispy_forms_tags %}
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Sign Up</title>
-</head>
-<body>
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}Sign Up{% endblock %}
+
+{% block body %}
 	<h1> Sign Up Here </h1>
 	<h3> {{ message }} </h3>
 		<form action="" method="post">
@@ -15,5 +16,4 @@
 			<input type="submit" value="Sign Up">
 		</form>
 		<a href="{%url 'login'%}"> Log In </a>
-</body>
-</html>
+{% endblock %}
