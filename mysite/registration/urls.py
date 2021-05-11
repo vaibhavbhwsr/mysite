@@ -10,8 +10,9 @@ urlpatterns = [
 	path('accounts/login/', views.MyLoginView.as_view(), name='login'),
 	path('accounts/logout/', views.MyLogoutView.as_view(), name='logout'),
 	# path('', include('django.contrib.auth.urls')),
-	path('', views.ProfileView.as_view(), name='profile'),
+	path('profile', views.ProfileView.as_view(), name='profile'),
 
 	# Post urls
 	path('createpost/', views.PostCreateView.as_view(), name='createpost'),
+	path('', views.PostListView.as_view(), name='post'),
 ]

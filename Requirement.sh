@@ -6,7 +6,8 @@ cd ..
 virtualenv --python=python3.8 .env/mysite
 . .env/mysite/bin/activate
 pip install django 
-pip install psycopg2 
+pip install psycopg2
+pip install Pillow
 . .env/mysite/bin/activate
 cd Latest-Project/mysite
 python manage.py makemigrations
