@@ -8,6 +8,9 @@
     </style>
 </head>
 <body>
+    {% for message in messages %}
+        <h3 style="color:green">{{ message }}</h3>
+    {% endfor %}
     {% block body %}This is the body of base.html{% endblock %}
 </body>
 </html>

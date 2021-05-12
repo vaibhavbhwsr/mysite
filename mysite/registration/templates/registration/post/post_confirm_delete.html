@@ -1,0 +1,12 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %}Confirm | {{ post.description }}{% endblock %}
+
+{% block body %}
+	<h1> Are you sure want to Delete this Post? </h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+	<a href="{% url 'post' %}">No! Go Back</a>
+{% endblock %}

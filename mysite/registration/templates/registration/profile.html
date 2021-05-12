@@ -6,8 +6,8 @@
 
 {% block style %}
 	img {
-	  width: 45%;
-	  height: 35%;
+	  width: 35%;
+	  height: 25%;
 	}
 {% endblock %}
 {% block body %}
@@ -30,7 +30,7 @@
 			<br><small>Posted on {{ post.date_posted }}</small>
 			<p>{{ post.description }}</p>
 		</div>
-		 <img src="{{ post.picture.url }}">
+		<a href="{% url 'detail' post.id %}"><img src="{{ post.picture.url }}"></a>
 		{% if post.tags %}
 		<br>
 		<p><b>Tags: <i>{{ post.tags }}</i></b></p>
