@@ -5,10 +5,10 @@
 
 	<h1> Sign Up Here </h1>
 	<h3> {{ message }} </h3>
-		<form action="" method="post">
-			{% csrf_token %}
-			{{ form|crispy }}
-			<br>
-			<input type="submit" value="Sign Up">
-		</form>
-		<a href="{%url 'login'%}"> Log In </a>
+	<form action="" method="post">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<br>
+		<input type="submit" value="Sign Up">
+	</form>
+	<a href="{%url 'login'%}"> Log In </a>

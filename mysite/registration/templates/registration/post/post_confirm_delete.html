@@ -2,7 +2,7 @@
 
 {% block title %}Confirm | {{ post.description }}{% endblock %}
 
-{% block body %}
+{% block content %}
 	<h1> Are you sure want to Delete this Post? </h1>
     <form method="post">
         {% csrf_token %}

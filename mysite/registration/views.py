@@ -25,7 +25,7 @@ class ProfileView(TemplateView):
 
 class MyLoginView(SuccessMessageMixin, LoginView):
     redirect_authenticated_user = True
-    success_message = 'Logged In Successfully'
+    success_message = 'Welcome Here!'
 
 
 class MyLogoutView(LogoutView):
@@ -37,7 +37,7 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     form_class = NewPostForm
     template_name = 'registration/create_post.html'
     success_url = '/'
-    success_message = 'Post Created Successfully'
+    success_message = 'Your Post Created and Uploaded Successfully'
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
