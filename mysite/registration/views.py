@@ -1,10 +1,10 @@
 from .forms import RegistrationForm, NewPostForm
-from django.views.generic import CreateView, ListView, DetailView, DeleteView
+from django.views.generic import CreateView, ListView, DetailView, DeleteView, UpdateView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -66,3 +66,19 @@ class PostDeleteView(DeleteView):
     model = Post
     template_name = 'registration/post/post_confirm_delete.html'
     success_url = '/deleted/'
+
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['description', 'picture', 'tags']
+    template_name = 'registration/create_post.html'
+
+    def form_valid(self, form):
+        form.instance.user_name = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.user_name:
+            return True
+        return False

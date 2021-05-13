@@ -3,11 +3,11 @@
 {% block title %}Detail | {{ post.description }}{% endblock %}
 {% block style %}
 	img {
-	  width: 80%;
-	  height: 80%;
+	  width: 40%;
+	  height: 40%;
 	}
 {% endblock %}
-{% block body %}
+{% block content %}
 	<div>
 		<b>{{ post.user_name }}</b>
 		<br><small>Posted on {{ post.date_posted }}</small>
@@ -20,5 +20,6 @@
 	{% endif %}
 	{% if post.user_name == user %}
 		<a href="{% url 'delete' post.id %}">Delete</a>
+		<a href="{% url 'post-update' post.id %}">Update</a>
 	{% endif %}
 {% endblock %}
