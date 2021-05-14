@@ -1,13 +1,44 @@
 {% extends 'mysite/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}Create Post{% endblock %}
+{% block content %}
+
+<br><br>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center"><b>Create Your Post</b></h5>
+            <form class="form-signin" method = "POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group"><br>
+                {{ form | crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{{ value }}</button><br>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+
+{% comment %}
 {% block content %}
     <h1>Create Your Post From Here!</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form | crispy }}
         <br>
-        <input type="submit" value="Create Post">
+        <input type="submit" value="{{ value }}">
     </form>
     <a href="{% url 'post' %}">Go Back to Profile</a>
 {% endblock %}
+{% endcomment %}

@@ -125,7 +125,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Added
+# Many this Added afterword's it
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -149,7 +149,8 @@ LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
 
-MEDIA_ROOT = Path(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = Path(BASE_DIR, 'static')
+# it doesn't required after declaring  STATIC_URL
+# MEDIA_URL = '/static/images/post/'
 
 

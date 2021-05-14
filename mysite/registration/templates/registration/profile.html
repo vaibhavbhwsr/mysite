@@ -2,38 +2,36 @@
 
 {% block title %}Hello! {{ user | capfirst }}{% endblock %}
 
-{% block style %}
-	img {
-	  width: 35%;
-	  height: 25%;
-	}
-{% endblock %}
 {% block content %}
 <div>
-	<div>
-		{% if user.is_authenticated %}
-			{% for message in messages %}
-        		<h3>{{ user | capfirst }}, {{ message }}</h3>
-    		{% endfor %}
-		{% else %}
-			<p>You are not logged in</p>
-			<a href="{% url 'login' %}">Log In</a>
-		{% endif %}
-	</div>
-	{% for post in posts %}
-	<div>
-		<div>
-			<h5><b>{{ post.user_name | capfirst }}</b></h5>
-			<small>Posted on {{ post.date_posted }}</small>
-			<p>{{ post.description }}</p>
+	{% if user.is_authenticated %}
+		{% for message in messages %}
+			<h3>{{ user | capfirst }}, {{ message }}</h3>
+		{% endfor %}
+	{% else %}
+		<p>You are not logged in</p>
+		<a href="{% url 'login' %}">Log In</a>
+	{% endif %}
+</div>
+<div class="container">
+	<div class="row">
+	  <div class="col-md-8">
+		{% for post in posts %}
+		<div class="card card-signin my-5">
+		  <div class="card-body">
+			<a class="text-dark" href="{{ post.user_name.profile.get_absolute_url }}"><b>{{ post.user_name | capfirst }}</b></a>
+			<br><small class="text-muted">Posted on {{ post.date_posted }}</small>
+			<br><br>
+			<p class="card-text text-dark">{{ post.description }}</p>
+		  </div>
+		  <a href="{% url 'detail' post.id %}"><img class="card-img-top" src="/static/{{ post.picture.url }}" alt=""></a>
+		  {% if post.tags %}
+		  <br>
+		  <p class="text-danger ml-3"><b>Tags: <i>{{ post.tags }}</i></b></p>
+		  {% endif %}
 		</div>
-		<a href="{% url 'detail' post.id %}"><img src="{{ post.picture.url }}"></a>
-		{% if post.tags %}
-		<br>
-		<p><b>Tags: <i>{{ post.tags }}</i></b></p>
-		{% endif %}
+		{% endfor %}
+	   </div>
 	</div>
-	<hr>
-	{% endfor %}
 </div>
 {% endblock %}

@@ -4,7 +4,7 @@ from django.views.generic.base import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -38,6 +38,7 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     template_name = 'registration/create_post.html'
     success_url = '/'
     success_message = 'Your Post Created and Uploaded Successfully'
+    extra_context = {'value': 'Create Post'}
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
@@ -61,24 +62,18 @@ class PostDetailView(DetailView):
     template_name = 'registration/post/detail.html'
 
 
-@method_decorator(login_required, name='dispatch')
-class PostDeleteView(DeleteView):
+# @method_decorator(login_required, name='dispatch')
+class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'registration/post/post_confirm_delete.html'
-    success_url = '/deleted/'
+    success_url = '/'
+    success_message = 'Your Post Deleted Successfully'
 
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Post
-    fields = ['description', 'picture', 'tags']
+    form_class = NewPostForm
     template_name = 'registration/create_post.html'
-
-    def form_valid(self, form):
-        form.instance.user_name = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.user_name:
-            return True
-        return False
+    success_url = '/'
+    extra_context = {'value': 'Update Post'}
+    success_message = 'Your Post Updated Successfully'
