@@ -1,6 +1,9 @@
 {% load crispy_forms_tags %}
+{% load static %}
 
-
+	{% for message in messages %}
+		<h3>{{ message }}</h3>
+	{% endfor %}
 	<h1> Log In Here </h1>
 
 	<form action="" method="post">

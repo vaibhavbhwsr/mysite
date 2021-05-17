@@ -15,7 +15,7 @@ class SignupView(SuccessMessageMixin, CreateView):
     form_class = RegistrationForm
     template_name = 'registration/signup.html/'
     success_url = '/'
-    success_message = "%(username)s was created successfully! Login with the same username and password!"
+    success_message = "%(username)s was created successfully! Now Login with the same username and password!"
 
 
 @method_decorator(login_required, name='dispatch')
@@ -66,7 +66,7 @@ class PostDetailView(DetailView):
 class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'registration/post/post_confirm_delete.html'
-    success_url = '/'
+    success_url = '/deleted/'
     success_message = 'Your Post Deleted Successfully'
 
 

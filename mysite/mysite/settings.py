@@ -10,10 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from pathlib import Path
+import sys, os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = Path(BASE_DIR, 'templates')
+sys.path.insert(0, os.path.join(BASE_DIR, 'mysite/apps'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -149,8 +151,15 @@ LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
 
+# Media Url
+
 MEDIA_ROOT = Path(BASE_DIR, 'static')
 # it doesn't required after declaring  STATIC_URL
 # MEDIA_URL = '/static/images/post/'
+
+
+# Makes Crispy use bootstrap4
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
