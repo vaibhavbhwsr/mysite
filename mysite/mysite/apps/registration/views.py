@@ -35,7 +35,7 @@ class MyLogoutView(LogoutView):
 @method_decorator(login_required, name='dispatch')
 class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     form_class = NewPostForm
-    template_name = 'registration/create_post.html'
+    template_name = 'registration/post/create_post.html'
     success_url = '/'
     success_message = 'Your Post Created and Uploaded Successfully'
     extra_context = {'value': 'Create Post'}

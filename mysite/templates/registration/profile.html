@@ -13,22 +13,22 @@
 		<a href="{% url 'login' %}">Log In</a>
 	{% endif %}
 </div>
-<div class="container">
+<div class="container w-50 h-50">
 	<div class="row">
 	  <div class="col-md-8">
 		{% for post in posts %}
-		<div class="card card-signin my-5">
+		<div class="card my-5">
 		  <div class="card-body">
 			<a class="text-dark" href="{{ post.user_name.profile.get_absolute_url }}"><b>{{ post.user_name | capfirst }}</b></a>
 			<br><small class="text-muted">Posted on {{ post.date_posted }}</small>
 			<br><br>
 			<p class="card-text text-dark">{{ post.description }}</p>
 		  </div>
-		  <a href="{% url 'detail' post.id %}"><img class="card-img-top" src="/static/{{ post.picture.url }}" alt=""></a>
-		  {% if post.tags %}
-		  <br>
-		  <p class="text-danger ml-3"><b>Tags: <i>{{ post.tags }}</i></b></p>
-		  {% endif %}
+		  <a href="{% url 'detail' post.id %}"><img class="card-img-top" src="/static{{ post.picture.url }}" alt=""></a>
+<!--		  {% if post.tags %}-->
+<!--		  <br>-->
+<!--		  <p class="text-danger ml-3"><b>Tags: <i>{{ post.tags }}</i></b></p>-->
+<!--		  {% endif %}-->
 		</div>
 		{% endfor %}
 	   </div>

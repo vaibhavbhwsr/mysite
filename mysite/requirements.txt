@@ -1,0 +1,9 @@
+Django
+psycopg2
+django-shopify-auth
+django-allauth
+requests
+django-cors-headers
+drf-yasg
+pillow
+django-jazzmin==2.4.5
