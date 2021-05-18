@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django_cleanup',
 
     # Added
-
     'registration',
 ]
 
