@@ -11,7 +11,7 @@ Pillow
 django-crispy-forms
 django-cleanup
 
-To run this project (In Detailed way)
+To run this project (In Detailed way)<br>
 1st: Clone this repository in any computer's folder.
 2nd: Install virtualenv
 3rd: Activate virtualenv
