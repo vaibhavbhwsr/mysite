@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .forms import RegistrationForm, NewPostForm
 from django.views.generic import CreateView, ListView, DetailView, DeleteView, UpdateView, TemplateView
 from django.contrib.auth.decorators import login_required
@@ -7,21 +9,28 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 # Create your views here.
 
 # SignUp
-class SignupView(SuccessMessageMixin, CreateView):
+class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
     form_class = RegistrationForm
     template_name = 'registration/signup.html/'
     success_url = '/'
     success_message = "%(username)s was created successfully! Now Login with the same username and password!"
 
+    def test_func(self):    # This is necessary function to use with UserPassesTextMixin
+        return self.request.user.is_anonymous
+
+    def handle_no_permission(self):     # This function stop accessing signup page to logged in user
+        return HttpResponseRedirect(reverse("home"))
+
 
 # Login
 class MyLoginView(SuccessMessageMixin, LoginView):
-    redirect_authenticated_user = True
+    redirect_authenticated_user = True  # Here it stops logged in user to access log in page.
     success_message = 'Welcome Here!'
 
 
@@ -94,7 +103,7 @@ class UpdateProfileView(UpdateView):
     template_name = 'registration/profile/update_profile.html'
     fields = ['username', 'first_name', 'last_name', 'email']
     success_url = '/'
-    success_message = 'Your Profile Updated Successfully!'
+    # success_message = 'Your Profile Updated Successfully!'
 
     def get_object(self):
         return self.request.user

@@ -10,7 +10,7 @@ urlpatterns = [
     path('accounts/login/', views.MyLoginView.as_view(), name='login'),
 
     # With auth user
-    # Feed Post
+    # Feed Post( Home, Detail, Post-Update, Delete, logout...)
     path('', views.HomeView.as_view(), name='home'),
     path('create/post/', views.PostCreateView.as_view(), name='create-post'),
     path('detail/<int:pk>/', views.PostDetailView.as_view(), name='detail'),
@@ -18,6 +18,7 @@ urlpatterns = [
     path('deleted/', TemplateView.as_view(template_name='registration/post/post_delete.html'), name='deleted'),
     path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post-update'),
     path('accounts/logout/', views.MyLogoutView.as_view(), name='logout'),
+
     # Profile
     path('profile/', views.MyProfileView.as_view(), name='profile'),
     path('update/', views.UpdateProfileView.as_view(), name='update-profile'),
