@@ -31,12 +31,13 @@ class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
 # Login
 class MyLoginView(SuccessMessageMixin, LoginView):
     redirect_authenticated_user = True  # Here it stops logged in user to access log in page.
-    success_message = 'Welcome Here!'
+    success_message = '%(username)s, Welcome Here!'
 
 
 # Logout
-class MyLogoutView(LogoutView):
+class MyLogoutView(SuccessMessageMixin, LogoutView):
     template_name = 'registration/logout.html'
+    success_message = 'Successfully Logged Out!'
 
 
 # Home Page
@@ -56,7 +57,7 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     form_class = NewPostForm
     template_name = 'registration/post/create_post.html'
     success_url = '/'
-    success_message = 'Your Post Created and Uploaded Successfully'
+    success_message = 'Your Post Uploaded Successfully'
     extra_context = {'value': 'Create Post'}
 
     def form_valid(self, form):
@@ -78,7 +79,7 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'registration/post/post_confirm_delete.html'
     success_url = '/deleted/'
-    success_message = 'Your Post Deleted Successfully'
+    success_message = 'Your Post Deleted Successfully'  # Not Working
 
 
 # Post Update
@@ -103,7 +104,7 @@ class UpdateProfileView(UpdateView):
     template_name = 'registration/profile/update_profile.html'
     fields = ['username', 'first_name', 'last_name', 'email']
     success_url = '/'
-    # success_message = 'Your Profile Updated Successfully!'
+    success_message = 'Your Profile Updated Successfully!'
 
     def get_object(self):
         return self.request.user

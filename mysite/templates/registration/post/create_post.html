@@ -27,18 +27,3 @@
 </div>
 
 {% endblock content %}
-
-
-
-{% comment %}
-{% block content %}
-    <h1>Create Your Post From Here!</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form | crispy }}
-        <br>
-        <input type="submit" value="{{ value }}">
-    </form>
-    <a href="{% url 'post' %}">Go Back to Profile</a>
-{% endblock %}
-{% endcomment %}

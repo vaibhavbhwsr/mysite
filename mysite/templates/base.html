@@ -40,6 +40,11 @@
             <!-- ======= Header ======= -->
             {% include "layout/header.html" %}
         {% endblock header %}
+        <div>
+            {% for message in messages %}
+                <h3>{{ message }}</h3>
+            {% endfor %}
+        </div>
         {% block content %}
             This is the body of base.html
         {% endblock content %}

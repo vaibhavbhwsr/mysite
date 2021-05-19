@@ -10,7 +10,7 @@ urlpatterns = [
     path('accounts/login/', views.MyLoginView.as_view(), name='login'),
 
     # With auth user
-    # Feed Post( Home, Detail, Post-Update, Delete, logout...)
+    # Feed Post( Home, Detail, Post-Update, Delete, logout ...)
     path('', views.HomeView.as_view(), name='home'),
     path('create/post/', views.PostCreateView.as_view(), name='create-post'),
     path('detail/<int:pk>/', views.PostDetailView.as_view(), name='detail'),
