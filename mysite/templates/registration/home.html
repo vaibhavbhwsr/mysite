@@ -19,7 +19,11 @@
 		{% for post in posts %}
 		<div class="card my-5">
 		  <div class="card-body">
-			<a class="text-dark" href="{{ post.user_name.profile.get_absolute_url }}"><b>{{ post.user_name | capfirst }}</b></a>
+			<a class="text-dark" href="#"><b>{{ post.user_name | capfirst }}</b></a>
+			{% if post.user_name == user %}
+				<a class="btn btn-outline-info float-right btn-lg ml-3" href="{% url 'post-update' post.id %}">Update</a>
+				<a class="btn btn-outline-danger float-right btn-lg" href="{% url 'post-delete' post.id %}">Delete</a>
+			{% endif %}
 			<br><small class="text-muted">Posted on {{ post.date_posted }}</small>
 			<br><br>
 			<p class="card-text text-dark">{{ post.description }}</p>

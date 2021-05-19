@@ -3,10 +3,25 @@
 {% block title %}Confirm | {{ post.description }}{% endblock %}
 
 {% block content %}
-	<h1> Are you sure want to Delete this Post? </h1>
-    <form method="post">
-        {% csrf_token %}
-        <input type="submit" value="Delete">
-    </form>
-	<a href="{% url 'post' %}">No! Go Back</a>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card my-5">
+          <div class="card-body text-center">
+            <h5 class="card-title"><b>Are you sure want to Delete this Post?</b></h5>
+            <form method = "POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group"><br>
+                {{ form }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-danger btn-block text-uppercase" type="submit">Delete</button><br>
+            </div>
+            </form>
+              <a href="{% url 'home' %}"><button class="btn btn-lg btn-primary text-uppercase" type="submit">No! Go Back</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 {% endblock %}

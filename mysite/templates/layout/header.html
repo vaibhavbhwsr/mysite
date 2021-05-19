@@ -3,7 +3,7 @@
     <div class="grid">
 
         <div class="logo">
-            <a href="{% url 'post' %}">NameHere?</a>
+            <a href="{% url 'home' %}">NameHere?</a>
         </div>
 
         <input type="checkbox" class="navigationCheckbox" id="navi">
@@ -15,13 +15,13 @@
         <nav class="menu bg-black">
             <div class="menu-item">
                 {% if user.is_authenticated %}
-                    <a href="{% url 'post' %}" class="liens">Home</a>
+                    <a href="{% url 'home' %}" class="liens">Home</a>
     <!--            <a class="fa fa-pencil create-post-model-popup" data-toggle="modal" id="createpostlink"-->
     <!--                data-url="#" data-target="#createpost" title="create_new_post"-->
     <!--                data-tooltip>Create Post</a>-->
-                    <a href="{% url 'createpost' %}" class="liens">Create Post</a>
+                    <a href="{% url 'create-post' %}" class="liens">Create Post</a>
                     <a href="#" class="liens">Chat</a>
-                    <a href="#" class="liens">Profile</a>
+                    <a href="{% url 'profile' %}" class="liens">My Profile</a>
                     <a class="liens" href="{% url 'logout' %}" >Log Out</a>
                 {% else %}
                     <a class="liens" href="{% url 'login' %}" >Log In</a>
