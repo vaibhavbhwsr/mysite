@@ -20,8 +20,15 @@
 <!--	          {% if post.tags %}-->
 <!--	          <br><p class="text-danger ml-3"><b>Tags: <i>{{ post.tags }}</i></b></p>-->
 <!--	          {% endif %}-->
-<!--	          <div class="card-footer">-->
-<!--	          </div>-->
+				<div class="card-footer">
+					<form method="POST" action="{% url 'like' post.pk %}">
+						{% csrf_token %}
+						<input type="hidden" name="next" value="{{ request.path }}"> {# lands to same page as next used here #}
+						<button class="btn-lg" style="background-color: transparent; border: none; box-shadow: none;" type="submit">
+							<i class="far fa-thumbs-up"></i> <span>{{ post.likes.all.count }}</span>
+						</button>
+					</form>
+				</div>
 	        </div>
 	  	   </div>
 	    </div>

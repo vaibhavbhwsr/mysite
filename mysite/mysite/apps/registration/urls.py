@@ -11,8 +11,10 @@ urlpatterns = [
 
     # With auth user
     # Feed Post( Home, Detail, Post-Update, Delete, logout ...)
-    path('', views.HomeView.as_view(), name='home'),
-    path('create/post/', views.PostCreateView.as_view(), name='create-post'),
+    path('', views.HomeView.as_view(), name='home'),    # Home page
+    path('create/post/', views.PostCreateView.as_view(), name='create-post'),   # Create Post page
+    path('post/<int:pk>/like', views.LikeView.as_view(), name='like'),
+    # Detail page
     path('detail/<int:pk>/', views.PostDetailView.as_view(), name='detail'),
     path('delete/<int:pk>/', views.PostDeleteView.as_view(), name='post-delete'),
     path('deleted/', TemplateView.as_view(template_name='registration/post/post_delete.html'), name='deleted'),

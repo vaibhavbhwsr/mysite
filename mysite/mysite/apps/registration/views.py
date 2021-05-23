@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import RegistrationForm, NewPostForm
-from django.views.generic import CreateView, ListView, DetailView, DeleteView, UpdateView, TemplateView
+from django.views.generic import View, CreateView, ListView, DetailView, DeleteView, UpdateView, TemplateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.views import LoginView, LogoutView
@@ -21,10 +21,10 @@ class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
     success_url = '/'
     success_message = "%(username)s was created successfully! Now Login with the same username and password!"
 
-    def test_func(self):    # This is necessary function to use with UserPassesTextMixin
+    def test_func(self):  # This is necessary function to use with UserPassesTextMixin
         return self.request.user.is_anonymous
 
-    def handle_no_permission(self):     # This function stop accessing signup page to logged in user
+    def handle_no_permission(self):  # This function stop accessing signup page to logged in user
         return HttpResponseRedirect(reverse("home"))
 
 
@@ -41,6 +41,7 @@ class MyLogoutView(SuccessMessageMixin, LogoutView):
 
 
 # Home Page
+# Post Related Views
 @method_decorator(login_required, name='dispatch')
 class HomeView(ListView):
     model = Post
@@ -50,7 +51,6 @@ class HomeView(ListView):
     # paginate_by = 10
 
 
-# Post Related Views
 # Post Create
 @method_decorator(login_required, name='dispatch')
 class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -69,9 +69,33 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 
 # Post Detail
+@method_decorator(login_required, name='dispatch')
 class PostDetailView(DetailView):
     model = Post
     template_name = 'registration/post/detail.html'
+
+
+# Like View
+class LikeView(LoginRequiredMixin, View):
+
+    def post(self, request, pk, *args, **kwargs):
+        post = Post.objects.get(pk=pk)
+
+        is_like = False
+
+        for like in post.likes.all():
+            if like == request.user:
+                is_like = True
+                break
+
+        if not is_like:
+            post.likes.add(request.user)
+
+        if is_like:
+            post.likes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
 
 
 # Post Delete
@@ -108,4 +132,3 @@ class UpdateProfileView(UpdateView):
 
     def get_object(self):
         return self.request.user
-
