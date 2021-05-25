@@ -1,11 +1,11 @@
-#!/bin/bash  
+#!/bin/bash
 
 sudo apt-get install
 sudo apt-get install virtualenv
 cd ..
 virtualenv --python=python3.8 .env/mysite
 . .env/mysite/bin/activate
-pip install django 
+pip install django
 pip install psycopg2
 pip install Pillow
 pip install django-cleanup

@@ -6,23 +6,26 @@
 
 <div class="container">
     <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card my-5">
-          <div class="card-body">
-            <h5 class="card-title text-center"><b>Log In Here</b></h5>
-			  <h3> {{ message }} </h3>
-            <form method = "POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group"><br>
-                {{ form | crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log In</button><br>
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center"><b>Log In Here</b></h5>
+                    <h3> {{ message }} </h3>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group"><br>
+                            {{ form | crispy }}
+                        </fieldset>
+                        <br>
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log In
+                            </button>
+                            <br>
+                        </div>
+                    </form>
+                </div>
             </div>
-            </form>
-          </div>
         </div>
-      </div>
     </div>
 </div>
 {% endblock content %}
