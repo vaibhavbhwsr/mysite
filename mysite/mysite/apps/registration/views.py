@@ -1,7 +1,9 @@
-from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from .forms import RegistrationForm, NewPostForm
-from django.views.generic import View, CreateView, ListView, DetailView, DeleteView, UpdateView, TemplateView
+from django.views.generic import View, CreateView, ListView, DetailView
+from django.views.generic import DeleteView, UpdateView, TemplateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.views import LoginView, LogoutView
@@ -19,18 +21,22 @@ class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
     form_class = RegistrationForm
     template_name = 'registration/signup.html/'
     success_url = '/'
-    success_message = "%(username)s was created successfully! Now Login with the same username and password!"
+    success_message = "%(username)s was created successfully! Now Login with"
+    " the same username and password!"
 
-    def test_func(self):  # This is necessary function to use with UserPassesTextMixin
+    # This is necessary function to use with UserPassesTextMixin
+    def test_func(self):
         return self.request.user.is_anonymous
 
-    def handle_no_permission(self):  # This function stop accessing signup page to logged in user
+    # This function stop accessing signup page to logged in user
+    def handle_no_permission(self):
         return HttpResponseRedirect(reverse("home"))
 
 
 # Login
 class MyLoginView(SuccessMessageMixin, LoginView):
-    redirect_authenticated_user = True  # Here it stops logged in user to access log in page.
+    # Here it stops logged in user to access log in page.
+    redirect_authenticated_user = True
     success_message = '%(username)s, Welcome Here!'
 
 
@@ -62,7 +68,7 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
-        data = form.save(commit=False)
+        form.save(commit=False)
         form.instance.user_name = self.request.user
         self.object = form.save()
         return super().form_valid(form)
@@ -79,7 +85,8 @@ class PostDetailView(DetailView):
 class LikeView(LoginRequiredMixin, View):
 
     def post(self, request, pk, *args, **kwargs):
-        post = Post.objects.get(pk=pk)
+        post = Post.object.get(pk=pk)
+        # id = request.POST.get('sid')
 
         is_like = False
 
@@ -94,8 +101,29 @@ class LikeView(LoginRequiredMixin, View):
         if is_like:
             post.likes.remove(request.user)
 
-        next = request.POST.get('next', '/')
-        return HttpResponseRedirect(next)
+        return JsonResponse({'liked': is_like})
+
+
+# class LikeView(LoginRequiredMixin, View):
+
+#     def post(self, request, pk, *args, **kwargs):
+#         post = Post.objects.get(pk=pk)
+
+#         is_like = False
+
+#         for like in post.likes.all():
+#             if like == request.user:
+#                 is_like = True
+#                 break
+
+#         if not is_like:
+#             post.likes.add(request.user)
+
+#         if is_like:
+#             post.likes.remove(request.user)
+
+#         next = request.POST.get('next', '/')
+#         return HttpResponseRedirect(next)
 
 
 # Post Delete
