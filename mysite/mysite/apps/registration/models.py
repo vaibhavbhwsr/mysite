@@ -17,5 +17,8 @@ class Post(models.Model):
         from django.urls import reverse
         return reverse('detail', args=[str(self.pk)])
 
-    # def send_index(self):
-    #     return self.pk
+    def send_index(self):
+        return self.pk
+
+    def likes_count(self):
+        return self.likes.count()

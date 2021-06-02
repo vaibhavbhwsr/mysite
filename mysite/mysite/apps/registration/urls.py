@@ -51,7 +51,8 @@ urlpatterns = [
     path(
         'deleted/',
         TemplateView.as_view(
-            template_name='registration/post/post_delete.html'), name='deleted'
+            template_name='registration/post/post_delete.html'),
+        name='deleted'
     ),
     path(
         'post/<int:pk>/update/',

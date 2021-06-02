@@ -22,26 +22,24 @@
                 </div>
                 <a href="{% url 'detail' post.id %}"><img class="card-img-top" src="/static{{ post.picture.url }}" alt=""></a>
                 {% comment %}
-                <!--{% if post.tags %}-->
-                <!--<br>-->
-                <!--<p class="text-danger ml-3"><b>Tags: <i>{{ post.tags }}</i></b></p>-->
-                <!--{% endif %}-->
+                {% if post.tags %}
+                <br>
+                <p class="text-danger ml-3"><b>Tags: <i>{{ post.tags }}</i></b></p>
+                {% endif %}
                 {% endcomment %}
-                <div class="card-footer" id="likebtn">
+                <div class="card-footer">
                     <form method="POST" action="{% url 'like' post.pk %}">
                         {% csrf_token %}
-
-                        <!--lands to same page as next used here--> 
-                        {% comment %}<input type="hidden" name="next" value="{{ request.path }}">{% endcomment %}
-                        
-                        <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" data-sid="{{ post.id }}" data-url="{% url 'like' post.pk %}">
-                            <i class="far fa-thumbs-up"></i> <span>{{ post.likes.all.count }}</span>
-                        </button>
+                        {% if post in liked %}
+                            <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
+                                <i class="fas fa-2x fa-thumbs-up" style="color:royalblue;"></i> <span>{{ post.likes.all.count }}</span>
+                            </button>
+                        {% else %}
+                            <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
+                                <i class="fas fa-2x fa-thumbs-up"></i> <span>{{ post.likes.all.count }}</span>
+                            </button>
+                        {% endif %}
                     </form>
-                        {% comment %}<input type="button"
-                                   data-sid="{{ post.id }}"
-                                   class="btn btn-info btn-sm btn-like"
-                                   value="Like | {{ post.likes.all.count }}"/>{% endcomment %}
                 </div>
             </div>
             {% endfor %}
@@ -54,7 +52,3 @@
 {% block extra_js %}
 <script type="text/javascript" src='{% static "js/ajax.js" %}'></script>
 {% endblock extra_js %}
-
-{% comment %}{% block extra_js %}
-<script src="{% static 'js/ajax.js'%}"></script>
-{% endblock extra_js %}{% endcomment %}

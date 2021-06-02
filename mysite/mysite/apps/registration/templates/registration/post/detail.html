@@ -1,4 +1,5 @@
 {% extends 'registration/home.html' %}
+{% load static %}
 
 {% block title %}Detail | {{ post.description }}{% endblock %}
 
@@ -25,21 +26,23 @@
                 <a href="/static/{{ post.picture.url }}">
                     <img class="card-img-top" src="/static{{ post.picture.url }}" alt="">
                 </a>
-                <!--{% if post.tags %}-->
-                <!--<br><p class="text-danger ml-3"><b>Tags: <i>{{ post.tags }}</i></b></p>-->
-                <!--{% endif %}-->
+                {% comment %}
+                {% if post.tags %}
+                <br><p class="text-danger ml-3"><b>Tags: <i>{{ post.tags }}</i></b></p>
+                {% endif %}
+                {% endcomment %}
                 <div class="card-footer">
                     <form method="POST" action="{% url 'like' post.pk %}">
                         {% csrf_token %}
-                        <input type="hidden" name="next" value="{{ request.path }}"> <!--lands to same page as next used
-                            here-->
-                            <button class="btn-lg"
-                                    style="background-color: transparent; border: none; box-shadow: none;"
-                                    type="submit">
-                            <div id="liky">
-                                <i class="far fa-thumbs-up"></i> <span>{{ post.likes.all.count }}</span>
-                            </div>
-                        </button>
+                        {% if liked %}
+                            <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
+                                <i class="fas fa-2x fa-thumbs-up" style="color:royalblue;"></i> <span>{{ post.likes.all.count }}</span>
+                            </button>
+                        {% else %}
+                            <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
+                                <i class="fas fa-2x fa-thumbs-up"></i> <span>{{ post.likes.all.count }}</span>
+                            </button>
+                    {% endif %}
                     </form>
                 </div>
             </div>
@@ -49,4 +52,5 @@
 {% endblock content %}
 
 {% block extra_js %}
+<script type="text/javascript" src='{% static "js/ajax.js" %}'></script>
 {% endblock extra_js %}
