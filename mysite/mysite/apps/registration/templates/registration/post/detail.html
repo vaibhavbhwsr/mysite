@@ -14,9 +14,9 @@
                         <b>{{ post.user_name | capfirst}}</b>
                     </a>
                     {% if post.user_name == user %}
-                        <a class="btn btn-outline-info btn-lg ml-3 float-right"
+                        <a class="btn btn-outline-info btn-lg ms-2 float-end"
                            href="{% url 'post-update' post.id %}">Update</a>
-                        <a class="btn btn-outline-danger btn-lg float-right"
+                        <a class="btn btn-outline-danger btn-lg  float-end"
                            href="{% url 'post-delete' post.id %}">Delete</a>
                     {% endif %}
                     <br /><small class="text-muted">Posted on {{ post.date_posted }}</small>

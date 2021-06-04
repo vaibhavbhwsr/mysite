@@ -130,9 +130,9 @@ class LikeView(LoginRequiredMixin, View):
         else:
             post.likes.add(request.user)
 
-        # this calls likes_count() form model = Post
+        # This calls likes_count() form model = Post
         count = post.likes_count()
-        # this change is for ajax logic makes true if liked and vice versa
+        # This change is for ajax logic makes true if liked and vice versa
         is_like = not is_like
 
         return JsonResponse({'liked': is_like, 'count': count})
