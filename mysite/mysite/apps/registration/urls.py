@@ -1,10 +1,11 @@
 from django.urls import path  # , include
 from . import views
 from django.views.generic.base import TemplateView
-# from django.contrib.auth import views as auth_views
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    # Without auth user
+    # Without Loggedin
     # path('', include('django.contrib.auth.urls')),
     path(
         'signup/',
@@ -16,25 +17,50 @@ urlpatterns = [
         views.MyLoginView.as_view(),
         name='login'
     ),
+    # Password reset using email
+    path(
+        'password_reset/',
+        auth_views.PasswordResetView.as_view(
+            template_name='registration/pass/password_reset_email.html'),
+        name='password_reset'
+    ),
+    path(
+        'password_reset/done/',
+        auth_views.PasswordResetDoneView.as_view(
+            template_name='registration/pass/password_reset_done.html'),
+        name='password_reset_done'
+    ),
+    path(
+        'reset/<uidb64>/<token>/',
+        auth_views.PasswordResetConfirmView.as_view(
+            template_name='registration/pass/password_reset_confirm.html'),
+        name='password_reset_confirm'
+    ),
+    path(
+        'reset/done/',
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name='registration/pass/password_reset_complete.html'),
+        name='password_reset_complete'
+    ),
 
-    # With auth user
+    # With Logged in
     # Feed Post( Home, Detail, Post-Update, Delete, logout ...)
+    # Home page
     path(
         '',
         views.HomeView.as_view(),
         name='home'
     ),
-
-    # Home page
+    path(
+        'post/<int:pk>/like',
+        views.LikeView.as_view(),
+        name='like'
+    ),
+    # Create Post page
     path(
         'create/post/',
         views.PostCreateView.as_view(),
         name='create-post'
-    ),   # Create Post page
-    path(
-        'post/<int:pk>/like',
-         views.LikeView.as_view(),
-         name='like'
     ),
 
     # Detail page
@@ -50,8 +76,8 @@ urlpatterns = [
     ),
     path(
         'deleted/',
-        TemplateView.as_view(
-            template_name='registration/post/post_delete.html'),
+        login_required(TemplateView.as_view(
+            template_name='registration/post/post_delete.html')),
         name='deleted'
     ),
     path(
@@ -59,13 +85,15 @@ urlpatterns = [
         views.PostUpdateView.as_view(),
         name='post-update'
     ),
+
+    # Logout
     path(
         'accounts/logout/',
         views.MyLogoutView.as_view(),
         name='logout'
     ),
 
-    # Profile
+    # My Profile Page
     path(
         'profile/',
         views.MyProfileView.as_view(),
@@ -73,6 +101,20 @@ urlpatterns = [
     ),
     path(
         'update/',
-        views.UpdateProfileView.as_view(), name='update-profile'
+        views.UpdateProfileView.as_view(),
+        name='update-profile'
+    ),
+    # Password change
+    path(
+        'password_change/',
+        auth_views.PasswordChangeView.as_view(
+            template_name="registration/profile/password_change_form.html"),
+        name='password_change'
+    ),
+    path(
+        'password_change/done/',
+        auth_views.PasswordChangeDoneView.as_view(
+            template_name="registration/profile/password_change_done.html"),
+        name='password_change_done'
     ),
 ]

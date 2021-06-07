@@ -6,7 +6,7 @@ from django.views.generic import View, CreateView, ListView, DetailView
 from django.views.generic import DeleteView, UpdateView, TemplateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth import views as auth_view
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from django.contrib.messages.views import SuccessMessageMixin
@@ -34,14 +34,14 @@ class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
 
 
 # Login
-class MyLoginView(SuccessMessageMixin, LoginView):
+class MyLoginView(SuccessMessageMixin, auth_view.LoginView):
     # Here it stops logged in user to access log in page.
     redirect_authenticated_user = True
     success_message = '%(username)s, Welcome Here!'
 
 
 # Logout
-class MyLogoutView(SuccessMessageMixin, LogoutView):
+class MyLogoutView(SuccessMessageMixin, auth_view.LogoutView):
     template_name = 'registration/logout.html'
     success_message = 'Successfully Logged Out!'
 
@@ -111,6 +111,7 @@ class PostDetailView(DetailView):
 
 
 # Like View
+@method_decorator(login_required, name='dispatch')
 class LikeView(LoginRequiredMixin, View):
 
     def post(self, request, pk, *args, **kwargs):
@@ -139,6 +140,7 @@ class LikeView(LoginRequiredMixin, View):
 
 
 # Post Delete
+@method_decorator(login_required, name='dispatch')
 class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'registration/post/post_confirm_delete.html'
@@ -147,6 +149,7 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
 
 # Post Update
+@method_decorator(login_required, name='dispatch')
 class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Post
     form_class = NewPostForm
@@ -158,11 +161,13 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 # Profile Page
 # Profile
+@method_decorator(login_required, name='dispatch')
 class MyProfileView(TemplateView):
     template_name = 'registration/profile/profile.html'
 
 
 # Profile Update
+@method_decorator(login_required, name='dispatch')
 class UpdateProfileView(UpdateView):
     model = User
     template_name = 'registration/profile/update_profile.html'

@@ -9,8 +9,10 @@
                 <div class="card-body text-center">
                     <h5 class="card-title text-center"><b>My Account</b></h5>
                     <hr>
-                    <a class="btn btn-info btn-lg btn-block" href="{% url 'update-profile' %}">Update Profile</a>
-                    </form>
+                    <div class="d-grid gap-2 col-9 mx-auto">
+                        <a class="btn btn-primary btn-lg" href="{% url 'update-profile' %}">UPDATE PROFILE</a>
+                        <a class="btn btn-primary btn-lg" href="{% url 'password_change' %}">CHANGE PASSWORD</a>
+                    </div>
                 </div>
             </div>
         </div>
