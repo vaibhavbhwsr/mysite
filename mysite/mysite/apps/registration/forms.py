@@ -1,8 +1,9 @@
 # This file is created one.
 from django import forms
-from django.contrib.auth.models import User  # imported User 2nd
 # imported UserCreationForm 3rd
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User  # imported User 2nd
+
 from .models import Post
 
 

@@ -1,17 +1,17 @@
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect, JsonResponse
-from django.urls import reverse
-from .forms import RegistrationForm, NewPostForm
-from django.views.generic import View, CreateView, ListView, DetailView
-from django.views.generic import DeleteView, UpdateView, TemplateView
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from django.contrib.auth import views as auth_view
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Post
-from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.models import User
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.models import User
+from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect, JsonResponse
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views.generic import DeleteView, UpdateView, TemplateView
+from django.views.generic import View, CreateView, ListView, DetailView
+from .forms import RegistrationForm, NewPostForm
+from .models import Post
 
 
 # Create your views here.
@@ -34,16 +34,10 @@ class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
 
 
 # Login
-class MyLoginView(SuccessMessageMixin, auth_view.LoginView):
+class MyLoginView(SuccessMessageMixin, LoginView):
     # Here it stops logged in user to access log in page.
     redirect_authenticated_user = True
     success_message = '%(username)s, Welcome Here!'
-
-
-# Logout
-class MyLogoutView(SuccessMessageMixin, auth_view.LogoutView):
-    template_name = 'registration/logout.html'
-    success_message = 'Successfully Logged Out!'
 
 
 # Home Page
@@ -89,7 +83,7 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         """If the form is valid, save the associated model."""
         form.save(commit=False)
         form.instance.user_name = self.request.user
-        self.object = form.save()
+        form.save()
         return super().form_valid(form)
 
 
@@ -175,5 +169,5 @@ class UpdateProfileView(UpdateView):
     success_url = '/'
     success_message = 'Your Profile Updated Successfully!'
 
-    def get_object(self):
+    def get_object(self, **kwargs):
         return self.request.user

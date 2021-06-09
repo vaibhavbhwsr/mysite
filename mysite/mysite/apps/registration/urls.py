@@ -1,11 +1,12 @@
-from django.urls import path  # , include
-from . import views
-from django.views.generic.base import TemplateView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.urls import path  # , include
+from django.views.generic.base import TemplateView
+
+from . import views
 
 urlpatterns = [
-    # Without Loggedin
+    # Without Logged in
     # path('', include('django.contrib.auth.urls')),
     path(
         'signup/',
@@ -89,7 +90,7 @@ urlpatterns = [
     # Logout
     path(
         'accounts/logout/',
-        views.MyLogoutView.as_view(),
+        auth_views.LogoutView.as_view(),
         name='logout'
     ),
 
