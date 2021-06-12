@@ -1,3 +1,64 @@
 .navigationBtn{
   margin-top: 1rem !important;
 }
+
+footer p {
+  display: inline;
+  font-weight: bold;
+}
+
+footer p a {
+  font-size: 1em;
+  float: right;
+  color: blue;
+  text-decoration: underline;
+}
+
+footer p a:hover {
+    color: blue;
+}
+
+.menu-item {
+    line-height: 1;
+}
+
+.card-body {
+    font-size: 1.5rem;
+}
+
+.form-control {
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width:619px) 
+{
+  footer p {
+    display: grid;
+    text-align: center;
+  }
+
+  .card-body {
+    font-size: 2em;
+  }
+
+  .text-muted {
+    font-size: 1.5vh;
+  }
+
+  .form-control {
+    line-height: 2;
+  }
+
+  .page-button {
+    display: grid;
+  }
+
+  button.btn.btn-lg.btn-primary.btn-block.text-uppercase {
+    margin-bottom: 15px;
+    font-size: 2rem;
+  }
+  .form-control {
+    font-size: 2rem;
+  }
+
+}

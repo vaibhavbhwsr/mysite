@@ -5,10 +5,9 @@
 {% block title %}Create Post{% endblock %}
 {% block content %}
 
-<br><br>
 <div class="container">
     <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="col-12 col-lg-6 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center"><b>Create Your Post</b></h5>
@@ -17,7 +16,7 @@
                         <fieldset class="form-group"><br>
                             {{ form | crispy }}
                         </fieldset>
-                        <div class="form-group text-center">
+                        <div class="form-group page-button">
                             <br /><button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{{ value }}
                             </button>
                             <br>
