@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Packages Installed
     'crispy_forms',
     'django_cleanup',
+    'rest_framework',
 
     # Added
     'registration',

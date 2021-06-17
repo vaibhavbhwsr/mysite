@@ -6,6 +6,12 @@ from django.views.generic.base import TemplateView
 from . import views
 
 urlpatterns = [
+    # APIs URLConfigs
+    path('postapi/', views.PostListApiView.as_view()),
+    path('postapi/<int:pk>', views.PostDetailApiView.as_view()),
+
+
+    # HTMLs URLConfigs
     # Without Logged in
     # path('', include('django.contrib.auth.urls')),
     path(
@@ -18,7 +24,7 @@ urlpatterns = [
         views.MyLoginView.as_view(),
         name='login'
     ),
-    # Password reset using email
+    # Password Reset
     path(
         'password_reset/',
         auth_views.PasswordResetView.as_view(
@@ -94,7 +100,7 @@ urlpatterns = [
         name='logout'
     ),
 
-    # My Profile Page
+    # MyProfile Page
     path(
         'profile/',
         views.MyProfileView.as_view(),
