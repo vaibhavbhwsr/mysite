@@ -10,11 +10,54 @@ from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, TemplateView
 from django.views.generic import View, CreateView, ListView, DetailView
-from .forms import RegistrationForm, NewPostForm
-from .models import Post
+from registration.forms import RegistrationForm, NewPostForm
+from registration.models import Post
 
 
 # Create your views here.
+
+
+""" APIs """
+
+from registration.serializers import PostSerializer
+from rest_framework import generics
+from registration.serializers import UserSerializer
+from rest_framework import permissions
+from registration.permissions import IsOwnerReadOnly
+
+
+class UserListApiView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetailApiView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class PostListApiView(generics.ListCreateAPIView):
+    # Here IsAuthenticatedOrReadOnly ensure that authenticated requests get
+    # read-write access, and unauthenticated requests get read-only access.
+    permission_class = [permissions.IsAuthenticatedOrReadOnly]
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    # Ye samajh ni aaya ki kya krta h ye.
+    def perfome_create(self, serializer):
+        serializer.save(user_name=self.request.user)
+
+
+class PostDetailApiView(generics.RetrieveUpdateDestroyAPIView):
+    # Here IsAuthenticatedOrReadOnly described above in PostListApiView
+    permission_class = [permissions.IsAuthenticatedOrReadOnly,
+                        IsOwnerReadOnly]
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
+""" HTMLs """
+
 
 # SignUp
 class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
@@ -171,19 +214,3 @@ class UpdateProfileView(UpdateView):
 
     def get_object(self, **kwargs):
         return self.request.user
-
-
-""" APIs """
-
-from .serializers import PostSerializer
-from rest_framework import generics
-
-
-class PostListApiView(generics.ListCreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-
-
-class PostDetailApiView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer

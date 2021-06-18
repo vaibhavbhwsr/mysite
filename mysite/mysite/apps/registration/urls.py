@@ -1,17 +1,23 @@
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
-from django.urls import path  # , include
+from django.urls import path, include
 from django.views.generic.base import TemplateView
 
 from . import views
 
 urlpatterns = [
     # APIs URLConfigs
-    path('postapi/', views.PostListApiView.as_view()),
-    path('postapi/<int:pk>', views.PostDetailApiView.as_view()),
+
+    # Add login/logout to API
+    path('api-auth/', include('rest_framework.urls')),
+    path('usersapi/', views.UserListApiView.as_view()),
+    path('usersapi/<int:pk>', views.UserDetailApiView.as_view()),
+    path('postsapi/', views.PostListApiView.as_view()),
+    path('postsapi/<int:pk>', views.PostDetailApiView.as_view()),
 
 
     # HTMLs URLConfigs
+
     # Without Logged in
     # path('', include('django.contrib.auth.urls')),
     path(

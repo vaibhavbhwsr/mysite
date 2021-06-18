@@ -6,10 +6,12 @@ from django.utils import timezone
 # Create your models here.
 
 class Post(models.Model):
-    user_name = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user_name is used as owner here for API.
+    user_name = models.ForeignKey(User, related_name="posts",
+                                  on_delete=models.CASCADE)         # API also
     date_posted = models.DateTimeField(default=timezone.now)
     description = models.CharField(max_length=255, blank=True)
-    picture = models.ImageField(upload_to='images/post')
+    picture = models.ImageField(upload_to='images/post', blank=True)
     tags = models.CharField(max_length=100, blank=True)
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
 
@@ -22,3 +24,6 @@ class Post(models.Model):
 
     def likes_count(self):
         return self.likes.count()
+
+    def save(self, *args, **kwargs):
+        super(Post, self).save(*args, **kwargs)
