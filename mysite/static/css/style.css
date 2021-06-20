@@ -30,6 +30,11 @@ footer p a:hover {
     font-size: 1.5rem;
 }
 
+.alert-success {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
 @media screen and (max-width:619px) 
 {
   footer p {
@@ -60,5 +65,4 @@ footer p a:hover {
   .form-control {
     font-size: 2rem;
   }
-
 }

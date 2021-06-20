@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
-
 {% load static %}
-
 {% block title %}Hello! {{ user | capfirst }}{% endblock %}
-
 {% block extra_css %}
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="screen">
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="screen">
 {% endblock extra_css %}
-
 {% block content %}
 <div class="container">
     <div class="row d-flex justify-content-center">
@@ -51,7 +47,6 @@
     </div>
 </div>
 {% endblock content%}
-
 {% block extra_js %}
 <script type="text/javascript" src='{% static "js/ajax.js" %}'></script>
 {% endblock extra_js %}

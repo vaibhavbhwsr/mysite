@@ -53,9 +53,13 @@
     {% endblock header %}
 
     <div>
+    {% if messages %}
         {% for message in messages %}
-        <h3>{{ message }}</h3>
+            <div {% if message.tags %} class="alert alert-{{ message.tags }} text-center" role="alert" {% endif %} onclick="this.parentElement.style.display='none'">
+                {{ message | capfirst }}
+            </div>
         {% endfor %}
+    {% endif %}
     </div>
 
     {% block content %}
