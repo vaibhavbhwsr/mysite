@@ -13,7 +13,6 @@ from django.views.generic import View, CreateView, ListView, DetailView
 from registration.forms import RegistrationForm, NewPostForm
 from registration.models import Post
 
-
 # Create your views here.
 
 
@@ -45,6 +44,7 @@ class PostListApiView(generics.ListCreateAPIView):
 
     # Ye samajh ni aaya ki kya krta h ye.
     def perfome_create(self, serializer):
+        print(self.request)
         serializer.save(user_name=self.request.user)
 
 
@@ -64,8 +64,8 @@ class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
     form_class = RegistrationForm
     template_name = 'registration/signup.html/'
     success_url = '/'
-    success_message = "%(username)s was created successfully! Now Login with"
-    " the same username and password!"
+    success_message = "%(username)s was created successfully! Now Login with"\
+        " the same username and password!"
 
     # This is necessary function to use with UserPassesTextMixin
     def test_func(self):
@@ -119,8 +119,8 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     form_class = NewPostForm
     template_name = 'registration/post/create_post.html'
     success_url = '/'
-    success_message = 'Your Post Uploaded Successfully'
-    extra_context = {'value': 'Create Post'}
+    success_message = 'Your Post Uploaded Successfully!'
+    extra_context = {'value': 'Create'}
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
@@ -182,7 +182,7 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'registration/post/post_confirm_delete.html'
     success_url = '/deleted/'
-    success_message = 'Your Post Deleted Successfully'  # Not Working
+    # success_message = 'Your Post Deleted Successfully!'  # Not Working
 
 
 # Post Update
@@ -192,7 +192,7 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     form_class = NewPostForm
     template_name = 'registration/post/create_post.html'
     success_url = '/'
-    extra_context = {'value': 'Update Post'}
+    extra_context = {'value': 'Update'}
     success_message = 'Your Post Updated Successfully!'
 
 
@@ -205,7 +205,7 @@ class MyProfileView(TemplateView):
 
 # Profile Update
 @method_decorator(login_required, name='dispatch')
-class UpdateProfileView(UpdateView):
+class UpdateProfileView(UpdateView, SuccessMessageMixin):
     model = User
     template_name = 'registration/profile/update_profile.html'
     fields = ['username', 'first_name', 'last_name', 'email']

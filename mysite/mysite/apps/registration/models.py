@@ -7,7 +7,7 @@ from django.utils import timezone
 
 class Post(models.Model):
     # user_name is used as owner here for API.
-    user_name = models.ForeignKey(User, related_name="posts",
+    user_name = models.ForeignKey('auth.User', related_name="posts",
                                   on_delete=models.CASCADE)         # API also
     date_posted = models.DateTimeField(default=timezone.now)
     description = models.CharField(max_length=255, blank=True)
@@ -24,6 +24,3 @@ class Post(models.Model):
 
     def likes_count(self):
         return self.likes.count()
-
-    def save(self, *args, **kwargs):
-        super(Post, self).save(*args, **kwargs)
