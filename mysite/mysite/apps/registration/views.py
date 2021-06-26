@@ -17,7 +17,25 @@ from registration.models import Post
 
 
 """ APIs """
+from rest_framework import viewsets
+from .serializers import PostSerializer, UserSerializer
+from registration.permissions import IsOwnerReadOnly
+from rest_framework import permissions
 
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_class = [permissions.IsAuthenticatedOrReadOnly,
+                        IsOwnerReadOnly]
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+"""
 from registration.serializers import PostSerializer
 from rest_framework import generics
 from registration.serializers import UserSerializer
@@ -35,26 +53,26 @@ class UserDetailApiView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
 
 
-class PostListApiView(generics.ListCreateAPIView):
+class PostListCreateApi(generics.ListCreateAPIView):
     # Here IsAuthenticatedOrReadOnly ensure that authenticated requests get
     # read-write access, and unauthenticated requests get read-only access.
     permission_class = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-    # Ye samajh ni aaya ki kya krta h ye.
+    # Ye samajh ni aaya ki kaise krra h ye.
     def perfome_create(self, serializer):
         print(self.request)
         serializer.save(user_name=self.request.user)
 
 
-class PostDetailApiView(generics.RetrieveUpdateDestroyAPIView):
+class PostEditApi(generics.RetrieveUpdateDestroyAPIView):
     # Here IsAuthenticatedOrReadOnly described above in PostListApiView
     permission_class = [permissions.IsAuthenticatedOrReadOnly,
                         IsOwnerReadOnly]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-
+"""
 
 """ HTMLs """
 
@@ -85,7 +103,7 @@ class MyLoginView(SuccessMessageMixin, LoginView):
 
 # Home Page
 # Post Related Views
-@method_decorator(login_required, name='dispatch')
+@ method_decorator(login_required, name='dispatch')
 class HomeView(ListView):
     model = Post
     template_name = 'registration/home.html'
@@ -114,7 +132,7 @@ class HomeView(ListView):
 
 
 # Post Create
-@method_decorator(login_required, name='dispatch')
+@ method_decorator(login_required, name='dispatch')
 class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     form_class = NewPostForm
     template_name = 'registration/post/create_post.html'
@@ -131,7 +149,7 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 
 # Post Detail
-@method_decorator(login_required, name='dispatch')
+@ method_decorator(login_required, name='dispatch')
 class PostDetailView(DetailView):
     model = Post
     template_name = 'registration/post/detail.html'
@@ -148,7 +166,7 @@ class PostDetailView(DetailView):
 
 
 # Like View
-@method_decorator(login_required, name='dispatch')
+@ method_decorator(login_required, name='dispatch')
 class LikeView(LoginRequiredMixin, View):
 
     def post(self, request, pk, *args, **kwargs):
@@ -170,6 +188,7 @@ class LikeView(LoginRequiredMixin, View):
 
         # This calls likes_count() form model = Post
         count = post.likes_count()
+
         # This change is for ajax logic makes true if liked and vice versa
         is_like = not is_like
 
@@ -177,7 +196,7 @@ class LikeView(LoginRequiredMixin, View):
 
 
 # Post Delete
-@method_decorator(login_required, name='dispatch')
+@ method_decorator(login_required, name='dispatch')
 class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'registration/post/post_confirm_delete.html'
@@ -186,7 +205,7 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
 
 # Post Update
-@method_decorator(login_required, name='dispatch')
+@ method_decorator(login_required, name='dispatch')
 class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Post
     form_class = NewPostForm
@@ -198,13 +217,13 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 # Profile Page
 # Profile
-@method_decorator(login_required, name='dispatch')
+@ method_decorator(login_required, name='dispatch')
 class MyProfileView(TemplateView):
     template_name = 'registration/profile/profile.html'
 
 
 # Profile Update
-@method_decorator(login_required, name='dispatch')
+@ method_decorator(login_required, name='dispatch')
 class UpdateProfileView(UpdateView, SuccessMessageMixin):
     model = User
     template_name = 'registration/profile/update_profile.html'
