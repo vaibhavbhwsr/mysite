@@ -16,7 +16,7 @@ urlpatterns = [
     # """ APIs URLConfigs """
 
     path('api/', include(router.urls)),
-    path('', include('rest_framework.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 
 
     # # Add login/logout to API

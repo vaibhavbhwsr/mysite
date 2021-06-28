@@ -1,15 +1,14 @@
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import DeleteView, UpdateView, TemplateView
-from django.views.generic import View, CreateView, ListView, DetailView
+from django.views.generic import DeleteView, UpdateView, TemplateView, \
+    View, CreateView, ListView, DetailView
 from registration.forms import RegistrationForm, NewPostForm
 from registration.models import Post
 
@@ -20,22 +19,31 @@ from registration.models import Post
 from rest_framework import viewsets
 from .serializers import PostSerializer, UserSerializer
 from registration.permissions import IsOwnerOrReadOnly
-from rest_framework.authentication import SessionAuthentication
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.permissions import DjangoModelPermissions
+from rest_framework.authentication import TokenAuthentication, \
+    SessionAuthentication
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, \
+    DjangoModelPermissions
+from rest_framework.authtoken.models import Token
+
+
+# Created tokens for all existing users.
+for user in User.objects.all():
+    Token.objects.get_or_create(user=user)
 
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(user_name=self.request.user)
 
     def get_queryset(self):
-        if not self.request.user.is_anonymous:
+        if self.request.user.is_staff:
+            return Post.objects.all()
+        elif not self.request.user.is_anonymous:
             return Post.objects.filter(user_name=self.request.user)
         else:
             return Post.objects.all()
@@ -44,8 +52,14 @@ class PostViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
     permission_classes = [DjangoModelPermissions]
+
+    def get_queryset(self):
+        if not self.request.user.is_staff:
+            return User.objects.filter(username=self.request.user)
+        else:
+            return User.objects.all()
 
 
 """

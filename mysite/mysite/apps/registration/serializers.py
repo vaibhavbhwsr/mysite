@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'posts']
+        fields = '__all__'
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -20,5 +20,6 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'user_name', 'date_posted', 'description',
-                  'picture', 'tags', 'likes']
+        fields = '__all__'
+        # fields = ['id', 'user_name', 'date_posted', 'description',
+        #           'picture', 'tags', 'likes']

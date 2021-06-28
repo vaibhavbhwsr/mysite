@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_cleanup',
     'rest_framework',
+    'rest_framework.authtoken',
+    'drf_yasg',
 
     # Added
     'registration',
