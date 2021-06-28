@@ -15,7 +15,7 @@ urlpatterns = [
 
     # """ APIs URLConfigs """
 
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
     path('', include('rest_framework.urls')),
 
 

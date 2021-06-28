@@ -19,20 +19,33 @@ from registration.models import Post
 """ APIs """
 from rest_framework import viewsets
 from .serializers import PostSerializer, UserSerializer
-from registration.permissions import IsOwnerReadOnly
-from rest_framework import permissions
+from registration.permissions import IsOwnerOrReadOnly
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import DjangoModelPermissions
 
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_class = [permissions.IsAuthenticatedOrReadOnly,
-                        IsOwnerReadOnly]
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(user_name=self.request.user)
+
+    def get_queryset(self):
+        if not self.request.user.is_anonymous:
+            return Post.objects.filter(user_name=self.request.user)
+        else:
+            return Post.objects.all()
 
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [DjangoModelPermissions]
 
 
 """
@@ -61,7 +74,7 @@ class PostListCreateApi(generics.ListCreateAPIView):
     serializer_class = PostSerializer
 
     # Ye samajh ni aaya ki kaise krra h ye.
-    def perfome_create(self, serializer):
+    def perform_create(self, serializer):
         print(self.request)
         serializer.save(user_name=self.request.user)
 
