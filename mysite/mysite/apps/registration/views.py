@@ -137,7 +137,7 @@ class HomeView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']
     extra_context = {'value': 'Create Post'}
-    # paginate_by = 10
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)

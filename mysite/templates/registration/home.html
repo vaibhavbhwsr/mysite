@@ -44,8 +44,25 @@
             </div>
             {% endfor %}
         </div>
+    
+        <div class="text-center">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">&laquo; </a>
+                {% endif %}
+
+                <span class="current">
+                    {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}"> &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
     </div>
 </div>
+
 {% endblock content%}
 {% block extra_js %}
 <script type="text/javascript" src='{% static "js/ajax.js" %}'></script>

@@ -35,6 +35,10 @@ footer p a:hover {
   font-size: 1.5rem;
 }
 
+span.step-links {
+    font-size: 1.8rem;
+}
+
 @media screen and (max-width:619px) 
 {
   footer p {
