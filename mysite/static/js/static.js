@@ -1,4 +1,4 @@
-
+/*
 $(document).ready(function () {
         
           $(".create-post-model-popup").on("click", function (e) {
@@ -98,3 +98,4 @@ $(document).ready(function () {
         
         
 }) 
+*/

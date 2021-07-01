@@ -16,6 +16,8 @@ from registration.models import Post
 
 
 """ APIs """
+
+
 from rest_framework import viewsets
 from .serializers import PostSerializer, UserSerializer
 from registration.permissions import IsOwnerOrReadOnly
