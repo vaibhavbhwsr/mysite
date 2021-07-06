@@ -12,7 +12,7 @@ local.py
 env/
 venv/
 ENV/
-.idea
+.idea/
 celerybeat-schedule
 postyourcars.sublime-workspace
 celerybeat.pid
