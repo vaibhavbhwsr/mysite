@@ -1,4 +1,4 @@
-# Facebook Clone (MySite)
+# SocialSite with APIs (mysite)
 Backend python code
 
 ## Clone the project
