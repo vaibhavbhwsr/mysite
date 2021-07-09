@@ -2,32 +2,13 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
 from django.views.generic.base import TemplateView
-from rest_framework.routers import DefaultRouter
 from . import views
 
 
-router = DefaultRouter()
-router.register('postsapi', views.PostViewSet, basename='posts')
-router.register('usersapi', views.UserViewSet, basename='users')
-
-
 urlpatterns = [
-
-    # """ APIs URLConfigs """
-
-    path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls')),
-
-
-    # # Add login/logout to API
-    # path('usersapi/', views.UserListApiView.as_view()),
-    # path('usersapi/<int:pk>', views.UserDetailApiView.as_view()),
-    # path('postsapi/', views.PostListCreateApi.as_view()),
-    # path('postsapi/<int:pk>', views.PostEditApi.as_view()),
-
+    path('api/', include('registration.api.urls')),
 
     # """ HTMLs URLConfigs """
-
     # Without Logged in
     # path('', include('django.contrib.auth.urls')),
     path(
