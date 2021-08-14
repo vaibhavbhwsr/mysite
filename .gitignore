@@ -3,7 +3,8 @@ local.py
 */media/
 **/migrations/
 */staticfiles/
-*/images/
+**/images/
+*.pyc
 
 # Environments
 .env

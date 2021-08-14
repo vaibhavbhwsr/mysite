@@ -8,11 +8,6 @@ from registration.models import Post
 from django.contrib.auth.models import User
 
 
-# Created tokens for all existing users.
-for user in User.objects.all():
-    Token.objects.get_or_create(user=user)
-
-
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
