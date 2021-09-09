@@ -15,7 +15,6 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATE_DIR = Path(BASE_DIR, 'templates')
 sys.path.insert(0, os.path.join(BASE_DIR, 'mysite/apps'))
 
 # Quick-start development settings - unsuitable for production
@@ -65,7 +64,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR],
+        'DIRS': [BASE_DIR / 'mysite/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,7 +131,7 @@ USE_TZ = True
 
 STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [Path(BASE_DIR, "static"), ]
+STATICFILES_DIRS = [Path(BASE_DIR, "mysite/static"), ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -151,7 +150,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Media Url
 
-MEDIA_ROOT = Path(BASE_DIR, 'static')
+MEDIA_ROOT = Path(BASE_DIR, 'mysite/static')
 # it doesn't required after declaring  STATIC_URL
 # MEDIA_URL = '/static/images/post/'
 
