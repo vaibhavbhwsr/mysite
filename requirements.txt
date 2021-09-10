@@ -1,7 +1,8 @@
-Django
+Django>=3.2.6
 django-cleanup
 django-crispy-forms
-djangorestframework
+djangorestframework>=3.12.4
 drf-yasg
 Pillow
 psycopg2
+python-decouple
