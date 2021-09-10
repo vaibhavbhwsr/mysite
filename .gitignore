@@ -5,6 +5,7 @@ local.py
 */staticfiles/
 **/images/
 *.pyc
+settings.ini
 
 # Environments
 .env
