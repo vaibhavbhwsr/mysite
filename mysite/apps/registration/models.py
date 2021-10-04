@@ -26,6 +26,7 @@ class Post(models.Model):
     picture = models.ImageField(upload_to='images/post', blank=True)
     tags = models.CharField(max_length=100, blank=True)
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
+    comment = models.ManyToManyField(User, through='Comment')   # Not necessary(for clean code)
 
     def get_absolute_url(self):
         from django.urls import reverse
