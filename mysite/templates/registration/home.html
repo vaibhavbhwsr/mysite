@@ -28,7 +28,7 @@
                 {% endif %}
                 {% endcomment %}
                 <div class="card-footer">
-                    <form method="POST" action="{% url 'like' post.pk %}">
+                    <form method="POST" action="{% url 'like' post.pk %}" style ='float: left;'>
                         {% csrf_token %}
                         {% if post in liked %}
                         <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
@@ -40,11 +40,23 @@
                         </button>
                         {% endif %}
                     </form>
+                    <form method="POST" action="{% url 'like' post.pk %}">
+                        {% csrf_token %}
+                        {% if post in liked %}
+                        <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
+                            <i class="fas fa-2x fa-comments" style="color:royalblue;"></i> <span>{{ post.likes.all.count }}</span>
+                        </button>
+                        {% else %}
+                        <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
+                            <i class="fas fa-2x fa-comments"></i> <span>{{ post.likes.all.count }}</span>
+                        </button>
+                        {% endif %}
+                    </form>
                 </div>
             </div>
             {% endfor %}
         </div>
-    
+
         <div class="text-center">
             <span class="step-links">
                 {% if page_obj.has_previous %}

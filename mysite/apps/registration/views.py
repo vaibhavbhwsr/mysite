@@ -7,7 +7,9 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import DeleteView, UpdateView, TemplateView, View, CreateView, ListView, DetailView
+from django.views.generic import (
+    DeleteView, UpdateView, TemplateView, View, CreateView, ListView, DetailView
+)
 from .forms import RegistrationForm, NewPostForm
 from .models import Post
 
