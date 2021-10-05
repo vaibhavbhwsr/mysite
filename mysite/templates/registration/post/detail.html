@@ -32,7 +32,7 @@
                 {% endif %}
                 {% endcomment %}
                 <div class="card-footer">
-                    <form method="POST" action="{% url 'like' post.pk %}">
+                    <form method="POST" action="{% url 'like' post.pk %}" style='float: left;'>
                         {% csrf_token %}
                         {% if liked %}
                             <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
@@ -44,6 +44,7 @@
                             </button>
                     {% endif %}
                     </form>
+                    {% include "registration/post/comment.html" %}
                 </div>
             </div>
         </div>
