@@ -1,0 +1,23 @@
+<button type="button" class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target=".comment-box">
+    <i class="fas fa-2x fa-comments"></i> <span>0</span>
+</button>
+<!--Comment Dialog PopUp Modal-->
+<div class="modal fade comment-box" tabindex="-1" role="dialog" aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Enter your Comment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background-color: transparent; border: none; box-shadow: none;">
+                    <span aria-hidden="true" style="font-size: 20px">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
