@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import (
     DeleteView, UpdateView, TemplateView, View, CreateView, ListView, DetailView
 )
-from .forms import RegistrationForm, NewPostForm
+from .forms import RegistrationForm, NewPostForm, PostCommentForm
 from .models import Post
 
 # Create your views here.
@@ -172,3 +172,12 @@ class UpdateProfileView(UpdateView, SuccessMessageMixin):
 
     def get_object(self, **kwargs):
         return self.request.user
+
+
+# Post Comment
+@ method_decorator(login_required, name='dispatch')
+class PostCommentView(CreateView, SuccessMessageMixin):
+    form_class = PostCommentForm
+    template_name = 'registration/post/comment.html'
+    success_url = '/'
+    success_message = 'Commented Successfully!'

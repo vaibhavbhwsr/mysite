@@ -79,4 +79,6 @@ urlpatterns = [
         ),
         name='password_change_done',
     ),
+    # Post Comment
+    path('create/comment/', views.PostCommentView.as_view(), name='create-comment'),
 ]

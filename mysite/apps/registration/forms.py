@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User  # imported User 2nd
 
-from .models import Post
+from .models import Post, Comment
 
 
 # This class inherits properties of UserCreationForm class declared above
@@ -23,3 +23,9 @@ class NewPostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['description', 'picture', 'tags']
+
+
+class PostCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = '__all__'
