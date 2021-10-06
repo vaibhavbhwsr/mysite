@@ -8,10 +8,10 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import (
-    DeleteView, UpdateView, TemplateView, View, CreateView, ListView, DetailView
+    DeleteView, UpdateView, TemplateView, View, CreateView, ListView, DetailView, FormView
 )
 from .forms import RegistrationForm, NewPostForm, PostCommentForm
-from .models import Post
+from .models import Post, Comment
 
 # Create your views here.
 
@@ -176,8 +176,9 @@ class UpdateProfileView(UpdateView, SuccessMessageMixin):
 
 # Post Comment
 @ method_decorator(login_required, name='dispatch')
-class PostCommentView(CreateView, SuccessMessageMixin):
-    form_class = PostCommentForm
-    template_name = 'registration/post/comment.html'
-    success_url = '/'
-    success_message = 'Commented Successfully!'
+class PostCommentView(LoginRequiredMixin, View):
+
+    def post(self, request, pk, *args, **kwargs):
+        post = Post.objects.get(id=pk)
+        comment = Comment.objects.create(user=request.user, post=post, comment_text=request.POST['comment_text'])
+        return JsonResponse({'comment': comment.comment_text})
