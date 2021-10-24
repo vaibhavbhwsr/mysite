@@ -20,7 +20,7 @@
                     <br><br>
                     <p class="card-text text-dark">{{ post.description }}</p>
                 </div>
-                <a href="{% url 'detail' post.id %}"><img class="card-img-top" src="/static{{ post.picture.url }}" alt=""></a>
+                <a href="{% url 'detail' post.id %}"><img class="card-img-top" src="{{ post.picture.url }}" alt=""></a>
                 {% comment %}
                 {% if post.tags %}
                 <br>

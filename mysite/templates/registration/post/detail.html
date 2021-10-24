@@ -24,7 +24,7 @@
                     <p class="card-text text-dark">{{ post.description }}</p>
                 </div>
                 <a href="/static/{{ post.picture.url }}">
-                    <img class="card-img-top" src="/static{{ post.picture.url }}" alt="">
+                    <img class="card-img-top" src="{{ post.picture.url }}" alt="">
                 </a>
                 {% comment %}
                 {% if post.tags %}
