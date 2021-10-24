@@ -22,10 +22,11 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY',
+                    default='django-insecure-nuohcq@9j!u02ofkpq^=d8kpeb!ncj!o6fek8)u6j0e2+j8_gs')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -147,7 +148,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Media Url
 
-MEDIA_ROOT = Path(BASE_DIR, 'static')
+MEDIA_ROOT = Path(BASE_DIR, 'media')
 # it doesn't required after declaring  STATIC_URL
 # MEDIA_URL = '/static/images/post/'
 
