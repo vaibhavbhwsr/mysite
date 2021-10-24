@@ -7,8 +7,4 @@ django_on_heroku.settings(locals())
 
 ALLOWED_HOSTS = ['mynameheresite.herokuapp.com']
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
