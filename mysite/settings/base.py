@@ -148,8 +148,7 @@ LOGOUT_REDIRECT_URL = '/'
 # Media Url
 
 MEDIA_ROOT = Path(BASE_DIR, 'media')
-# it doesn't required after declaring  STATIC_URL
-# MEDIA_URL = '/static/images/post/'
+MEDIA_URL = '/media/'
 
 
 # Makes Crispy use bootstrap4
