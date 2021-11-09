@@ -135,9 +135,18 @@ STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Set Console as a Backend to reset password
+# # Set Console as a Backend to reset password
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Setting Email Backend with smtp django
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'   # Have to turn on Less secure app access in gmail.
+EMAIL_PORT = 587
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
 
 # Redirect After Login and Logout
 
@@ -148,8 +157,7 @@ LOGOUT_REDIRECT_URL = '/'
 # Media Url
 
 MEDIA_ROOT = Path(BASE_DIR, 'media')
-# it doesn't required after declaring  STATIC_URL
-# MEDIA_URL = '/static/images/post/'
+MEDIA_URL = '/media/'
 
 
 # Makes Crispy use bootstrap4
