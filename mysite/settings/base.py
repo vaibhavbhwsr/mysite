@@ -130,15 +130,17 @@ STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # # Set Console as a Backend to reset password
+
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Set SMTP as a Backend to email related works
+# Setting Email Backend with smtp django
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'   # For Gmail account "Less secure app access" must be Turned On.
+EMAIL_HOST = 'smtp.gmail.com'   # Have to turn on Less secure app access in gmail.
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
 
 # Redirect After Login and Logout
 LOGIN_REDIRECT_URL = '/'
