@@ -2,9 +2,8 @@
     <i class="fas fa-2x fa-comments"></i> <span>0</span>
 </button>
 <!--Comment Dialog PopUp Modal-->
-<form method="POST" action="{% url 'create-comment' post.pk %}" style='float: left;'>
 <div class="modal fade comment-box" tabindex="-1" role="dialog" aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Enter your Comment</h5>
@@ -12,16 +11,17 @@
                     <span aria-hidden="true" style="font-size: 20px">&times;</span>
                 </button>
             </div>
+            <form method="POST" action="{% url 'create-comment' post.pk %}" style='float: left;'>
             <div class="modal-body">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <textarea class="form-control" name="comment_text" cols="40" rows="10" required id="id_comment_text"></textarea>
+                <textarea class="form-control" name="comment_text" cols="50" rows="2" required id="id_comment_text"></textarea>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-success">Submit</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
-</form>
