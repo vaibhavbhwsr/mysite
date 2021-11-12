@@ -8,7 +8,14 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import (
-    DeleteView, UpdateView, TemplateView, View, CreateView, ListView, DetailView, FormView
+    DeleteView,
+    UpdateView,
+    TemplateView,
+    View,
+    CreateView,
+    ListView,
+    DetailView,
+    FormView,
 )
 from .forms import RegistrationForm, NewPostForm, PostCommentForm
 from .models import Post, Comment
@@ -21,8 +28,10 @@ class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
     form_class = RegistrationForm
     template_name = 'registration/signup.html/'
     success_url = '/'
-    success_message = "%(username)s was created successfully! Now Login with"\
+    success_message = (
+        "%(username)s was created successfully! Now Login with"
         " the same username and password!"
+    )
 
     # This is necessary function to use with UserPassesTextMixin
     def test_func(self):
@@ -42,7 +51,7 @@ class MyLoginView(SuccessMessageMixin, LoginView):
 
 # Home Page
 # Post Related Views
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class HomeView(ListView):
     model = Post
     template_name = 'registration/home.html'
@@ -71,7 +80,7 @@ class HomeView(ListView):
 
 
 # Post Create
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     form_class = NewPostForm
     template_name = 'registration/post/create_post.html'
@@ -88,7 +97,7 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 
 # Post Detail
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class PostDetailView(DetailView):
     model = Post
     template_name = 'registration/post/detail.html'
@@ -105,9 +114,8 @@ class PostDetailView(DetailView):
 
 
 # Like View
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class LikeView(LoginRequiredMixin, View):
-
     def post(self, request, pk, *args, **kwargs):
         post = Post.objects.get(id=pk)
         # id = request.POST.get('sid') # it's a way to get data form ajax
@@ -135,7 +143,7 @@ class LikeView(LoginRequiredMixin, View):
 
 
 # Post Delete
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'registration/post/post_confirm_delete.html'
@@ -144,7 +152,7 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
 
 # Post Update
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Post
     form_class = NewPostForm
@@ -156,13 +164,13 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 # Profile Page
 # Profile
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class MyProfileView(TemplateView):
     template_name = 'registration/profile/profile.html'
 
 
 # Profile Update
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class UpdateProfileView(UpdateView, SuccessMessageMixin):
     model = User
     template_name = 'registration/profile/update_profile.html'
@@ -175,10 +183,11 @@ class UpdateProfileView(UpdateView, SuccessMessageMixin):
 
 
 # Post Comment
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class PostCommentView(LoginRequiredMixin, View):
-
     def post(self, request, pk, *args, **kwargs):
         post = Post.objects.get(id=pk)
-        comment = Comment.objects.create(user=request.user, post=post, comment_text=request.POST['comment_text'])
+        comment = Comment.objects.create(
+            user=request.user, post=post, comment_text=request.POST['comment_text']
+        )
         return JsonResponse({'comment': comment.comment_text})
