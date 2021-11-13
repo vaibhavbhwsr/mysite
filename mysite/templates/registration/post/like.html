@@ -1,6 +1,6 @@
 <form method="POST" action="{% url 'like' post.pk %}" style='float: left;'>
     {% csrf_token %}
-    {% if post in liked %}
+    {% if post in user.likes.all %}
     <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
         <i class="fas fa-2x fa-thumbs-up" style="color:royalblue;"></i> <span>{{ post.likes.all.count }}</span>
     </button>

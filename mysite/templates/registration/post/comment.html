@@ -1,27 +1,41 @@
-<button type="button" class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target=".comment-box">
-    <i class="fas fa-2x fa-comments"></i> <span>0</span>
-</button>
-<!--Comment Dialog PopUp Modal-->
-<form method="POST" action="{% url 'create-comment' post.pk %}" style='float: left;'>
-<div class="modal fade comment-box" tabindex="-1" role="dialog" aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
-    <div class="modal-dialog modal-sm">
+{% load debug %}
+{% if post in commented %}
+    <button type="button" class="btn-lg" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target="#exampleModal_{{ post.pk }}" data-whatever="@mdo"> <i class="fas fa-2x fa-comments" style="color:royalblue;"></i> <span id='comment_{{ post.pk }}_icon_count'>{{ post.post_comment.count }}</span>
+    </button>
+{% else %}
+    <button type="button" class="btn-lg" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target="#exampleModal_{{ post.pk }}" data-whatever="@mdo"> <i class="fas fa-2x fa-comments"></i> <span id='comment_{{ post.pk }}_icon_count'>{{ post.post_comment.count }}</span>
+    </button>
+{% endif %}
+
+<!-- // Comment Model Pop Up -->
+<div class="modal fade" id="exampleModal_{{ post.pk }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="position: absolute;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Enter your Comment</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background-color: transparent; border: none; box-shadow: none;">
-                    <span aria-hidden="true" style="font-size: 20px">&times;</span>
+                <h5 class="modal-title" id="exampleModalLabel">Enter your Comment {{ post.pk }}</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                    {% comment %}<span aria-hidden="true">&times;</span>{% endcomment %}
                 </button>
             </div>
             <div class="modal-body">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <textarea class="form-control" name="comment_text" cols="40" rows="10" required id="id_comment_text"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <form method="POST" action="#">
+                    {% csrf_token %}
+                    <textarea class="form-control" name="comment_text" cols="40" rows="1" required id="id_comment_text"></textarea>
+                    <p></p>
+                    <span id='comment_{{ post.pk }}_count' style='font-size: 1.5rem'>{{ post.post_comment.count }} comments</span>
+                    <button type="submit" class="btn btn-primary button_comment" data-url="{% url 'create-comment' post.pk %}" data-postId="{{ post.pk }}" style='float:right;'>Comment</button>
+                </form>
+                <hr>
+                <div id="all_comments">
+                    <div id="added_comment_{{ post.pk }}"></div>
+                    {% for comment in post.post_comment.all|dictsortreversed:"id" %}
+                    <div id="comment_{{comment.id}}">
+                        <h5>{{ comment.user }}</h5>
+                        <p>{{ comment.comment_text }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
 </div>
-</form>

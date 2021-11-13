@@ -8,7 +8,14 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import (
-    DeleteView, UpdateView, TemplateView, View, CreateView, ListView, DetailView, FormView
+    DeleteView,
+    UpdateView,
+    TemplateView,
+    View,
+    CreateView,
+    ListView,
+    DetailView,
+    FormView,
 )
 from .forms import RegistrationForm, NewPostForm, PostCommentForm
 from .models import Post, Comment
@@ -21,8 +28,10 @@ class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
     form_class = RegistrationForm
     template_name = 'registration/signup.html/'
     success_url = '/'
-    success_message = "%(username)s was created successfully! Now Login with"\
+    success_message = (
+        "%(username)s was created successfully! Now Login with"
         " the same username and password!"
+    )
 
     # This is necessary function to use with UserPassesTextMixin
     def test_func(self):
@@ -42,7 +51,7 @@ class MyLoginView(SuccessMessageMixin, LoginView):
 
 # Home Page
 # Post Related Views
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class HomeView(ListView):
     model = Post
     template_name = 'registration/home.html'
@@ -55,23 +64,22 @@ class HomeView(ListView):
         context = super(HomeView, self).get_context_data(**kwargs)
         # print(self.request.user)
         # print(Post.objects.all())
-        liked = []
+        commented = []
         if self.request.user.is_authenticated:
+            # Logic to check all post commented by user
             for post in Post.objects.all():
-                # print(post.description)
-                for like in post.likes.all():
-                    # print(like)
-                    if self.request.user == like:
-                        liked.append(post)
-                        # print('user is:', liked)
-                        break
-            # Here I passed list of posts, logged user liked by above logic.
-            context['liked'] = liked
+                for comment in post.post_comment.all():
+                    if self.request.user == comment.user:
+                        commented.append(post)
+
+            # Here I passed list of posts, liked(another logic applied later)
+            # and commented according to loggedIn user.
+            context['commented'] = commented
         return context
 
 
 # Post Create
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     form_class = NewPostForm
     template_name = 'registration/post/create_post.html'
@@ -88,7 +96,7 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 
 # Post Detail
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class PostDetailView(DetailView):
     model = Post
     template_name = 'registration/post/detail.html'
@@ -96,18 +104,14 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
         post = get_object_or_404(Post, id=self.kwargs['pk'])
-        # print(post)
-        liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
-        context['liked'] = liked
+        if post.post_comment.filter(user=self.request.user.id).exists():
+            context['commented'] = [post]
         return context
 
 
 # Like View
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class LikeView(LoginRequiredMixin, View):
-
     def post(self, request, pk, *args, **kwargs):
         post = Post.objects.get(id=pk)
         # id = request.POST.get('sid') # it's a way to get data form ajax
@@ -135,7 +139,7 @@ class LikeView(LoginRequiredMixin, View):
 
 
 # Post Delete
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'registration/post/post_confirm_delete.html'
@@ -144,7 +148,7 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
 
 # Post Update
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Post
     form_class = NewPostForm
@@ -156,13 +160,13 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 # Profile Page
 # Profile
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class MyProfileView(TemplateView):
     template_name = 'registration/profile/profile.html'
 
 
 # Profile Update
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class UpdateProfileView(UpdateView, SuccessMessageMixin):
     model = User
     template_name = 'registration/profile/update_profile.html'
@@ -175,10 +179,19 @@ class UpdateProfileView(UpdateView, SuccessMessageMixin):
 
 
 # Post Comment
-@ method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class PostCommentView(LoginRequiredMixin, View):
-
     def post(self, request, pk, *args, **kwargs):
         post = Post.objects.get(id=pk)
-        comment = Comment.objects.create(user=request.user, post=post, comment_text=request.POST['comment_text'])
-        return JsonResponse({'comment': comment.comment_text})
+        comment = Comment.objects.create(
+            user=request.user, post=post, comment_text=request.POST['comment_text']
+        )
+        return JsonResponse(
+            {
+                'id': comment.id,
+                'user': comment.user.username,
+                'post': comment.post.id,
+                'comment_text': comment.comment_text,
+                'comment_count': post.post_comment.count(),
+            }
+        )
