@@ -1,10 +1,7 @@
 {% extends 'registration/home.html' %}
 {% load static %}
-
 {% block title %}Detail | {{ post.description }}{% endblock %}
-
 {% block content %}
-
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -14,10 +11,8 @@
                         <b>{{ post.user_name | capfirst}}</b>
                     </a>
                     {% if post.user_name == user %}
-                        <a class="btn btn-outline-info btn-lg ms-2 float-end"
-                           href="{% url 'post-update' post.id %}">Update</a>
-                        <a class="btn btn-outline-danger btn-lg  float-end"
-                           href="{% url 'post-delete' post.id %}">Delete</a>
+                    <a class="btn btn-outline-info btn-lg ms-2 float-end" href="{% url 'post-update' post.id %}">Update</a>
+                    <a class="btn btn-outline-danger btn-lg  float-end" href="{% url 'post-delete' post.id %}">Delete</a>
                     {% endif %}
                     <br /><small class="text-muted">Posted on {{ post.date_posted }}</small>
                     <br /><br>
@@ -28,22 +23,24 @@
                 </a>
                 {% comment %}
                 {% if post.tags %}
-                <br><p class="text-danger ml-3"><b>Tags: <i>{{ post.tags }}</i></b></p>
+                <br>
+                <p class="text-danger ml-3"><b>Tags: <i>{{ post.tags }}</i></b></p>
                 {% endif %}
                 {% endcomment %}
                 <div class="card-footer">
                     <form method="POST" action="{% url 'like' post.pk %}" style='float: left;'>
                         {% csrf_token %}
-                        {% if liked %}
-                            <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
-                                <i class="fas fa-2x fa-thumbs-up" style="color:royalblue;"></i> <span>{{ post.likes.all.count }}</span>
-                            </button>
+                        {% comment %}{% if liked %}
+                        <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
+                            <i class="fas fa-2x fa-thumbs-up" style="color:royalblue;"></i> <span>{{ post.likes.all.count }}</span>
+                        </button>
                         {% else %}
-                            <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
-                                <i class="fas fa-2x fa-thumbs-up"></i> <span>{{ post.likes.all.count }}</span>
-                            </button>
-                    {% endif %}
+                        <button class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" type="submit" id="likebtn{{ post.id }}" data-url="{% url 'like' post.pk %}">
+                            <i class="fas fa-2x fa-thumbs-up"></i> <span>{{ post.likes.all.count }}</span>
+                        </button>
+                        {% endif %}{% endcomment %}
                     </form>
+                    {% include "registration/post/like.html" %}
                     {% include "registration/post/comment.html" %}
                 </div>
             </div>
@@ -51,7 +48,6 @@
     </div>
 </div>
 {% endblock content %}
-
 {% block extra_js %}
 <script type="text/javascript" src='{% static "js/ajax.js" %}'></script>
 {% endblock extra_js %}

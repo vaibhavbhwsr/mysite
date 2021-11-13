@@ -1,7 +1,14 @@
 {% load debug %}
-<button type="button" class="btn-lg btn-like" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"> <i class="fas fa-2x fa-comments"></i> <span>{{ post.post_comment.count }}</span>
-</button>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="position: absolute;">
+{% if post in commented %}
+    <button type="button" class="btn-lg" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target="#exampleModal_{{ post.pk }}" data-whatever="@mdo"> <i class="fas fa-2x fa-comments" style="color:royalblue;"></i> <span id='comment_{{ post.pk }}_icon_count'>{{ post.post_comment.count }}</span>
+    </button>
+{% else %}
+    <button type="button" class="btn-lg" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target="#exampleModal_{{ post.pk }}" data-whatever="@mdo"> <i class="fas fa-2x fa-comments"></i> <span id='comment_{{ post.pk }}_icon_count'>{{ post.post_comment.count }}</span>
+    </button>
+{% endif %}
+
+<!-- // Comment Model Pop Up -->
+<div class="modal fade" id="exampleModal_{{ post.pk }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="position: absolute;">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,30 +18,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{% url 'create-comment' post.pk %}">
+                <form method="POST" action="#">
                     {% csrf_token %}
-                    {% comment %}{{ form }}{% endcomment %}
                     <textarea class="form-control" name="comment_text" cols="40" rows="1" required id="id_comment_text"></textarea>
                     <p></p>
-                    <button type="submit" class="btn btn-primary">Comment</button>
+                    <span id='comment_{{ post.pk }}_count' style='font-size: 1.5rem'>{{ post.post_comment.count }} comments</span>
+                    <button type="submit" class="btn btn-primary button_comment" data-url="{% url 'create-comment' post.pk %}" data-postId="{{ post.pk }}" style='float:right;'>Comment</button>
                 </form>
                 <hr>
-                {% for comment in post.post_comment.all %}
-                <h5>{{ comment.user }}</h5>
-                <p>{{ comment.comment_text }}</p>
-                {% endfor %}
-                {% comment %}<div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                <div id="all_comments">
+                    <div id="added_comment_{{ post.pk }}"></div>
+                    {% for comment in post.post_comment.all|dictsortreversed:"id" %}
+                    <div id="comment_{{comment.id}}">
+                        <h5>{{ comment.user }}</h5>
+                        <p>{{ comment.comment_text }}</p>
+                    </div>
+                    {% endfor %}
                 </div>
-                <div class="form-group">
-                    <label for="message-text" class="col-form-label">Comment:</label>
-                    <textarea class="form-control" id="message-text"></textarea>
-                </div>{% endcomment %}
-                {% comment %}<div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send message</button>
-                </div>{% endcomment %}
             </div>
         </div>
     </div>

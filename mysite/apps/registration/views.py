@@ -64,18 +64,17 @@ class HomeView(ListView):
         context = super(HomeView, self).get_context_data(**kwargs)
         # print(self.request.user)
         # print(Post.objects.all())
-        liked = []
+        commented = []
         if self.request.user.is_authenticated:
+            # Logic to check all post commented by user
             for post in Post.objects.all():
-                # print(post.description)
-                for like in post.likes.all():
-                    # print(like)
-                    if self.request.user == like:
-                        liked.append(post)
-                        # print('user is:', liked)
-                        break
-            # Here I passed list of posts, logged user liked by above logic.
-            context['liked'] = liked
+                for comment in post.post_comment.all():
+                    if self.request.user == comment.user:
+                        commented.append(post)
+
+            # Here I passed list of posts, liked(another logic applied later)
+            # and commented according to loggedIn user.
+            context['commented'] = commented
         return context
 
 
@@ -105,11 +104,8 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
         post = get_object_or_404(Post, id=self.kwargs['pk'])
-        # print(post)
-        liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
-        context['liked'] = liked
+        if post.post_comment.filter(user=self.request.user.id).exists():
+            context['commented'] = [post]
         return context
 
 
@@ -190,4 +186,12 @@ class PostCommentView(LoginRequiredMixin, View):
         comment = Comment.objects.create(
             user=request.user, post=post, comment_text=request.POST['comment_text']
         )
-        return JsonResponse({'comment': comment.comment_text})
+        return JsonResponse(
+            {
+                'id': comment.id,
+                'user': comment.user.username,
+                'post': comment.post.id,
+                'comment_text': comment.comment_text,
+                'comment_count': post.post_comment.count(),
+            }
+        )
