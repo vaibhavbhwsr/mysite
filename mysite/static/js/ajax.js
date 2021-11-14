@@ -44,6 +44,9 @@ $(document).ready(function() {
             success: function(data) {
                 $('#added_comment_' + data.post).html('<h5>' + data.user + '</h5><p>' + data.comment_text + '</p>')
                 $('#comment_' + data.post + '_count').html(data.comment_count + ' comments')
+                $('#comment_icon_' + data.post).css("color", "royalblue");
+                $('#comment_' + data.post + '_icon_count').html(data.comment_count);
+                debugger
             },
             error: function(data) {
                 alert('Ajax failed!')

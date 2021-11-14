@@ -3,7 +3,7 @@
     <button type="button" class="btn-lg" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target="#exampleModal_{{ post.pk }}" data-whatever="@mdo"> <i class="fas fa-2x fa-comments" style="color:royalblue;"></i> <span id='comment_{{ post.pk }}_icon_count'>{{ post.post_comment.count }}</span>
     </button>
 {% else %}
-    <button type="button" class="btn-lg" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target="#exampleModal_{{ post.pk }}" data-whatever="@mdo"> <i class="fas fa-2x fa-comments"></i> <span id='comment_{{ post.pk }}_icon_count'>{{ post.post_comment.count }}</span>
+    <button type="button" class="btn-lg" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target="#exampleModal_{{ post.pk }}" data-whatever="@mdo"> <i class="fas fa-2x fa-comments" id="comment_icon_{{ post.pk }}"></i> <span id='comment_{{ post.pk }}_icon_count'>{{ post.post_comment.count }}</span>
     </button>
 {% endif %}
 
