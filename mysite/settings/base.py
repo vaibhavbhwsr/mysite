@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     # Added
     'registration',
+    'post',
 ]
 
 MIDDLEWARE = [

@@ -4,14 +4,11 @@ from . import views
 
 
 router = DefaultRouter()
-router.register('posts', views.PostViewSet, basename='posts')
 router.register('users', views.UserViewSet, basename='users')
 
 
 urlpatterns = [
-
     # """ APIs URLConfigs """
-
     path('', include(router.urls)),
     path('auth/', include('rest_framework.urls')),
 

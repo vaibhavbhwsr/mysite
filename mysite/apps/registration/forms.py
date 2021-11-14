@@ -4,8 +4,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User  # imported User 2nd
 
-from .models import Post, Comment
-
 
 # This class inherits properties of UserCreationForm class declared above
 class RegistrationForm(UserCreationForm):
@@ -17,15 +15,3 @@ class RegistrationForm(UserCreationForm):
         fields = ['username', 'first_name', 'last_name', 'email']
         # Used for changing label
         labels = {'email': 'Email', 'password2': 'Confirm Password'}
-
-
-class NewPostForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['description', 'picture', 'tags']
-
-
-class PostCommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['comment_text']

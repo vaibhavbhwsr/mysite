@@ -41,24 +41,6 @@ urlpatterns = [
         ),
         name='password_reset_complete',
     ),
-    # With Logged in
-    # Feed Post( Home, Detail, Post-Update, Delete, logout ...)
-    # Home page
-    path('', views.HomeView.as_view(), name='home'),
-    path('post/<int:pk>/like', views.LikeView.as_view(), name='like'),
-    # Create Post page
-    path('create/post/', views.PostCreateView.as_view(), name='create-post'),
-    # Detail page
-    path('detail/<int:pk>/', views.PostDetailView.as_view(), name='detail'),
-    path('delete/<int:pk>/', views.PostDeleteView.as_view(), name='post-delete'),
-    path(
-        'deleted/',
-        login_required(
-            TemplateView.as_view(template_name='registration/post/post_delete.html')
-        ),
-        name='deleted',
-    ),
-    path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post-update'),
     # Logout
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     # MyProfile Page
@@ -68,17 +50,15 @@ urlpatterns = [
     path(
         'password_change/',
         auth_views.PasswordChangeView.as_view(
-            template_name="registration/profile/password_change_form.html"
+            template_name="registration/pass_2/password_change_form.html"
         ),
         name='password_change',
     ),
     path(
         'password_change/done/',
         auth_views.PasswordChangeDoneView.as_view(
-            template_name="registration/profile/password_change_done.html"
+            template_name="registration/pass_2/password_change_done.html"
         ),
         name='password_change_done',
     ),
-    # Post Comment
-    path('create/comment/<int:pk>', views.PostCommentView.as_view(), name='create-comment'),
 ]
