@@ -1,5 +1,5 @@
 # Website Link
-mynameheresite.herokuapp.com
+https://mynameheresite.herokuapp.com/
 
 # SocialSite with APIs (mysite)
 Backend python code
