@@ -3,7 +3,7 @@ from .serializers import PostSerializer
 from .permissions import IsOwnerOrReadOnly
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from registration.models import Post
+from post.models import Post
 
 
 class PostViewSet(viewsets.ModelViewSet):

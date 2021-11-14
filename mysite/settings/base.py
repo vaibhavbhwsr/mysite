@@ -156,9 +156,9 @@ MEDIA_URL = '/media/'
 # Makes Crispy use bootstrap4
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# Disabling DjangoRestFramework Browsable API
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    )
-}
+# # Disabling DjangoRestFramework Browsable API
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',
+#     )
+# }

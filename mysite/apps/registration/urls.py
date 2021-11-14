@@ -6,7 +6,6 @@ from . import views
 
 
 urlpatterns = [
-    path('api/', include('registration.api.urls')),
     # """ HTMLs URLConfigs """
     # Without Logged in
     # path('', include('django.contrib.auth.urls')),

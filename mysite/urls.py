@@ -52,9 +52,26 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
 
+
+api_urls = [
+    path(
+        'api/v1/',
+        include(
+            [
+                path('auth/', include('rest_framework.urls')),
+                path(
+                    'registration/',
+                    include('registration.api.urls', namespace='registration'),
+                ),
+                path('post/', include('post.api.urls', namespace='post')),
+            ]
+        ),
+    )
+]
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
+urlpatterns += api_urls
 # It doesn't required after getting understanding over static files
 # if settings.DEBUG:
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
