@@ -1,0 +1,5 @@
+# First we have to remove tests.py in order to make tests module
+# We can create and use class setUp(),  teardown() and other def name() in utils module with class inheriting TestCase to use in all apps (DRY principle)
+
+# some packages model_bakery, faker, or any other fixture module
+# For test coverage package is coverage
