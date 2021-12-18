@@ -1,0 +1,344 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"User",
+				"UserSerializer"
+			],
+			[
+				"Bl",
+				"BlockedUser"
+			],
+			[
+				"Blocke",
+				"BlockedUserSerializer"
+			],
+			[
+				"Blo",
+				"BlockedUser"
+			],
+			[
+				"Isa",
+				"IsAuthenticatedOrReadOnly"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Anaconda Python Builder",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Anaconda Python Builder",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Anaconda Python Builder",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"insat",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 495.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/hp/V/mysite",
+		"/home/hp/V/mysite/mysite"
+	],
+	"file_history":
+	[
+		"/home/hp/V/mysite/mysite.sublime-project",
+		"/home/hp/V/mysite/manage.py",
+		"/home/hp/V/mysite/mysite/apps/post/views.py",
+		"/home/hp/V/mysite/.gitignore",
+		"/home/hp/V/v/vnotes/Python.txt",
+		"/home/hp/Projects/Django/Testing/backend/tokuten/settings/base.py",
+		"/home/hp/Projects/Django/Testing/backend/tokuten/apps/offer_manager/models.py",
+		"/home/hp/Projects/Django/Testing/backend/tokuten/settings/settings.ini",
+		"/home/hp/Projects/Django/backend/tokuten/settings/base.py",
+		"/home/hp/Projects/Django/backend/.gitignore",
+		"/home/hp/Projects/Django/backend/tokuten/fixtures/offer_manager/tag.json",
+		"/home/hp/V/SomeDjClones/fcm-django-web-demo/frontend/index.html",
+		"/home/hp/V/SomeDjClones/fcm-django-web-demo/mysite/mysite/settings.py",
+		"/home/hp/V/SomeDjClones/fcm-django-web-demo/README.md",
+		"/home/hp/V/SomeDjClones/fcm-django-web-demo/mysite/requirements.txt",
+		"/home/hp/Projects/Django/backend/tokuten/apps/notifications/views/__init__.py",
+		"/home/hp/Projects/Django/backend/tokuten/common/serializers.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/offer_manager/serializers.py",
+		"/home/hp/Projects/Django/backend/requirements.txt",
+		"/home/hp/Projects/Django/backend/tokuten/apps/offer_manager/views/api_views.py",
+		"/home/hp/V/v/learn/Django/djqueryset/djqs0/models.py",
+		"/home/hp/V/v/learn/Django/djqueryset/djqs0/migrations/0001_initial.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/chat/views/api_views.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/chat/urls/api_urls.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/core/views/api_views.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/core/models.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/core/serializers.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/ticker/views/api_views.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/ticker/tasks.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/offer_manager/models.py",
+		"/home/hp/Projects/Django/backend/tokuten/templates/docs/nai_file.html",
+		"/home/hp/Projects/Django/backend/tokuten/settings/settings.ini",
+		"/home/hp/Projects/Django/backend/tokuten/templates/docs/index.html",
+		"/home/hp/Projects/Django/backend/tokuten/templates/docs/index.js",
+		"/home/hp/Projects/Django/backend/tokuten/apps/ticker/views.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/core/utils.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/ticker/admin.py",
+		"/home/hp/Projects/Django/backend/tokuten/settings/__init__.py",
+		"/home/hp/V/mysite/mysite/templates/registration/pass/password_reset_confirm.html",
+		"/home/hp/V/mysite/mysite/templates/registration/pass/password_reset_done.html",
+		"/home/hp/V/mysite/mysite/templates/registration/pass/password_reset_email.html",
+		"/home/hp/V/mysite/mysite/templates/registration/pass_2/password_change_done.html",
+		"/home/hp/V/mysite/mysite/templates/registration/pass_2/password_change_form.html",
+		"/home/hp/V/mysite/mysite/templates/registration/pass/password_reset_complete.html",
+		"/home/hp/V/mysite/mysite/apps/registration/api/serializers.py",
+		"/home/hp/V/mysite/mysite/apps/post/api/serializers.py",
+		"/home/hp/V/mysite/mysite/urls.py",
+		"/home/hp/V/mysite/mysite/apps/registration/api/urls.py",
+		"/home/hp/V/mysite/mysite/apps/post/api/urls.py",
+		"/home/hp/V/mysite/mysite/apps/post/urls.py",
+		"/home/hp/V/mysite/mysite/apps/registration/urls.py",
+		"/home/hp/V/mysite/mysite/settings/base.py",
+		"/home/hp/V/mysite/mysite/apps/registration/apps.py",
+		"/home/hp/V/mysite/mysite/apps/post/apps.py",
+		"/home/hp/V/mysite/mysite/apps/registration/api/views.py",
+		"/home/hp/V/mysite/mysite/apps/registration/api/permissions.py",
+		"/home/hp/V/mysite/mysite/templates/base.html",
+		"/home/hp/V/mysite/mysite/templates/layout/footer.html",
+		"/home/hp/V/mysite/mysite/apps/post/api/permissions.py",
+		"/home/hp/V/mysite/mysite/apps/post/api/views.py",
+		"/home/hp/V/mysite/mysite/templates/layout/header.html",
+		"/home/hp/V/mysite/mysite/apps/registration/models.py",
+		"/home/hp/V/mysite/mysite/apps/registration/admin.py",
+		"/home/hp/V/mysite/mysite/templates/post/comment.html",
+		"/home/hp/V/mysite/mysite/static/js/ajax.js",
+		"/home/hp/V/mysite/mysite/templates/post/detail.html",
+		"/home/hp/V/mysite/mysite/templates/post/home.html",
+		"/home/hp/V/mysite/mysite/static/css/all.min.css",
+		"/home/hp/V/mysite/mysite/static/js/all.min.js",
+		"/home/hp/V/mysite/mysite/static/js/popper.min.js",
+		"/home/hp/V/mysite/mysite/static/js/popper.min.js.map",
+		"/home/hp/V/mysite/mysite/static/css/bootstrap.min.css",
+		"/home/hp/V/mysite/mysite/templates/registration/update_profile.html",
+		"/home/hp/V/mysite/mysite/templates/registration/signup.html",
+		"/home/hp/V/mysite/mysite/templates/registration/profile.html",
+		"/home/hp/V/mysite/mysite/templates/registration/login.html",
+		"/home/hp/V/mysite/mysite/templates/post/post_delete.html",
+		"/home/hp/V/mysite/mysite/templates/post/post_confirm_delete.html",
+		"/home/hp/V/mysite/mysite/templates/post/like.html",
+		"/home/hp/V/mysite/mysite/templates/post/create_post.html",
+		"/home/hp/V/mysite/mysite/apps/registration/views.py",
+		"/home/hp/V/mysite/mysite/settings/settings.ini",
+		"/home/hp/V/mysite/mysite/apps/post/admin.py",
+		"/home/hp/V/mysite/mysite/apps/post/forms.py",
+		"/home/hp/V/mysite/mysite/apps/registration/forms.py",
+		"/home/hp/V/mysite/mysite/apps/post/models.py",
+		"/home/hp/V/mysite/mysite/templates/registration/post/comment.html",
+		"/home/hp/V/mysite/mysite/templates/registration/home.html",
+		"/home/hp/V/mysite/requirements.txt",
+		"/home/hp/V/mysite/mysite/templates/registration/post/like.html",
+		"/home/hp/V/mysite/mysite/templates/registration/post/detail.html",
+		"/home/hp/.config/sublime-text/Packages/User/.jsbeautifyrc",
+		"/home/hp/.config/sublime-text/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc.defaults.json",
+		"/home/hp/Projects/Django/backend/tokuten/celery.py",
+		"/home/hp/Projects/Django/backend/tokuten/settings/filename.tab",
+		"/home/hp/Others/Priyamaam/fbspike/fbspike/apps/authentication/views.py",
+		"/home/hp/Others/Priyamaam/fbspike/fbspike/templates/registration/index.html",
+		"/home/hp/Others/Priyamaam/fbspike/fbspike/apps/authentication/models.py",
+		"/home/hp/V/mysite/mysite/static/js/static.js",
+		"/home/hp/V/mysite/mysite/static/css/style.css",
+		"/home/hp/Projects/Django/backend/tokuten/apps/profile_manager/views/api_views.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/profile_manager/serializers.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/profile_manager/models.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/profile_manager/urls/api_urls.py",
+		"/home/hp/Projects/Django/backend/tokuten/apps/core/urls/api_urls.py",
+		"/home/hp/Projects/Django/backend/tokuten/common/response.py",
+		"/home/hp/V/heroku_deployments/mysite/mysite/settings/base.py",
+		"/home/hp/V/heroku_deployments/mysite/mysite/settings/settings.ini",
+		"/home/hp/Projects/Django/backend/tokuten/apps/password_reset/views.py",
+		"/home/hp/V/heroku_deployments/mysite/mysite/apps/registration/models.py",
+		"/home/hp/V/heroku_deployments/mysite/mysite/templates/registration/post/detail.html",
+		"/home/hp/V/heroku_deployments/mysite/mysite/templates/registration/home.html",
+		"/home/hp/Projects/Django/backend/tokuten/apps/ticker/templates/ticker/index.html",
+		"/home/hp/Projects/Django/backend/tokuten/apps/ticker/migrations/__init__.py",
+		"/home/hp/V/v/learn/HTML, CSS & JavaScript/JavaScript/chart.js/chartjs-chart-financial/docs/chartjs-chart-financial.js",
+		"/home/hp/V/v/learn/HTML, CSS & JavaScript/JavaScript/chart.js/chartjs-chart-financial/scripts/publish.sh",
+		"/home/hp/V/v/learn/HTML, CSS & JavaScript/JavaScript/chart.js/first.html"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"...",
+			">>>",
+			"...",
+			"#"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 247.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "mysite.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 195.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
