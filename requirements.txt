@@ -6,3 +6,5 @@ drf-yasg
 Pillow
 psycopg2-binary
 python-decouple
+channels
+channels_redis

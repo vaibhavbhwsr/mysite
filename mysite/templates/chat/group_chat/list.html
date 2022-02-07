@@ -1,0 +1,23 @@
+{% extends 'post/home.html' %}
+
+{% block title %} Groups {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card my-5">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-center"><b>Select Group Or Create New</b></h5>
+                    <hr>
+                    <div class="d-grid gap-2 col-9 mx-auto">
+                        {% for group in group_list %}
+                        <a class="btn btn-primary btn-lg" href="{% url 'group_chat' group.name %}">{{ group.name|upper }}</a>
+                        {% endfor %}
+                        <a class="btn btn-outline-success btn-lg" href="{% url 'group_chat' 'nepal' %}">CREATE NEW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
