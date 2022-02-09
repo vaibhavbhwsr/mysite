@@ -10,7 +10,7 @@ ws.onopen = function() {
 
 ws.onmessage = function(event) {
     const data = JSON.parse(event.data)
-    document.querySelector('#chat-log').value += (data.user + ': ' + data.msg + '\n')
+    document.querySelector('#chat-log').value += (data.user + ': ' + data.msg + '    \n\n    ')
 };
 
 ws.onclose = function(event) {

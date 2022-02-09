@@ -16,6 +16,9 @@ class GroupChat(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
-    # return group name
+    class Meta:
+        ordering = ['-id']
+
+    # returns group name
     def __str__(self):
         return self.name

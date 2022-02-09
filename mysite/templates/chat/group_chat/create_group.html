@@ -18,11 +18,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{% url 'create_group' %}">
+                <form method="POST" action="#">
                     {% csrf_token %}
                     <textarea class="form-control" name="name" rows="1" required id="id_comment_text"></textarea>
                     <p></p>
-                    <button type="submit" class="btn btn-outline-primary btn-lg" data-url="{% url 'create_group' %}">Create Group</button>
+                    <button type="submit" class="btn btn-outline-primary btn-lg button_new_group" data-url="{% url 'create_group' %}">Create Group</button>
                 </form>
             </div>
         </div>
