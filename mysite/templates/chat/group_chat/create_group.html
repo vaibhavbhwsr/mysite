@@ -1,0 +1,30 @@
+{% comment %}<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>{% endcomment %}
+<button type="button" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+    <i class="fas fa-plus"></i>
+</button>
+
+
+<!-- // Comment Model Pop Up -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="position: absolute;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create New Group</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'create_group' %}">
+                    {% csrf_token %}
+                    <textarea class="form-control" name="name" rows="1" required id="id_comment_text"></textarea>
+                    <p></p>
+                    <button type="submit" class="btn btn-outline-primary btn-lg" data-url="{% url 'create_group' %}">Create Group</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

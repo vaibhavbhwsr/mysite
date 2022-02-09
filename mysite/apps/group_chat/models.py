@@ -14,7 +14,7 @@ class GroupChat(models.Model):
 
 
 class Group(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
 
     # return group name
     def __str__(self):
