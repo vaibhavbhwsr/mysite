@@ -66,8 +66,8 @@ $(document).ready(function() {
             data: { name: name, csrfmiddlewaretoken: csr },
             dataType: 'json',
             success: function(data) {
-                alert(name + " group created successfully!");
-                $('.add-new-group').prepend('<a class="btn btn-primary btn-lg" href="/group/chat/'+ name +'/"><h5>'+ name +'</h5></a>');
+                alert(data.data.name + " group created successfully!");
+                $('.add-new-group').prepend('<a class="btn btn-primary btn-lg" href="/group/chat/'+ data.data.name +'/"><h5>'+ data.data.name +'</h5></a>');
                 $("#exampleModal").find('textarea').val('');
                 $("#exampleModal").modal('hide');
             },
