@@ -44,6 +44,7 @@ urlpatterns = [
     path('', include('registration.urls')),
     path('post/', include('post.urls')),
     path('group/', include('group_chat.urls')),
+    path('one/to/one/', include('private_chat.urls')),
     # Swagger
     path(
         'swagger/',
