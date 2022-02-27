@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     # Added
     'registration',
     'post',
+    'group_chat',
 ]
 
 MIDDLEWARE = [
@@ -137,10 +139,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Setting Email Backend with smtp django
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'   # Have to turn on Less secure app access in gmail.
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')   # secret code created on account not password
 EMAIL_USE_TLS = True
 
 # Redirect After Login and Logout
@@ -162,3 +164,16 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #         'rest_framework.renderers.JSONRenderer',
 #     )
 # }
+
+# Channels Settings
+
+ASGI_APPLICATION = 'mysite.asgi.application'    # can work with both ASGI and WSGI
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}

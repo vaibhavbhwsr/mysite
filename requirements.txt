@@ -6,5 +6,5 @@ drf-yasg
 Pillow
 psycopg2-binary
 python-decouple
-gunicorn
-django-on-heroku
+channels
+channels_redis

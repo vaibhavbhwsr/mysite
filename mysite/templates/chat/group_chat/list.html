@@ -1,0 +1,26 @@
+{% extends 'post/home.html' %}
+{% load static %}
+{% block title %} Groups {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card my-5">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-center"><b>Groups Available</b>
+                        <span class="float-end">
+                            {% include "chat/group_chat/create_group.html" %}
+                        </span>
+                    </h5>
+                    <hr>
+                    <div class="d-grid gap-2 col-9 mx-auto add-new-group">
+                        {% for group in group_list %}
+                        <a class="btn btn-primary btn-lg" href="{% url 'group_chat' group.name %}"><h5>{{ group.name }}</h5></a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

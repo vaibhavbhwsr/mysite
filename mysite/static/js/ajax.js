@@ -46,10 +46,34 @@ $(document).ready(function() {
                 $('#comment_' + data.post + '_count').html(data.comment_count + ' comments')
                 $('#comment_icon_' + data.post).css("color", "royalblue");
                 $('#comment_' + data.post + '_icon_count').html(data.comment_count);
-                debugger
+                $("#exampleModal_" + post_id).find('textarea').val('');
             },
             error: function(data) {
                 alert('Ajax failed!')
+            }
+        });
+    });
+
+    // Create Group Ajax
+    $(".button_new_group").click(function(e) {
+        e.preventDefault();
+        let path = $(this).attr('data-url');
+        let csr = $('input[name=csrfmiddlewaretoken]').val();
+        let name = $("#exampleModal").find('textarea').val();
+        $.ajax({
+            method: 'POST',
+            url: path,
+            data: { name: name, csrfmiddlewaretoken: csr },
+            dataType: 'json',
+            success: function(data) {
+                alert(name + " group created successfully!");
+                $('.add-new-group').prepend('<a class="btn btn-primary btn-lg" href="/group/chat/'+ name +'/"><h5>'+ name +'</h5></a>');
+                $("#exampleModal").find('textarea').val('');
+                $("#exampleModal").modal('hide');
+            },
+            error: function(data) {
+                alert(data.responseJSON.data.name[0] + ' Choose a unique name.')
+                $("#exampleModal").find('textarea').val('');
             }
         });
     });
