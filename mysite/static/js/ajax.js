@@ -10,7 +10,6 @@ $(document).ready(function() {
         // alert(ur);
         // console.log("liked button clicked.");
         let mydata = { csrfmiddlewaretoken: csr };
-        debugger
         $.ajax({
             url: ur,
             method: "POST",
