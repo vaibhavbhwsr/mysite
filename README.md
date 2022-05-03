@@ -1,5 +1,5 @@
 # Website Link
-https://mynameheresite.herokuapp.com/
+...............
 
 # SocialSite with APIs (mysite)
 Backend python code
@@ -23,9 +23,11 @@ Activate Environment:
     source project_venv/bin/activate
    
 Install Packages:
-	
+
     pip install -r mysite/requirements.txt
 
+## Create settings.ini file in settings folder
+    See example.ini
 
 ## Apply database migrations
     note*: create postgres database named mysitedb then run commands in environment.
@@ -33,7 +35,6 @@ Install Packages:
     python3 manage.py migrate
 
 ## Create super user
-    
     python3 manage.py createsuperuser
 
 
