@@ -9,6 +9,5 @@ python-decouple
 channels
 channels_redis
 gunicorn
-daphne
 django-storages
 boto3
