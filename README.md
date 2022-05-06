@@ -1,5 +1,5 @@
 # Website Link
-...............
+http://13.127.146.139/
 
 # SocialSite with APIs (mysite)
 Backend python code
