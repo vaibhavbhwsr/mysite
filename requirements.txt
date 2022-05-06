@@ -1,13 +1,22 @@
+# Main
 Django>=3.2.6
-django-cleanup
-django-crispy-forms
-djangorestframework>=3.12.4
-drf-yasg
-Pillow
 psycopg2-binary
+djangorestframework>=3.12.4
 python-decouple
+
+# Websockets
 channels
 channels_redis
+
+# Deployment
 gunicorn
+
+# S3 Bucket
 django-storages
 boto3
+
+# Others
+drf-yasg
+django-cleanup
+django-crispy-forms
+Pillow
