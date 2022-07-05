@@ -76,4 +76,10 @@ $(document).ready(function() {
             }
         });
     });
+
+    // show-alert for one-to-one chat feature not implemented yet
+    $(".show-alert").click(function(e) {
+        e.preventDefault();
+        alert('"One To One Chat" has not been implemented yet please have a look at "Group Chat"')
+    });
 });
