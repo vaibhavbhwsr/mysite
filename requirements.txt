@@ -20,3 +20,8 @@ drf-yasg
 django-cleanup
 django-crispy-forms
 Pillow
+
+# Clean Coding
+flake8
+isort
+black
