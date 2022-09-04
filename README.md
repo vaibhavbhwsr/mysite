@@ -36,5 +36,3 @@ Install Packages:
 
 ## Create super user
     python3 manage.py createsuperuser
-
-
