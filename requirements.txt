@@ -25,3 +25,6 @@ Pillow
 flake8
 isort
 black
+
+# Error Tracker
+sentry-sdk
