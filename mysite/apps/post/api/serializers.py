@@ -1,11 +1,14 @@
 from rest_framework import serializers
+
 from post.models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
-    # It converted the user_name.id to user_name.username for API.
-    # and ReadOnlyField only allows to read username not to Deserialize it.
-    # we could have also used CharField(read_only=True) here.
+    '''
+    It converted the user_name.id to user_name.username for API.
+    and ReadOnlyField only allows to read username not to Deserialize it.
+    we could have also used CharField(read_only=True) here.
+    '''
     user_name = serializers.ReadOnlyField(source='user_name.username')
 
     class Meta:

@@ -1,11 +1,12 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, CreateView
-from group_chat.models import Group
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
-from group_chat.forms import NewGroupForm
-from django.http import JsonResponse
 from http import HTTPStatus
+
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, ListView, TemplateView
+
+from group_chat.forms import NewGroupForm
+from group_chat.models import Group
 
 # Create your views here.
 

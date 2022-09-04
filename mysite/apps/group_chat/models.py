@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 # Create your models here.
 
@@ -19,6 +19,5 @@ class Group(models.Model):
     class Meta:
         ordering = ['-id']
 
-    # returns group name
     def __str__(self):
         return self.name

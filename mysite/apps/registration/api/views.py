@@ -1,9 +1,10 @@
-from rest_framework import viewsets
-from .serializers import UserSerializer
-from .permissions import IsOwnerOrReadOnly
-from rest_framework.authentication import TokenAuthentication, SessionAuthentication
-from rest_framework.permissions import DjangoModelPermissions
 from django.contrib.auth.models import User
+from rest_framework import viewsets
+from rest_framework.authentication import (SessionAuthentication,
+                                           TokenAuthentication)
+from rest_framework.permissions import DjangoModelPermissions
+
+from .serializers import UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

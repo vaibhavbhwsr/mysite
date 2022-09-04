@@ -1,22 +1,18 @@
-from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import (
-    UpdateView,
-    TemplateView,
-    CreateView,
-)
+from django.views.generic import CreateView, TemplateView, UpdateView
+
 from .forms import RegistrationForm
 
 # Create your views here.
 
 
-# SignUp
 class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
     form_class = RegistrationForm
     template_name = 'registration/signup.html/'
@@ -26,30 +22,34 @@ class SignupView(UserPassesTestMixin, SuccessMessageMixin, CreateView):
         " the same username and password!"
     )
 
-    # This is necessary function to use with UserPassesTextMixin
     def test_func(self):
+        '''
+        This is necessary function to use with UserPassesTextMixin
+        '''
         return self.request.user.is_anonymous
 
-    # This function stop accessing signup page to logged in user
     def handle_no_permission(self):
+        '''
+        This function stop accessing signup page to logged in user
+        '''
         return HttpResponseRedirect(reverse("home"))
 
 
-# Login
 class MyLoginView(SuccessMessageMixin, LoginView):
-    # Here it stops logged in user to access log in page.
+    '''
+    Here it stops logged in user to access log in page.
+    And add success message
+    '''
+
     redirect_authenticated_user = True
     success_message = '%(username)s, Welcome Here!'
 
 
-# Profile Page
-# Profile
 @method_decorator(login_required, name='dispatch')
 class MyProfileView(TemplateView):
     template_name = 'registration/profile.html'
 
 
-# Profile Update
 @method_decorator(login_required, name='dispatch')
 class UpdateProfileView(UpdateView, SuccessMessageMixin):
     model = User

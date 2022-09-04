@@ -1,9 +1,11 @@
 from rest_framework import viewsets
-from .serializers import PostSerializer
-from .permissions import IsOwnerOrReadOnly
-from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+from rest_framework.authentication import (SessionAuthentication,
+                                           TokenAuthentication)
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 from post.models import Post
+
+from .serializers import PostSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):

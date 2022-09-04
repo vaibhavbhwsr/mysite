@@ -4,24 +4,21 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
-from django.views.generic import (
-    DeleteView,
-    UpdateView,
-    View,
-    CreateView,
-    ListView,
-    DetailView,
-)
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView, View)
+
 from .forms import NewPostForm
-from .models import Post, Comment
+from .models import Comment, Post
 
 # Create your views here.
 
 
-# Home Page
-# Post Related Views
 @method_decorator(login_required, name='dispatch')
 class HomeView(ListView):
+    '''
+    Home View and Post View
+    '''
+
     model = Post
     template_name = 'post/home.html'
     context_object_name = 'posts'
@@ -47,7 +44,6 @@ class HomeView(ListView):
         return context
 
 
-# Post Create
 @method_decorator(login_required, name='dispatch')
 class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     form_class = NewPostForm
@@ -64,7 +60,6 @@ class PostCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-# Post Detail
 @method_decorator(login_required, name='dispatch')
 class PostDetailView(DetailView):
     model = Post
@@ -78,7 +73,6 @@ class PostDetailView(DetailView):
         return context
 
 
-# Like View
 @method_decorator(login_required, name='dispatch')
 class LikeView(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
@@ -107,7 +101,6 @@ class LikeView(LoginRequiredMixin, View):
         return JsonResponse({'liked': is_like, 'count': count})
 
 
-# Post Delete
 @method_decorator(login_required, name='dispatch')
 class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Post
@@ -116,7 +109,6 @@ class PostDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     # success_message = 'Your Post Deleted Successfully!'  # Not Working
 
 
-# Post Update
 @method_decorator(login_required, name='dispatch')
 class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Post
@@ -127,7 +119,6 @@ class PostUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     success_message = 'Your Post Updated Successfully!'
 
 
-# Post Comment
 @method_decorator(login_required, name='dispatch')
 class PostCommentView(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
