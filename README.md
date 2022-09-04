@@ -36,3 +36,6 @@ Install Packages:
 
 ## Create super user
     python3 manage.py createsuperuser
+
+## notes*
+    Use MODE=dev in local only else on server it requires static and media file and stop S3 bucket to use 
