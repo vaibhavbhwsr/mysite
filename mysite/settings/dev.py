@@ -1,12 +1,16 @@
-from .base import *
+from decouple import config
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DATABASE_NAME', default='mysitedb'),
-        'USER': config('DATABASE_USER', default='postgres'),
-        'PASSWORD': config('DATABASE_PASSWORD', default='psql'),
-        'HOST': config('DATABASE_HOST', default='localhost'),
-        'PORT': config('DATABASE_PORT', default=5432),
-    }
-}
+from .base import ALLOWED_HOSTS, INSTALLED_APPS, MIDDLEWARE
+
+ALLOWED_HOSTS += ['localhost', '127.0.0.1']
+
+INSTALLED_APPS += [
+    "debug_toolbar",
+]
+
+MIDDLEWARE.insert(0,  "debug_toolbar.middleware.DebugToolbarMiddleware")
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost'
+]

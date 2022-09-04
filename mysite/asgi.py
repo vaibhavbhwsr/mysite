@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/asgi/
 
 import os
 import django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings.dev')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 django.setup()
 
 import group_chat.routing

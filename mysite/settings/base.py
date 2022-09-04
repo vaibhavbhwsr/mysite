@@ -30,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
@@ -87,11 +87,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+# # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DATABASE_NAME', default='mysitedb'),
+        'USER': config('DATABASE_USER', default='postgres'),
+        'PASSWORD': config('DATABASE_PASSWORD', default='psql'),
+        'HOST': config('DATABASE_HOST', default='localhost'),
+        'PORT': config('DATABASE_PORT', default=5432),
     }
 }
 
@@ -150,15 +161,7 @@ LOGOUT_REDIRECT_URL = '/'
 # Makes Crispy use bootstrap4
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# # Disabling DjangoRestFramework Browsable API
-# REST_FRAMEWORK = {
-#     'DEFAULT_RENDERER_CLASSES': (
-#         'rest_framework.renderers.JSONRenderer',
-#     )
-# }
-
 # Channels Settings
-
 ASGI_APPLICATION = 'mysite.asgi.application'    # can work with both ASGI and WSGI
 
 CHANNEL_LAYERS = {
@@ -170,44 +173,12 @@ CHANNEL_LAYERS = {
     },
 }
 
-# # Static files (CSS, JavaScript, Images)
-# # https://docs.djangoproject.com/en/3.2/howto/static-files/
-# STATIC_URL = '/static/'     # This must match with apache conf alias for static
-# STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
-# STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+STATIC_URL = '/static/'     # This must match with apache conf alias for static
+STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
 
-# # Media Url
-# MEDIA_ROOT = Path(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
-
-# Above commented changed to below for s3 bucket
-
-USE_S3 = config('USE_S3', default=False, cast=bool)
-
-if USE_S3:
-    # aws settings
-    AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', None)
-    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', None)
-    AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME', None)
-    AWS_DEFAULT_ACL = 'public-read'
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-
-    # s3 static settings
-    AWS_LOCATION = 'static'
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-    # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    STATICFILES_STORAGE = 'commons.storage_backends.StaticStorage'
-
-    # s3 public media settings
-    PUBLIC_MEDIA_LOCATION = 'media'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'commons.storage_backends.PublicMediaStorage'
-
-else:
-    STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+# Media Url
+MEDIA_ROOT = Path(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
