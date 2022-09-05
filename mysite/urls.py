@@ -82,3 +82,13 @@ if settings.DEBUG:
 
 if 'debug_toolbar' in settings.INSTALLED_APPS:
     urlpatterns.insert(0, path('__debug__/', include('debug_toolbar.urls')))
+
+
+# A check for Sentry
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
+
+urlpatterns += [
+    path('sentry-debug/', trigger_error),
+]
