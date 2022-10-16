@@ -1,2 +1,4 @@
-Tasks:
+Tasks Remainings:
 - Move create chat popup outside so this it is visible properly
+- Make User Authorization using AbstractBaseUser
+- implement onetoone chat
