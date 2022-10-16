@@ -1,5 +1,5 @@
 # Website Link
-http://13.127.146.139/
+http://myappelb-1680396976.ap-south-1.elb.amazonaws.com/
 
 # SocialSite with APIs (mysite)
 Backend python code
