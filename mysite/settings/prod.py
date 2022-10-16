@@ -34,7 +34,6 @@ else:
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 # Disabling DjangoRestFramework Browsable API
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
