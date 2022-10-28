@@ -2,3 +2,4 @@ Tasks Remainings:
 - Move create chat popup outside so this it is visible properly
 - Make User Authorization using AbstractBaseUser
 - implement onetoone chat
+- change not working after check --deploy changes on server so master_nginx branch on serve is not as same as github
