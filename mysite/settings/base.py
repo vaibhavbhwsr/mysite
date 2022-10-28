@@ -88,6 +88,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+
 # Database
 # # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 # DATABASES = {
@@ -108,6 +109,7 @@ DATABASES = {
     }
 }
 
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
@@ -125,6 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 LANGUAGE_CODE = 'en-us'
@@ -137,14 +140,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 # Many this Added afterword's it
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# # Set Console as a Backend to reset password
 
+# # Set Console as a Backend to reset password
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Setting Email Backend with smtp django
@@ -155,13 +159,16 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')   # secret code created on account not password
 EMAIL_USE_TLS = True
 
+
 # Redirect After Login and Logout
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
 
+
 # Makes Crispy use bootstrap4
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 # Channels Settings
 ASGI_APPLICATION = 'mysite.asgi.application'    # can work with both ASGI and WSGI
@@ -175,15 +182,37 @@ CHANNEL_LAYERS = {
     },
 }
 
+
+# USE_S3 in case for using S3 or not
+USE_S3 = config('USE_S3', default=False, cast=bool)
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_URL = '/static/'     # This must match with apache conf alias for static
-STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
+if USE_S3:
+    # aws settings
+    AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', None)
+    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', None)
+    AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME', None)
+    AWS_DEFAULT_ACL = 'public-read'
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
-# Media Url
+    # s3 static settings
+    AWS_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'commons.storage_backends.StaticStorage'
+
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'commons.storage_backends.PublicMediaStorage'
+else:
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
+
+STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = Path(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
 
 # Sentry settings
