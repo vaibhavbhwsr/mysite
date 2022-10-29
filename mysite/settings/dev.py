@@ -1,10 +1,8 @@
 from decouple import config
 
-from .base import ALLOWED_HOSTS, INSTALLED_APPS, MIDDLEWARE, CSRF_TRUSTED_ORIGINS
+from .base import ALLOWED_HOSTS, INSTALLED_APPS, MIDDLEWARE
 
 ALLOWED_HOSTS += ['*', ]    # Later remove star
-
-CSRF_TRUSTED_ORIGINS += ['http://localhost']
 
 INSTALLED_APPS += [
     'debug_toolbar',
