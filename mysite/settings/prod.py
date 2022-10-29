@@ -32,7 +32,6 @@ DATABASES = {
 
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
-CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]
 
 SECURE_HSTS_SECONDS = 60 * 60 * 24 * 7 * 52  # one year
 SECURE_HSTS_PRELOAD = True

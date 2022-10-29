@@ -223,3 +223,7 @@ sentry_sdk.init(
         DjangoIntegration(),
     ],
 )
+
+
+# Security
+CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]
