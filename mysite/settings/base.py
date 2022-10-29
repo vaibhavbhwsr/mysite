@@ -32,7 +32,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fireshine.ml', 'www.fireshine.ml']
 
 # Application definition
 INSTALLED_APPS = [
@@ -209,6 +209,7 @@ if USE_S3:
     DEFAULT_FILE_STORAGE = 'commons.storage_backends.PublicMediaStorage'
 else:
     STATIC_URL = '/static/'
+    STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
     MEDIA_URL = '/media/'
 
 STATIC_ROOT = Path(BASE_DIR, 'staticfiles')

@@ -2,7 +2,7 @@ from decouple import config
 
 from .base import ALLOWED_HOSTS, INSTALLED_APPS, MIDDLEWARE
 
-ALLOWED_HOSTS += ['*', 'localhost', '127.0.0.1']    # Later remove star
+ALLOWED_HOSTS += ['*', ]    # Later remove star
 
 INSTALLED_APPS += [
     'debug_toolbar',

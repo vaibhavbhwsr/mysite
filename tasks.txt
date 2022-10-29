@@ -3,3 +3,4 @@ Tasks Remainings:
 - Make User Authorization using AbstractBaseUser
 - implement onetoone chat
 - change not working after check --deploy changes on server so master_nginx branch on serve is not as same as github
+- currently debug_toolbar is not working when using s3 bucket
