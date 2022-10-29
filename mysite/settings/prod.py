@@ -2,7 +2,7 @@ from .base import ALLOWED_HOSTS
 from decouple import config
 
 
-ALLOWED_HOSTS += ['fireshine.ml', 'www.fireshine.ml', 'localhost']
+ALLOWED_HOSTS += ['fireshine.ml', 'www.fireshine.ml', '*']
 
 
 # Disabling DjangoRestFramework Browsable API
@@ -26,6 +26,10 @@ DATABASES = {
 }
 
 
+# CSRF settings
+CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml']
+
+
 # Security
 SECURE_HSTS_SECONDS = True
 SECURE_SSL_REDIRECT = True
@@ -33,3 +37,4 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
+
