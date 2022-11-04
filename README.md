@@ -1,5 +1,5 @@
 # Website Link
-http://myappelb-1680396976.ap-south-1.elb.amazonaws.com/
+http://fireshine.ml/
 
 # SocialSite with APIs (mysite)
 Backend python code
