@@ -19,6 +19,7 @@ elif MODE == 'prod':
 # Some lines to check setting being used
 print()
 print('############################### Settings Check ################################')
+print(f'Hosts: {ALLOWED_HOSTS}')
 print(f'Mode: {MODE}')
 print(f'Debug: {DEBUG}')
 print(f'Use S3: {USE_S3}')

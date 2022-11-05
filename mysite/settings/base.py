@@ -32,7 +32,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['fireshine.ml', 'www.fireshine.ml']
+ALLOWED_HOSTS = [host for host in config('ALLOWED_HOSTS', 'localhost').split(',')]
 
 # Application definition
 INSTALLED_APPS = [
