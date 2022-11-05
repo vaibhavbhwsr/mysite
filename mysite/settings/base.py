@@ -214,4 +214,4 @@ STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = Path(BASE_DIR, 'media')
 
 # Security
-CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]
+CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]  # It may already include localhost.
