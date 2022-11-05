@@ -13,9 +13,7 @@ import os
 import sys
 from pathlib import Path
 
-import sentry_sdk
 from decouple import config
-from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -214,16 +212,6 @@ else:
 
 STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = Path(BASE_DIR, 'media')
-
-
-# Sentry settings
-sentry_sdk.init(
-    dsn="https://0548ee3a78f34aae805ead6ca111c77c@o1394239.ingest.sentry.io/6716219",
-    integrations=[
-        DjangoIntegration(),
-    ],
-)
-
 
 # Security
 CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]

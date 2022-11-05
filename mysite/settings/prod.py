@@ -1,8 +1,11 @@
-from .base import ALLOWED_HOSTS
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 from decouple import config
 
+from .base import ALLOWED_HOSTS
 
-ALLOWED_HOSTS += []
+ALLOWED_HOSTS += []  # no use here managed directly though setting.ini file
 
 
 # Disabling DjangoRestFramework Browsable API
@@ -24,6 +27,15 @@ DATABASES = {
         'PORT': config('DATABASE_PORT'),
     }
 }
+
+
+# Sentry settings
+sentry_sdk.init(
+    dsn="https://0548ee3a78f34aae805ead6ca111c77c@o1394239.ingest.sentry.io/6716219",
+    integrations=[
+        DjangoIntegration(),
+    ],
+)
 
 
 # ==============================================================================
