@@ -1,5 +1,5 @@
 # This file is created one.
-from django import forms
+from django import forms  # noqa: F401
 # imported UserCreationForm 3rd
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User  # imported User 2nd

@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models  # noqa: F401
 
 # Generating tokens every time using signals for new user copied from drf.
 from django.conf import settings

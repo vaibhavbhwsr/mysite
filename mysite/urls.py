@@ -86,7 +86,7 @@ if 'debug_toolbar' in settings.INSTALLED_APPS:
 
 # A check for Sentry
 def trigger_error(request):
-    division_by_zero = 1 / 0
+    division_by_zero = 1 / 0  # noqa: F841
 
 
 urlpatterns += [

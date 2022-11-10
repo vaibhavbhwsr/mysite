@@ -18,7 +18,7 @@ class MyAsyncJsonWebsocketConsumer(AsyncJsonWebsocketConsumer):
         content['user'] = user.username
         group = await database_sync_to_async(Group.objects.get)(name=self.group_name)
         if user.is_authenticated:
-            chat = await database_sync_to_async(group.group_chat.create)(
+            chat = await database_sync_to_async(group.group_chat.create)(  # noqa: F841
                 content=content['msg'], user=user
             )
             await self.channel_layer.group_send(

@@ -12,11 +12,11 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 django.setup()
 
-import group_chat.routing
+import group_chat.routing  # noqa: E402
 
-from django.core.asgi import get_asgi_application
-from channels.auth import AuthMiddlewareStack
-from channels.routing import ProtocolTypeRouter, URLRouter
+from django.core.asgi import get_asgi_application  # noqa: E402
+from channels.auth import AuthMiddlewareStack  # noqa: E402
+from channels.routing import ProtocolTypeRouter, URLRouter  # noqa: E402
 
 
 application = ProtocolTypeRouter(
