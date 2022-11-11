@@ -1,5 +1,4 @@
 Tasks Remaining:
-- Move create chat popup outside so this it is visible properly
 - Make User Authorization using AbstractBaseUser
 - currently debug_toolbar is not working when using s3 bucket
 - Git credential manager
