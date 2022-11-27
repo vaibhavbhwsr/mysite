@@ -208,9 +208,9 @@ if USE_S3:
     DEFAULT_FILE_STORAGE = 'commons.storage_backends.PublicMediaStorage'
 else:
     STATIC_URL = '/static/'
-    STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
     MEDIA_URL = '/media/'
 
+STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
 STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = Path(BASE_DIR, 'media')
 
