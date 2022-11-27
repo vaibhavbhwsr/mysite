@@ -1,5 +1,6 @@
 Tasks Remaining:
 - Make User Authorization using AbstractBaseUser
+- Add popup notification and sendmail with celery
 - currently debug_toolbar is not working when using s3 bucket
 - Git credential manager
 - implement onetoone chat
