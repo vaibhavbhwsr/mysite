@@ -1,7 +1,7 @@
 var groupName = JSON.parse(document.getElementById('group-name').textContent)
 
 var ws = new WebSocket(
-    'ws://' + window.location.host + '/ws/ajwc/' + groupName + '/'
+    'wss://' + window.location.host + '/ws/ajwc/' + groupName + '/'
 )
 
 ws.onopen = function() {
