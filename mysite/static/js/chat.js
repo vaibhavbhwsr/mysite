@@ -1,7 +1,11 @@
 var groupName = JSON.parse(document.getElementById('group-name').textContent)
 
+var protocol = 'ws://'
+if (window.location.protocol == 'https:') {
+    protocol = 'wss://'
+}
 var ws = new WebSocket(
-    'wss://' + window.location.host + '/ws/ajwc/' + groupName + '/'
+    protocol + window.location.host + '/ws/ajwc/' + groupName + '/'
 )
 
 ws.onopen = function() {
