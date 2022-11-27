@@ -1,7 +1,8 @@
 var groupName = JSON.parse(document.getElementById('group-name').textContent)
 
+debugger
 var protocol = 'ws://'
-if (window.location.protocol == 'https:') {
+if (window.location.host == 'fireshine.ml') {
     protocol = 'wss://'
 }
 var ws = new WebSocket(
