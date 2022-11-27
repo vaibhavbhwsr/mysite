@@ -18,6 +18,7 @@ ws.onmessage = function(event) {
 };
 
 ws.onclose = function(event) {
+    console.log(event);
     console.error('Chat Socket Closed Unexpectedly...');
 };
 

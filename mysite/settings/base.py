@@ -34,7 +34,7 @@ ALLOWED_HOSTS = [host for host in config('ALLOWED_HOSTS', 'localhost').split(','
 
 # Application definition
 INSTALLED_APPS = [
-    'channels',
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
