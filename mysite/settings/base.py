@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'storages',
 
     # Added
+    'core',
     'registration',
     'post',
     'group_chat',
@@ -206,13 +207,17 @@ if USE_S3:
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'commons.storage_backends.PublicMediaStorage'
+
+    # s3 private media settings
+    PRIVATE_MEDIA_LOCATION = 'private'
+    PRIVATE_FILE_STORAGE = 'common.storage_backends.PrivateMediaStorage'
 else:
     STATIC_URL = '/static/'
+    STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
     MEDIA_URL = '/media/'
+    MEDIA_ROOT = Path(BASE_DIR, 'media')
 
 STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
-STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
-MEDIA_ROOT = Path(BASE_DIR, 'media')
 
 # Security
 CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]  # It may already include localhost.

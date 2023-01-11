@@ -1,11 +1,12 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from core.models import BaseModel
 
 # Create your models here.
 
 
-class Post(models.Model):
+class Post(BaseModel):
     user_name = models.ForeignKey(
         'auth.User', related_name="posts", on_delete=models.CASCADE
     )  # API also
@@ -28,7 +29,7 @@ class Post(models.Model):
         return self.likes.count()
 
 
-class Comment(models.Model):
+class Comment(BaseModel):
     post = models.ForeignKey(
         Post, related_name='post_comment', on_delete=models.CASCADE
     )

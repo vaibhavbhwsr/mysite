@@ -1,10 +1,11 @@
 from django.contrib.auth.models import User
 from django.db import models
+from core.models import BaseModel
 
 # Create your models here.
 
 
-class GroupChat(models.Model):
+class GroupChat(BaseModel):
     content = models.CharField(max_length=255)
     timestamp = models.DateTimeField(auto_now=True)
     group = models.ForeignKey(
@@ -13,7 +14,7 @@ class GroupChat(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
 
-class Group(models.Model):
+class Group(BaseModel):
     name = models.CharField(max_length=255, unique=True)
 
     class Meta:
