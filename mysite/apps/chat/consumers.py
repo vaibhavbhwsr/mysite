@@ -1,7 +1,7 @@
 from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 
-from group_chat.models import Group
+from chat.models import Group
 
 
 class MyAsyncJsonWebsocketConsumer(AsyncJsonWebsocketConsumer):

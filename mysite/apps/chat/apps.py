@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class GroupChatConfig(AppConfig):
+class ChatConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'group_chat'
+    name = 'chat'

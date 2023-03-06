@@ -1,6 +1,6 @@
 from django.urls import path
 
-from group_chat import views
+from chat import views
 
 
 urlpatterns = [

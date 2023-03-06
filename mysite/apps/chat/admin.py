@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from group_chat.models import Group, GroupChat
+from chat.models import Group, GroupChat
 
 # Register your models here.
 

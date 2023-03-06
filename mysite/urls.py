@@ -29,7 +29,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/post/', permanent=True)),
     path('', include('registration.urls')),
     path('post/', include('post.urls')),
-    path('group/', include('group_chat.urls')),
+    path('group/', include('chat.urls')),
 ]
 
 

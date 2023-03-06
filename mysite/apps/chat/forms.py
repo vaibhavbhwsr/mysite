@@ -1,6 +1,6 @@
 from django import forms
 
-from group_chat.models import Group
+from chat.models import Group
 
 
 class NewGroupForm(forms.ModelForm):

@@ -5,8 +5,8 @@ from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, TemplateView
 
-from group_chat.forms import NewGroupForm
-from group_chat.models import Group
+from chat.forms import NewGroupForm
+from chat.models import Group
 
 # Create your views here.
 
