@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_yasg',
     'storages',
+    'push_notifications',
 
     # Added
     'core',
@@ -223,3 +224,8 @@ STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
 
 # Security
 CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]  # It may already include localhost.
+
+# django push notification settings
+PUSH_NOTIFICATIONS_SETTINGS = {
+        "FCM_API_KEY": config('FCM_SERVER_KEY', None),
+}
