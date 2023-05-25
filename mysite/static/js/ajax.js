@@ -71,7 +71,7 @@ $(document).ready(function() {
                 $("#exampleModal").modal('hide');
             },
             error: function(data) {
-                alert(data.responseJSON.data.name[0] + ' Choose a unique name.')
+                alert(data.responseJSON.data.name[0] + ' Choose a different name.')
                 $("#exampleModal").find('textarea').val('');
             }
         });
