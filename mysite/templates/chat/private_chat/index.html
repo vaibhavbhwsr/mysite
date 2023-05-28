@@ -7,11 +7,11 @@
     <title>Fireshine | Group Chat</title>
 </head>
 <body>
-    <h1>User Name: {{ user.username }}</h1>
+    <h1>Group Name: {{ group.name }}</h1>
     <textarea id="chat-log" , cols="100" rows="20">
-    {% comment %} {% for chat in group.group_chat.all %}
+    {% for chat in group.private_chat.all %}
     {{ chat.user.username }}: {{ chat.content }}
-    {% endfor %} {% endcomment %}
+    {% endfor %}
     </textarea><br>
     <input type="text" id="chat-message-input" size="100"><br>
     <input type="button" value="Send" id="chat-message-submit">
