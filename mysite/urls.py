@@ -30,6 +30,7 @@ urlpatterns = [
     path('', include('registration.urls')),
     path('post/', include('post.urls')),
     path('group/', include('group_chat.urls')),
+    path('private/', include('private_chat.urls')),
 ]
 
 
