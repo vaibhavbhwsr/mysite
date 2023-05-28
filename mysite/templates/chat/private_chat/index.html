@@ -7,17 +7,17 @@
     <title>Fireshine | Group Chat</title>
 </head>
 <body>
-    <h1>Group Name: {{ group.name }}</h1>
+    <h1>User Name: {{ user.username }}</h1>
     <textarea id="chat-log" , cols="100" rows="20">
-    {% for chat in group.group_chat.all %}
+    {% comment %} {% for chat in group.group_chat.all %}
     {{ chat.user.username }}: {{ chat.content }}
-    {% endfor %}
+    {% endfor %} {% endcomment %}
     </textarea><br>
     <input type="text" id="chat-message-input" size="100"><br>
     <input type="button" value="Send" id="chat-message-submit">
 
     <!-- sending python context to js -->
-    {{ group.name|json_script:"group-name" }}
-    <script src="{% static 'js/chat.js' %}"></script>
+    {% comment %} {{ group.name|json_script:"group-name" }}
+    <script src="{% static 'js/chat.js' %}"></script> {% endcomment %}
 </body>
 </html>
