@@ -1,4 +1,5 @@
 Tasks Remaining:
+- start websocket(channels) part for private_chat
 - Implement social login in mysite
 - Make User Authorization using AbstractBaseUser
 - Add popup notification and sendmail with celery
