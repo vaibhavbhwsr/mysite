@@ -7,6 +7,7 @@
     <title>Fireshine | Group Chat</title>
 </head>
 <body>
+    <h1>Welcome {{ user.username|title }}</h1>
     <h1>Group Name: {{ group.name }}</h1>
     <textarea id="chat-log" , cols="100" rows="20">
     {% for chat in group.group_chat.all %}
