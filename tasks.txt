@@ -1,8 +1,7 @@
 Tasks Remaining:
-- start websocket(channels) part for private_chat
 - Implement social login in mysite
-- Make User Authorization using AbstractBaseUser
 - Add popup notification and sendmail with celery
+- Add video chat and voice chat in mysite
+- Make User Authorization using AbstractBaseUser
 - currently debug_toolbar is not working when using s3 bucket
 - Git credential manager
-- implement onetoone chat
