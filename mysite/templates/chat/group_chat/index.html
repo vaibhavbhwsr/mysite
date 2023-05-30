@@ -18,6 +18,7 @@
 
     <!-- sending python context to js -->
     {{ group.name|json_script:"group-name" }}
+    {{ "public"|json_script:"group-type" }}
     <script src="{% static 'js/chat.js' %}"></script>
 </body>
 </html>

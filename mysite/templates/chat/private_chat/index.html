@@ -17,7 +17,8 @@
     <input type="button" value="Send" id="chat-message-submit">
 
     <!-- sending python context to js -->
-    {% comment %} {{ group.name|json_script:"group-name" }}
-    <script src="{% static 'js/chat.js' %}"></script> {% endcomment %}
+     {{ group.name|json_script:"group-name" }}
+     {{ "private"|json_script:"group-type" }}
+    <script src="{% static 'js/chat.js' %}"></script>
 </body>
 </html>

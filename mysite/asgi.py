@@ -13,6 +13,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 django.setup()
 
 import group_chat.routing  # noqa: E402
+import private_chat.routing  # noqa: E402
 
 from django.core.asgi import get_asgi_application  # noqa: E402
 from channels.auth import AuthMiddlewareStack  # noqa: E402
@@ -23,7 +24,10 @@ application = ProtocolTypeRouter(
     {
         'http': get_asgi_application(),
         'websocket': AuthMiddlewareStack(
-            URLRouter(group_chat.routing.websocket_urlpatterns)
+            URLRouter([
+                *group_chat.routing.websocket_urlpatterns,
+                *private_chat.routing.websocket_urlpatterns
+            ])
         ),
     }
 )

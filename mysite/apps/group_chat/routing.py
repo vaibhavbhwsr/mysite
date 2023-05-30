@@ -4,5 +4,5 @@ from group_chat import consumers
 
 
 websocket_urlpatterns = [
-    path('ws/ajwc/<str:group>/', consumers.MyAsyncJsonWebsocketConsumer.as_asgi())
+    path('ws/ajwc/public/<str:group>/', consumers.MyAsyncJsonWebsocketConsumer.as_asgi())
 ]
