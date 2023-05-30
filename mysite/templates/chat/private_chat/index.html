@@ -16,7 +16,7 @@
     {% endfor %}
     </textarea><br>
     <input type="text" id="chat-message-input" size="100"><br>
-    <input type="button" value="Send" id="chat-message-submit">
+    <input type="submit" value="Send" id="chat-message-submit">
 
     <!-- sending python context to js -->
      {{ group.name|json_script:"group-name" }}
