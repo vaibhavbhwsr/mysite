@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # addition
+    'django.contrib.sites',
+
     # Packages Installed
     'crispy_forms',
     'crispy_bootstrap5',
@@ -50,6 +53,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_yasg',
     'storages',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
     # Added
     'core',
@@ -224,3 +231,29 @@ STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
 
 # Security
 CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]  # It may already include localhost.
+
+
+# django-allauth settings
+SITE_ID = 1     # This is for Site mode id to work with
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+    }
+}
+
+SOCIALACCOUNT_LOGIN_ON_GET = True # To make not to redirect to intermediate page

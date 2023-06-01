@@ -31,6 +31,9 @@ black
 # Error Tracker
 sentry-sdk
 
+# Social authentication
+django-allauth
+
 # Development tools
 django-debug-toolbar
 django-extensions
