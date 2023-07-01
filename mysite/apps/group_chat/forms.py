@@ -5,7 +5,6 @@ from django.core.exceptions import ValidationError
 import re
 
 
-
 class NewGroupForm(forms.ModelForm):
     class Meta:
         model = Group
@@ -18,8 +17,8 @@ class NewGroupForm(forms.ModelForm):
         '''
         if not re.fullmatch('[A-Za-z0-9_.-]*', self.cleaned_data['name']):
             raise ValidationError(
-                    "Only ASCII alphanumerics, hyphens, underscores, periods and less than "
-                    "100 characters without space are allowed."
-                )
+                "Only ASCII alphanumerics, hyphens, underscores, periods and less than "
+                "100 characters without space are allowed."
+            )
 
         return self.cleaned_data['name']
