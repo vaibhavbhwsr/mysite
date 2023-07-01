@@ -257,3 +257,5 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 SOCIALACCOUNT_LOGIN_ON_GET = True # To make not to redirect to intermediate page
+
+# SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"

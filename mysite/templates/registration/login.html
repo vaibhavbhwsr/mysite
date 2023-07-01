@@ -20,18 +20,39 @@
                         <div class="form-group page-button">
                             <button class="btn btn-lg btn-primary btn-block text-uppercase px-5 py-3" type="submit">Sign in
                             </button>
-                            <a href="{% provider_login_url 'google' %}" class="login-with-google-btn">Sign in with Google</a>
                             <a class="btn btn-lg btn-warning btn-block text-uppercase float-end  px-5 py-3" href="{% url 'password_reset' %}">Forgot Password?
                             </a>
                         </div>
-                        <br /><br />
+                    </form>
+                    <div class="or-container"><div class="line-separator"></div> <div class="or-label">or</div><div class="line-separator"></div></div>
+                    <div class="row">
+                        <div>
+                            <script src="https://accounts.google.com/gsi/client" async defer></script>
+                            <div id="g_id_onload"
+                            data-client_id="812463514152-csut4tlc5fd2mcvl2h9amdfk3ac4tjvc.apps.googleusercontent.com"
+                            data-login_uri="{% provider_login_url 'google' %}"
+                            data-auto_prompt="false">
+                            </div>
+                            <div class="g_id_signin"
+                            data-type="standard"
+                            data-size="large"
+                            data-theme="outline"
+                            data-text="sign_in_with"
+                            data-shape="pill"
+                            data-logo_alignment="center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="or-container"><div class="line-separator"></div> <div class="or-label">or</div><div class="line-separator"></div></div>
+                    <div>
                         <small>
                             <p class="text-center">
                                 Not registered yet?
                                 <a href="{% url 'signup' %}"><u><b>Register Now!</b></u></a>
                             </p>
                         </small>
-                    </form>
+                    </div>
+                    <br>
                 </div>
             </div>
         </div>
