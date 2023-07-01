@@ -10,7 +10,7 @@ User = get_user_model()
 
 class Post(BaseModel):
     user_name = models.ForeignKey(
-        'auth.User', related_name="posts", on_delete=models.CASCADE
+        User, related_name="posts", on_delete=models.CASCADE
     )  # API also
     date_posted = models.DateTimeField(default=timezone.now)
     description = models.CharField(max_length=255, blank=True)
