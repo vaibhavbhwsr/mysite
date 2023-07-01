@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
@@ -9,6 +9,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, TemplateView, UpdateView
 
 from .forms import RegistrationForm
+
+User = get_user_model()
 
 # Create your views here.
 

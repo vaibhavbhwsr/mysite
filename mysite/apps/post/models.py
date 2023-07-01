@@ -1,7 +1,9 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 from core.models import BaseModel
+
+User = get_user_model()
 
 # Create your models here.
 
@@ -34,6 +36,6 @@ class Comment(BaseModel):
         Post, related_name='post_comment', on_delete=models.CASCADE
     )
     user = models.ForeignKey(
-        'auth.User', related_name='user_comment', on_delete=models.CASCADE
+        User, related_name='user_comment', on_delete=models.CASCADE
     )
     comment_text = models.TextField()

@@ -2,7 +2,9 @@
 from django import forms  # noqa: F401
 # imported UserCreationForm 3rd
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User  # imported User 2nd
+from django.contrib.auth import get_user_model  # imported User 2nd
+
+User = get_user_model()
 
 
 # This class inherits properties of UserCreationForm class declared above
