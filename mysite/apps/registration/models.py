@@ -13,9 +13,6 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 
-class User(AbstractUser):
+class User(AbstractUser):   # Could not able to change model-name here because migration from User to Custom User
     phone = models.CharField(max_length=32, blank=True, null=True)
     address = models.CharField(max_length=64, blank=True, null=True)
-
-    class Meta:
-        db_table = 'auth_user'
