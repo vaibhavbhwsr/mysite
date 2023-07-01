@@ -156,7 +156,7 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Auth
-AUTH_USER_MODEL = 'auth.User'
+AUTH_USER_MODEL = 'registration.User'
 
 
 # # Set Console as a Backend to reset password
