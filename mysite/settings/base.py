@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'post',
     'group_chat',
     'private_chat',
+    'video_chat',
 ]
 
 MIDDLEWARE = [
@@ -227,3 +228,17 @@ STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
 
 # Security
 CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]  # It may already include localhost.
+
+# Site
+BASE_URL = config('BASE_URL', 'http://localhost:8000')
+
+# My AGORA CREDENTIALS
+AGORA_APP_ID = config('AGORA_APP_ID', '')
+AGORA_CUSTOMER_KEY = config('AGORA_CUSTOMER_KEY', '')
+AGORA_CUSTOMER_SECRET = config('AGORA_CUSTOMER_SECRET', '')
+AGORA_APP_CERTIFICATE = config('AGORA_APP_CERTIFICATE', '')
+AGORA_STORAGE_VENDOR = config('AGORA_STORAGE_VENDOR', '')
+AGORA_STORAGE_REGION = config('AGORA_STORAGE_REGION', '')
+AGORA_STORAGE_BUCKET = config('AGORA_STORAGE_BUCKET', '')
+AGORA_STORAGE_ACCESSKEY = config('AGORA_STORAGE_ACCESSKEY', '')
+AGORA_STORAGE_SECRETKEY = config('AGORA_STORAGE_SECRETKEY', '')

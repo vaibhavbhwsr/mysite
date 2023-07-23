@@ -35,3 +35,6 @@ sentry-sdk
 django-debug-toolbar
 django-extensions
 ipython
+
+# Agora
+agora-token-builder
