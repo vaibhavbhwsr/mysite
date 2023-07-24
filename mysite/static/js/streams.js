@@ -9,6 +9,14 @@ const client = AgoraRTC.createClient({mode: 'rtc', codec: 'vp8'})
 let localTracks = []
 let remoteUsers = {}
 
+let hasRecorder = async () => {
+    if (NAME === 'rec-fireshine') {
+        return false
+    } else {
+        return true
+    }
+}
+
 let joinAndDisplayLocalStream = async () => {
 
   document.getElementById('room-name').innerText = CHANNEL
@@ -28,16 +36,20 @@ let joinAndDisplayLocalStream = async () => {
 
   let member = await createMember()
 
-  let player = `<div class="video-container" id="user-container-${UID}">
-                  <div class="video-player" id="user-${UID}"></div>
-                  <div class="username-wrapper"><span class="user-name">${member.name}</span></div>
-                </div>`
+  rec = await hasRecorder()
 
-  document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
+  if (rec) {
+      let player = `<div class="video-container" id="user-container-${UID}">
+                      <div class="video-player" id="user-${UID}"></div>
+                      <div class="username-wrapper"><span class="user-name">${member.name}</span></div>
+                    </div>`
 
-  localTracks[1].play(`user-${UID}`)
+      document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
 
-  await client.publish([localTracks[0], localTracks[1]])
+      localTracks[1].play(`user-${UID}`)
+
+      await client.publish([localTracks[0], localTracks[1]])
+  }
 }
 
 let handleUserJoined = async (user, mediaType) => {
@@ -164,6 +176,8 @@ joinAndDisplayLocalStream()
 window.addEventListener('beforeunload', deleteMember)
 
 document.getElementById('leave-btn').addEventListener('click', leaveAndRemoveLocalStream)
-document.getElementById('camera-btn').addEventListener('click', toggelCamera)
-document.getElementById('mic-btn').addEventListener('click', toggelMic)
+if (NAME !== 'rec-fireshine') {
+    document.getElementById('camera-btn').addEventListener('click', toggelCamera)
+    document.getElementById('mic-btn').addEventListener('click', toggelMic)
+}
 document.getElementById('rec-btn').addEventListener('click', startStopRecording)
