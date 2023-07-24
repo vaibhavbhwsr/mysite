@@ -26,6 +26,8 @@ def lobby(request):
 
 
 def room(request):
+    for data in request.GET:
+        request.session[data] = request.GET[data]
     return render(request, 'chat/video_chat/room.html')
 
 

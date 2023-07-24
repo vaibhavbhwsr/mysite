@@ -79,7 +79,7 @@ def call_start(resource_id, channel, uid, token):
                         'serviceName': 'web_recorder_service',
                         'errorHandlePolicy': 'error_abort',
                         'serviceParam': {
-                            'url': f'{settings.BASE_URL}/video-chat/room/',
+                            'url': f'{settings.BASE_URL}/video-chat/room/?channel={channel}&uid={uid}&token={token}&name=rec-fireshine',
                             'audioProfile': 0,
                             'videoWidth': 1920,
                             'videoHeight': 1080,
