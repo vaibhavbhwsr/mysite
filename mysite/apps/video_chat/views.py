@@ -99,9 +99,17 @@ def stop_recording(request):
     resource_id = request.GET['resource_id']
 
     response = utils.call_stop(resource_id, sid, channel, record_uid)
+    response_json = reponse.json()
     try:
-        record_link = response.json().get('serverResponse').get('fileList')[0].get('fileName')
-        obj = MeetRecord.objects.create(channel=channel, record_link=record_link)
+        for i in response.get('serverResponse').get('extensionServiceState'):
+            for key, value in i.items():
+                if 'fileList' in value:
+                    for j in value['fileList']:
+                        for k, v in j.items():
+                            if k == 'filename':
+                                if v.split('.')[-1] == 'mp4':
+                                    link = v
+        obj = MeetRecord.objects.create(channel=channel, record_link=link)
     except:
         pass
     return JsonResponse(response.json(), safe=False)
