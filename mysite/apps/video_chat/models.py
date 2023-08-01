@@ -11,3 +11,7 @@ class RoomMember(models.Model):
 
     def __str__(self):
         return self.name
+
+class MeetRecord(models.Model):
+    channel = models.CharField(max_length=255)
+    record_link = models.CharField(max_length=255, null=True, blank=True)
