@@ -99,7 +99,7 @@ def stop_recording(request):
     resource_id = request.GET['resource_id']
 
     response = utils.call_stop(resource_id, sid, channel, record_uid)
-    obj = RoomMember.objects.get(channel=channel)
+    obj = RoomMember.objects.get(room_name=channel)
     obj.record_link = response.json().get('serverResponse').get('fileList')[0].get('fileName')
     obj.save()
     return JsonResponse('stoped', safe=False)
