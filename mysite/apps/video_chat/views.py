@@ -113,7 +113,7 @@ def stop_recording(request):
     if make_file_public(f'{channel}/{str(record_uid)}/{link}'):
         link = f'https://{settings.AGORA_STORAGE_BUCKET}.s3.amazonaws.com/{channel}/{str(record_uid)}/{link}'
         obj = MeetRecord.objects.create(channel=channel, record_link=link)
-        reponse['upload_to_s3'] = True
+        response['upload_to_s3'] = True
     else:
-        reponse['upload_to_s3'] = False
+        response['upload_to_s3'] = False
     return JsonResponse(response, safe=False)
