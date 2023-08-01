@@ -108,5 +108,6 @@ def stop_recording(request):
                         if k == 'filename':
                             if v.split('.')[-1] == 'mp4':
                                 link = v
+    link = f'https://{settings.AGORA_STORAGE_BUCKET}.s3.amazonaws.com/{channel}/{str(record_uid)}/{link}'
     obj = MeetRecord.objects.create(channel=channel, record_link=link)
     return JsonResponse(response, safe=False)
