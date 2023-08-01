@@ -136,6 +136,8 @@ let startStopRecording = async (e) => {
         sessionStorage.removeItem('resource_id')
         e.target.setAttribute('data-val','start')
         e.target.style.backgroundColor = '#fff'
+        data = await response.json()
+        console.log(data)
     }
 }
 
