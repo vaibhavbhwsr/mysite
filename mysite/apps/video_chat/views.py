@@ -99,7 +99,7 @@ def stop_recording(request):
     resource_id = request.GET['resource_id']
 
     response = utils.call_stop(resource_id, sid, channel, record_uid)
-    response_json = reponse.json()
+    response = reponse.json()
     try:
         for i in response.get('serverResponse').get('extensionServiceState'):
             for key, value in i.items():
@@ -112,4 +112,4 @@ def stop_recording(request):
         obj = MeetRecord.objects.create(channel=channel, record_link=link)
     except:
         pass
-    return JsonResponse(response.json(), safe=False)
+    return JsonResponse(response, safe=False)
