@@ -99,7 +99,7 @@ def stop_recording(request):
     resource_id = request.GET['resource_id']
 
     response = utils.call_stop(resource_id, sid, channel, record_uid)
-    response = reponse.json()
+    response = response.json()
     try:
         for i in response.get('serverResponse').get('extensionServiceState'):
             for key, value in i.items():
