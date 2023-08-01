@@ -5,6 +5,7 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from commons.storage_backends import make_file_public
 
 from . import utils
 from .models import RoomMember, MeetRecord
@@ -108,6 +109,11 @@ def stop_recording(request):
                         if k == 'filename':
                             if v.split('.')[-1] == 'mp4':
                                 link = v
-    link = f'https://{settings.AGORA_STORAGE_BUCKET}.s3.amazonaws.com/{channel}/{str(record_uid)}/{link}'
-    obj = MeetRecord.objects.create(channel=channel, record_link=link)
+
+    if make_file_public(f'{channel}/{str(record_uid)}/{link}'):
+        link = f'https://{settings.AGORA_STORAGE_BUCKET}.s3.amazonaws.com/{channel}/{str(record_uid)}/{link}'
+        obj = MeetRecord.objects.create(channel=channel, record_link=link)
+        reponse.update('upload_to_s3': True)
+    else:
+        reponse.update('upload_to_s3': False)
     return JsonResponse(response, safe=False)
