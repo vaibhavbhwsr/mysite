@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from . import utils
-from .models import RoomMember
+from .models import RoomMember, MeetRecord
 
 # Create your views here.
 
@@ -100,16 +100,13 @@ def stop_recording(request):
 
     response = utils.call_stop(resource_id, sid, channel, record_uid)
     response = response.json()
-    try:
-        for i in response.get('serverResponse').get('extensionServiceState'):
-            for key, value in i.items():
-                if 'fileList' in value:
-                    for j in value['fileList']:
-                        for k, v in j.items():
-                            if k == 'filename':
-                                if v.split('.')[-1] == 'mp4':
-                                    link = v
-        obj = MeetRecord.objects.create(channel=channel, record_link=link)
-    except:
-        pass
+    for i in response.get('serverResponse').get('extensionServiceState'):
+        for key, value in i.items():
+            if 'fileList' in value:
+                for j in value['fileList']:
+                    for k, v in j.items():
+                        if k == 'filename':
+                            if v.split('.')[-1] == 'mp4':
+                                link = v
+    obj = MeetRecord.objects.create(channel=channel, record_link=link)
     return JsonResponse(response, safe=False)
