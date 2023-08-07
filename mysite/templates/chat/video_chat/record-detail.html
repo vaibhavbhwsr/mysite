@@ -1,0 +1,11 @@
+{% extends 'post/home.html' %}
+{% load video_chat_extras %}
+{% load static %}
+{% block title %} Recordings {% endblock %}
+{% block content %}
+
+<h3>{{ object.channel }}</h3>
+<h5>{{ object.s3_key|pre_signed }}</h5>
+
+{% include "chat/group_chat/pop_up_create_group.html" %}
+{% endblock content %}

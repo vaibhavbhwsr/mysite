@@ -232,6 +232,7 @@ CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]  # It may already include loca
 # Site
 BASE_URL = config('BASE_URL', 'http://localhost:8000')
 
+
 # # My AGORA CREDENTIALS
 # AGORA_APP_ID = config('AGORA_APP_ID', '')
 # AGORA_CUSTOMER_KEY = config('AGORA_CUSTOMER_KEY', '')
