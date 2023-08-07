@@ -22,8 +22,8 @@ class PrivateMediaStorage(S3Boto3Storage):
     custom_domain = False
 
 
-
 def make_file_public(file_name):
+    """Can only be done is ACL is enabled and bucket has public access"""
     s3 = boto3.client(
         's3',
         aws_access_key_id=settings.AWS_ACCESS_KEY_ID,

@@ -101,19 +101,20 @@ def stop_recording(request):
 
     response = utils.call_stop(resource_id, sid, channel, record_uid)
     response = response.json()
-    for i in response.get('serverResponse').get('extensionServiceState'):
-        for key, value in i.items():
-            if 'fileList' in value:
-                for j in value['fileList']:
-                    for k, v in j.items():
-                        if k == 'filename':
-                            if v.split('.')[-1] == 'mp4':
-                                link = v
+    try:
+        for i in response.get('serverResponse').get('extensionServiceState'):
+            for key, value in i.items():
+                if 'fileList' in value:
+                    for j in value['fileList']:
+                        for k, v in j.items():
+                            if k == 'filename':
+                                if v.split('.')[-1] == 'mp4':
+                                    s3_key = v
 
-    if make_file_public(f'{channel}/{str(record_uid)}/{link}'):
-        link = f'https://{settings.AGORA_STORAGE_BUCKET}.s3.amazonaws.com/{channel}/{str(record_uid)}/{link}'
-        obj = MeetRecord.objects.create(channel=channel, record_link=link)
+        s3_key = f'{channel}/{str(record_uid)}/{s3_key}'
+        obj = MeetRecord.objects.create(channel=channel, s3_key=s3_key)
         response['upload_to_s3'] = True
-    else:
+    except Exception as e:
         response['upload_to_s3'] = False
+        response['error'] = str(e)
     return JsonResponse(response, safe=False)
