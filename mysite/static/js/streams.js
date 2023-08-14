@@ -28,7 +28,7 @@ let joinAndDisplayLocalStream = async () => {
     await client.join(APP_ID, CHANNEL, TOKEN, UID)
   }catch(error){
     console.error(error)
-    window.open('/video-chat/', '_self')
+    // window.open('/video-chat/', '_self')
   }
 
 
