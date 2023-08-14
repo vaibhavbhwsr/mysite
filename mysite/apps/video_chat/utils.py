@@ -41,7 +41,7 @@ def get_headers():
 
 
 def get_uid_and_token_for_recording(channel):
-    uid = random.randint(500, 10000)
+    uid = random.randint(100001, 4294967295)
     token = generate_token(channel, uid)
     return (uid, token)
 
