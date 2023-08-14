@@ -19,7 +19,7 @@ APP_ID = settings.AGORA_APP_ID
 
 def get_token(request):
     channelName = request.GET.get('channel')
-    uid = random.randint(1, 230)
+    uid = random.randint(1, 10000)
     token = utils.generate_token(channelName, uid)
     return JsonResponse({'token': token, 'uid': uid}, safe=False)
 
