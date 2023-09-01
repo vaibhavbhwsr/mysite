@@ -1,7 +1,7 @@
 Tasks Remaining:
 - Implement social login in mysite
 - Add popup notification and sendmail with celery
-- Add video chat and voice chat in mysite
-- Make User Authorization using AbstractBaseUser
+- Add voice chat also in mysite
+- Make User Authorization using AbstractBaseUser (may be not possible without losing data)
 - currently debug_toolbar is not working when using s3 bucket
 - Git credential manager
