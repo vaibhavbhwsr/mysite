@@ -106,7 +106,7 @@ DATABASES = {
         'NAME': config('DATABASE_NAME', default='mysitedb'),
         'USER': config('DATABASE_USER', default='postgres'),
         'PASSWORD': config('DATABASE_PASSWORD', default='psql'),
-        'HOST': config('DATABASE_HOST', default='localhost'),
+        'HOST': config('DATABASE_HOST', default='db'),
         'PORT': config('DATABASE_PORT', default=5432),
     }
 }
