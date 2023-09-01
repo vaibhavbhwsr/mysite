@@ -1,16 +1,8 @@
 services:
-  app:
-    build: .
-    volumes:
-      - .:/webapp
-    ports:
-      - 8000:8000
-    image: app:webapp
-    container_name: webapp_mysite_container
-    command: python manage.py runserver 0.0.0.0:8000
-    depends_on:
-      - db
+
+  # Database postgres
   db:
+    container_name: postgres_db
     image: postgres
     volumes:
       - ./database/db:/var/lib/postgres/data
@@ -18,3 +10,21 @@ services:
       - POSTGRES_DB=mysitedb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=psql
+
+  # Django webapp
+  app:
+    container_name: webapp_mysite_container
+    build: .
+    volumes:
+      - .:/webapp
+    ports:
+      - 8000:8000
+    image: app:webapp
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
+
+  # Redis
+  redis:
+    container_name: redis
+    image: redis:alpine
