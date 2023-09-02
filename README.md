@@ -8,7 +8,7 @@ Backend python code
 Clone the project from Github:
 
     Project Root Directory: `/var/www`
-    
+
     git clone remote url
 
 
@@ -21,7 +21,7 @@ Create Virtualenv Folder
 Activate Environment:
 
     source project_venv/bin/activate
-   
+
 Install Packages:
 
     pip install -r mysite/requirements.txt
@@ -31,11 +31,11 @@ Install Packages:
 
 ## Apply database migrations
     note*: create postgres database named mysitedb then run commands in environment.
-    python3 manage.py makemigrations 
+    python3 manage.py makemigrations
     python3 manage.py migrate
 
 ## Create super user
     python3 manage.py createsuperuser
 
 ## notes*
-    Use MODE=dev in local only else on server it requires static and media file and stop S3 bucket to use 
+    Use MODE=dev in local only else on server it requires static and media file and stop S3 bucket to use

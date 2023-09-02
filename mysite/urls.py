@@ -31,7 +31,7 @@ urlpatterns = [
     path('post/', include('post.urls')),
     path('group/', include('group_chat.urls')),
     path('private/', include('private_chat.urls')),
-    path('video-chat/', include('video_chat.urls')),
+    # path('video-chat/', include('video_chat.urls')),
 ]
 
 
