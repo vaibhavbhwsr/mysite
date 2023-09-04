@@ -16,7 +16,7 @@ services:
     container_name: webapp_mysite_container
     build: .
     volumes:
-      - .:/webapp
+      - ./mysite:/webapp
     ports:
       - 8000:8000
     image: app:webapp

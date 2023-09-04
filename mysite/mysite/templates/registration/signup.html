@@ -1,0 +1,37 @@
+{% extends 'post/home.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}SignUp{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-6 mx-auto">
+            <div class="card card-singin my-5">
+                <div class="card-body mx-3">
+                    <h5 class="card-title text-center"><b>Sign Up Here</b></h5>
+                    <h3> {{ message }} </h3>
+                    <form class="form-signin" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group"><br />
+                            {{ form | crispy }}
+                        </fieldset><br />
+                        <div class="form-group page-button">
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">
+                                Sign Up
+                            </button>
+                            <br /><br />
+                            <small>
+                                <p class="text-center">
+                                    Already Registered!
+                                    <a href="{% url 'login' %}"><b>Login Now!</b></a>
+                                </p>
+                            </small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

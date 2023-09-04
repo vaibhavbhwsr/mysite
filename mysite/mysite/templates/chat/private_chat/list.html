@@ -1,0 +1,31 @@
+{% extends 'post/home.html' %}
+{% load static %}
+{% block title %} Users {% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card my-5">
+        <div class="card-body text-center">
+          <h5 class="card-title text-center"><b>Select User</b>
+            {% comment %} <span class="float-end">
+              <button type="button" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                <i class="fas fa-plus"></i>
+              </button>
+            </span> {% endcomment %}
+          </h5>
+          <hr>
+          <div class="d-grid gap-2 col-9 mx-auto add-new-group">
+            {% for user in user_list %}
+            <a class="btn btn-primary btn-lg" href="{% url 'private_chat' user.username %}">
+              <h5>{{ user.username }}</h5>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% comment %} {% include "chat/group_chat/pop_up_create_group.html" %} {% endcomment %}
+{% endblock content %}

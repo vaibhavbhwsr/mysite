@@ -1,0 +1,21 @@
+{% extends 'post/home.html' %}
+
+{% block title %} My Profile {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card my-5">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-center"><b>My Account</b></h5>
+                    <hr>
+                    <div class="d-grid gap-2 col-9 mx-auto">
+                        <a class="btn btn-primary btn-lg" href="{% url 'update-profile' %}">UPDATE PROFILE</a>
+                        <a class="btn btn-primary btn-lg" href="{% url 'password_change' %}">CHANGE PASSWORD</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,40 @@
+-r requirements.txt
+
+# Main
+Django>=3.2.6
+psycopg2-binary
+djangorestframework>=3.12.4
+python-decouple
+
+# Websockets
+channels    # This is like channels['daphne']
+channels_redis
+
+# Deployment
+gunicorn
+
+# S3 Bucket
+django-storages
+boto3
+
+# Others
+drf-yasg
+django-cleanup
+django-crispy-forms
+Pillow
+
+# Clean Coding
+flake8
+isort
+black
+
+# Error Tracker
+sentry-sdk
+
+# Development tools
+django-debug-toolbar
+django-extensions
+ipython
+
+# Agora
+agora-token-builder

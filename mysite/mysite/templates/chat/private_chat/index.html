@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fireshine | Group Chat</title>
+</head>
+<body>
+    <h1>Welcome {{ user.username|title }}</h1>
+    <h1>Chatting with {{ group.user2.username|title }}</h1>
+    {# <h1>Group Name: {{ group.name }}</h1> #} <!-- This is the group for this both only -->
+    <textarea id="chat-log" , cols="100" rows="20">
+    {% for chat in group.private_chat.all %}
+    {{ chat.user.username }}: {{ chat.content }}
+    {% endfor %}
+    </textarea><br>
+    <input type="text" id="chat-message-input" size="100"><br>
+    <input type="submit" value="Send" id="chat-message-submit">
+
+    <!-- sending python context to js -->
+     {{ group.name|json_script:"group-name" }}
+     {{ "private"|json_script:"group-type" }}
+    <script src="{% static 'js/chat.js' %}"></script>
+</body>
+</html>
