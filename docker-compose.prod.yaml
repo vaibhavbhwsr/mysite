@@ -1,0 +1,61 @@
+services:
+
+  # Django App with Gunicorn
+  app:
+    container_name: mysite_app
+    build:
+      context: ./mysite
+    volumes:
+      - ./mysite:/webapp
+      - ./media:/webapp/mysite/media  # Map the media files directory
+      - ./static:/webapp/mysite/static  # Map the static files directory
+    ports:
+      - "8000:8000"
+    command: gunicorn mysite.wsgi:application --bind 0.0.0.0:8000
+    depends_on:
+      - db
+      - redis
+
+  # Django ASGI with Daphne
+  asgi:
+    container_name: mysite_asgi
+    build:
+      context: ./mysite
+    volumes:
+      - ./mysite:/webapp
+      - ./media:/webapp/mysite/media  # Map the media files directory
+      - ./static:/webapp/mysite/static  # Map the static files directory
+    ports:
+      - "8001:8001"
+    command: daphne -b 0.0.0.0 -p 8001 mysite.asgi:application
+    depends_on:
+      - db
+      - redis
+
+  # Database postgres
+  db:
+    container_name: postgres_db
+    image: postgres
+    volumes:
+      - ./database/db:/var/lib/postgres/data
+    environment:
+      - POSTGRES_DB=mysitedb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=psql
+
+  # Redis
+  redis:
+    container_name: redis
+    image: redis:alpine
+
+  # Nginx
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
+      - asgi
