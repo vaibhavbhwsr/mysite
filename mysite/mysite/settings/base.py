@@ -180,6 +180,17 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # Channels Settings
 ASGI_APPLICATION = 'mysite.asgi.application'    # can work with both ASGI and WSGI
 
+# Cache settings
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://redis:6379/1',  # Use the container name "redis" as the hostname
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
