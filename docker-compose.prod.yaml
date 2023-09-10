@@ -27,6 +27,7 @@ services:
     depends_on:
       - db
       - redis
+      - wsgi_app
 
   # Database postgres
   db:
