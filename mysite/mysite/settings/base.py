@@ -30,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY', 'django-insecure')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = [host for host in config('ALLOWED_HOSTS', 'localhost').split(',')]
+ALLOWED_HOSTS = [host for host in config('ALLOWED_HOSTS', '*').split(',')]
 
 # Application definition
 INSTALLED_APPS = [
@@ -160,9 +160,9 @@ AUTH_USER_MODEL = 'registration.User'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', "")
 # secret code created on account not password
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', "")
 EMAIL_USE_TLS = True
 
 
