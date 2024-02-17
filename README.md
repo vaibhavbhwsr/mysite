@@ -24,7 +24,7 @@ Clone the project from Github:
 
     note*: setting.ini required
 
-    To Recreate: docker compose up --force-recreate
+    To Recreate containers: docker compose up --force-recreate
 
 
 ## 2. Virtual Environment Setup
