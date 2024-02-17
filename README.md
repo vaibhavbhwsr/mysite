@@ -22,10 +22,10 @@ Clone the project from Github:
     ./manage.py migrate
     ./manage.py createsuperuser
 
-    note*: setting.ini required
-
     To Recreate containers: docker compose up --force-recreate
 
+    note*: setting.ini required
+    
 
 ## 2. Virtual Environment Setup
 Create Virtualenv Folder
