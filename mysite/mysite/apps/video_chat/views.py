@@ -4,11 +4,13 @@ import random
 from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
+
 from commons.storage_backends import make_file_public
 
 from . import utils
-from .models import RoomMember, MeetRecord
+from .models import MeetRecord, RoomMember
 
 # Create your views here.
 
@@ -17,7 +19,7 @@ APP_ID = settings.AGORA_APP_ID
 
 def get_token(request):
     channelName = request.GET.get('channel')
-    uid = random.randint(1, 230)
+    uid = random.randint(1, 10000)
     token = utils.generate_token(channelName, uid)
     return JsonResponse({'token': token, 'uid': uid}, safe=False)
 
@@ -118,3 +120,13 @@ def stop_recording(request):
         response['upload_to_s3'] = False
         response['error'] = str(e)
     return JsonResponse(response, safe=False)
+
+
+class MeetRecordListView(generic.ListView):
+    model = MeetRecord
+    template_name = "chat/video_chat/recordings.html"
+
+
+class MeetRecordDetailView(generic.DetailView):
+    model = MeetRecord
+    template_name = "chat/video_chat/record-detail.html"

@@ -29,6 +29,5 @@ class OneOneGroup(BaseModel):
         self.name = f"one-one-{'-'.join(sorted([str(self.user1.id), str(self.user2.id)]))}"
         super().save(*args, **kwargs)
 
-
     def __str__(self):
         return f"{self.name}"

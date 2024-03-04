@@ -11,4 +11,6 @@ urlpatterns = [
     path('delete-member/', views.delete_member),
     path('start-recording/', views.start_recording),
     path('stop-recording/', views.stop_recording),
+    path('recordings/', views.MeetRecordListView.as_view(), name='meet_recordings'),
+    path('record-detail/<int:pk>', views.MeetRecordDetailView.as_view(), name='record_detail'),
 ]

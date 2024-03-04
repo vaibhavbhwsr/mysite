@@ -1,8 +1,9 @@
 # Website Link
-http://fireshine.ml/
+http://fireshine.tk/
 
 # SocialSite with APIs (mysite)
 Backend python code
+
 
 ## Clone the project
 Clone the project from Github:
@@ -12,7 +13,21 @@ Clone the project from Github:
     git clone remote url
 
 
-## Virtual Environment Setup
+## 1. Docker setup
+    Install docker and docker compose (or) docker desktop
+    docker compose build
+    docker compose up
+    docker exec -it app webapp_mysite_container /bin/bash
+    ./manage.py makemigration
+    ./manage.py migrate
+    ./manage.py createsuperuser
+
+    To Recreate containers: docker compose up --force-recreate
+
+    note*: setting.ini required
+    
+
+## 2. Virtual Environment Setup
 Create Virtualenv Folder
 
     virtualenv --python=python3.8 Project_dir/.venv

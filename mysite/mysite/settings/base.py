@@ -30,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY', 'django-insecure')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = [host for host in config('ALLOWED_HOSTS', 'localhost').split(',')]
+ALLOWED_HOSTS = [host for host in config('ALLOWED_HOSTS', '*').split(',')]
 
 # Application definition
 INSTALLED_APPS = [
@@ -106,7 +106,7 @@ DATABASES = {
         'NAME': config('DATABASE_NAME', default='mysitedb'),
         'USER': config('DATABASE_USER', default='postgres'),
         'PASSWORD': config('DATABASE_PASSWORD', default='psql'),
-        'HOST': config('DATABASE_HOST', default='localhost'),
+        'HOST': config('DATABASE_HOST', default='db'),
         'PORT': config('DATABASE_PORT', default=5432),
     }
 }
@@ -160,9 +160,9 @@ AUTH_USER_MODEL = 'registration.User'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', "")
 # secret code created on account not password
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', "")
 EMAIL_USE_TLS = True
 
 
@@ -180,11 +180,22 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # Channels Settings
 ASGI_APPLICATION = 'mysite.asgi.application'    # can work with both ASGI and WSGI
 
+# Cache settings
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://redis:6379/1',  # Use the container name "redis" as the hostname
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('redis', 6379)],
         },
     },
 }
@@ -231,6 +242,7 @@ CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]  # It may already include loca
 
 # Site
 BASE_URL = config('BASE_URL', 'http://localhost:8000')
+
 
 # # My AGORA CREDENTIALS
 # AGORA_APP_ID = config('AGORA_APP_ID', '')

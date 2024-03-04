@@ -1,0 +1,31 @@
+{% extends 'post/home.html' %}
+{% load static %}
+{% block title %} Recordings {% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card my-5">
+        <div class="card-body text-center">
+          <h5 class="card-title text-center"><b>Recordings Available for Channels</b>
+            <span class="float-end">
+              <button type="button" style="background-color: transparent; border: none; box-shadow: none;" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                <i class="fas fa-plus"></i>
+              </button>
+            </span>
+          </h5>
+          <hr>
+          <div class="d-grid gap-2 col-9 mx-auto add-new-group">
+            {% for object in object_list %}
+            <a class="btn btn-primary btn-lg" href="{% url 'record_detail' object.pk %}">
+              <h5>{{ object.channel }}</h5>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include "chat/group_chat/pop_up_create_group.html" %}
+{% endblock content %}

@@ -1,8 +1,8 @@
 local_settings.py
 local.py
-*/media/
+**/media/
 **/migrations/
-*/staticfiles/
+**/staticfiles/
 **/images/
 *.pyc
 
