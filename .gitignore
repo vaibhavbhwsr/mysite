@@ -5,6 +5,7 @@ local.py
 **/staticfiles/
 **/images/
 *.pyc
+*.vscode/
 
 # Editor environment
 mysite.sublime-project
