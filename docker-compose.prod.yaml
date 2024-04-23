@@ -2,7 +2,8 @@ services:
 
   # Django WSGI and ASGI App
   django_app:
-    container_name: django_app
+    container_name: fireshine_prod_container
+    image: fireshine_prod_image
     build:
       context: ./mysite
     volumes:
@@ -12,14 +13,14 @@ services:
       - "8001:8001"
     env_file:
       - .env.prod
-    command: sh -c "gunicorn mysite.wsgi:application --bind 0.0.0.0:8000 & daphne -b 0.0.0.0 -p 8001 mysite.asgi:application"
+    entrypoint: /webapp/entrypoint.sh
     depends_on:
       - db
       - redis
 
   # Database postgres
   db:
-    container_name: postgres_db
+    container_name: postgres_container
     image: postgres
     volumes:
       - mysitedb:/var/lib/postgres/data
@@ -30,11 +31,12 @@ services:
 
   # Redis
   redis:
-    container_name: redis
+    container_name: redis_container
     image: redis:alpine
 
   # Nginx
   nginx:
+    container_name: nginx_container
     image: nginx:latest
     ports:
       - "80:80"

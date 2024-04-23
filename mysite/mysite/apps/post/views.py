@@ -27,6 +27,7 @@ class HomeView(ListView):
     paginate_by = 5
 
     def get_context_data(self, **kwargs):
+        import ipdb; ipdb.set_trace()
         context = super(HomeView, self).get_context_data(**kwargs)
         # print(self.request.user)
         # print(Post.objects.all())

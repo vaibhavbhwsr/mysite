@@ -9,10 +9,10 @@ WORKDIR /webapp
 COPY . /webapp/
 
 RUN pip install --upgrade pip
-RUN pip install -r requirements.dev.txt
+RUN pip install -r requirements.txt
 
 RUN sed -i 's/\r$//g' /webapp/entrypoint.sh
 RUN chmod +x /webapp/entrypoint.sh
 
-# run entrypoint.sh
-ENTRYPOINT ["/webapp/entrypoint.sh"]
+# # run entrypoint.sh
+# ENTRYPOINT ["/webapp/entrypoint.sh"]

@@ -12,7 +12,8 @@ mysite.sublime-project
 mysite.sublime-workspace
 
 # Environments
-.env**
+.env
+.env.prod
 .venv
 env/
 venv/

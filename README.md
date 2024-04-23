@@ -12,20 +12,25 @@ Clone the project from Github:
 
     git clone remote url
 
+## 1. Setup
+### A. Docker setup for Development
+Build a container
 
-## 1. Docker setup
-    Install docker and docker compose (or) docker desktop
     docker compose build
-    docker compose up
-    docker exec -it app webapp_mysite_container /bin/bash
-    ./manage.py makemigration
-    ./manage.py migrate
-    ./manage.py createsuperuser
 
-    To Recreate containers: docker compose up --force-recreate
+Run bash in container
 
-    note*: setting.ini required
-    
+    docker run -it --env-file .env -v ./mysite:/webapp --network=host fireshine_dev_image bash
+
+To reconnect container
+
+    docker attach <container-id>
+
+note*: .env file is required
+
+### B. Docker setup for Production
+
+    docker compose -f docker-compose.prod.yaml up --build
 
 ## 2. Virtual Environment Setup
 Create Virtualenv Folder
