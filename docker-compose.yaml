@@ -3,7 +3,7 @@ services:
   # Django webapp
   fireshine:
     container_name: fireshine_dev_container
-    image: fireshine_dev_image
+    image: vaibhavbhwsr/fireshine_dev_image
     build:
       context: ./mysite
       dockerfile: Dockerfile.dev

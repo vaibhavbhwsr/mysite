@@ -3,7 +3,7 @@ services:
   # Django WSGI and ASGI App
   django_app:
     container_name: fireshine_prod_container
-    image: fireshine_prod_image
+    image: vaibhavbhwsr/fireshine_prod_image
     build:
       context: ./mysite
       dockerfile: Dockerfile.prod
