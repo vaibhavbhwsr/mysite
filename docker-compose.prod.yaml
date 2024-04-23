@@ -6,6 +6,7 @@ services:
     image: fireshine_prod_image
     build:
       context: ./mysite
+      dockerfile: Dockerfile.prod
     volumes:
       - ./mysite:/webapp
     ports:

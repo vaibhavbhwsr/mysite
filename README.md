@@ -18,7 +18,7 @@ Build a container
 
     docker compose build
 
-Run bash in container
+Run bash in container (required* postgres and redis on host)
 
     docker run -it --env-file .env -v ./mysite:/webapp --network=host fireshine_dev_image bash
 
