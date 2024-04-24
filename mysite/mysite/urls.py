@@ -67,6 +67,8 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
+
+
 urlpatterns += [
     path(
         'swagger/',

@@ -2,7 +2,7 @@
 
 # Function to display verbose messages
 verbose() {
-    echo "$@ - $(date '+%Y-%m-%d %H:%M:%S')"
+    echo "======> $@ - $(date '+%Y-%m-%d %H:%M:%S')"
 }
 
 # Wait for PostgreSQL to become available
