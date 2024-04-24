@@ -18,6 +18,8 @@ services:
     depends_on:
       - db
       - redis
+    # networks:
+    #   - fireshine_network
 
   # Database postgres
   db:
@@ -29,11 +31,15 @@ services:
       - POSTGRES_DB=mysitedb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=psql
+    # networks:
+    #   - fireshine_network
 
   # Redis
   redis:
     container_name: redis_container
     image: redis:alpine
+    # networks:
+    #   - fireshine_network
 
   # Nginx
   nginx:
@@ -46,6 +52,13 @@ services:
       - ./mysite:/webapp
     depends_on:
       - django_app
+    # networks:
+    #   - fireshine_network
 
 volumes:
   mysitedb:
+
+# # This is custom network config
+# networks:
+#   fireshine_network:
+#     driver: bridge
