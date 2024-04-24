@@ -5,15 +5,15 @@ MODE in settings.ini:
 - prod: Production
 - test: Testing (not implemented yet)
 '''
-from .base import *                                 # noqa: F403
+from .base import *                                 # noqa: F403,F401
 from decouple import config
 
 MODE = config("MODE", default='prod')
 
 if MODE == 'dev':
-    from .dev import *                              # noqa: F403
+    from .dev import *                              # noqa: F403,F401
 elif MODE == 'prod':
-    from .prod import *                             # noqa: F403
+    from .prod import *                             # noqa: F403,F401
 
 
 # # Some lines to check setting being used
