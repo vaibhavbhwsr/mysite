@@ -8,8 +8,8 @@ verbose() {
 # Wait for PostgreSQL to become available
 verbose "Waiting for PostgreSQL to start..."
 while ! nc -z db 5432; do
-    verbose "PostgreSQL is not yet available. Retrying in 0.1 seconds..."
-    sleep 0.1
+    verbose "PostgreSQL is not yet available. Retrying in 1 seconds..."
+    sleep 1
 done
 verbose "PostgreSQL is now available."
 
@@ -23,7 +23,7 @@ python manage.py migrate
 
 # Start the Django application with Gunicorn and Daphne
 verbose "Starting Gunicorn..."
-gunicorn mysite.wsgi:application --bind 0.0.0.0:8000 &
+gunicorn mysite.wsgi:application --bind 0.0.0.0:8000 --workers 4 --timeout 60 &
 
 verbose "Starting Daphne..."
 daphne -b 0.0.0.0 -p 8001 mysite.asgi:application &
