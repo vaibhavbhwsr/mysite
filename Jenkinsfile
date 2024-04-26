@@ -51,7 +51,7 @@ pipeline {
         stage('Copy .env.prod') {
             steps {
                 // Copy .env.prod in repository cloned directory
-                sh 'cp /home/ubuntu/.env.prod .'
+                sh 'cat /home/ubuntu/.env.prod > .env.prod'
             }
         }
 
