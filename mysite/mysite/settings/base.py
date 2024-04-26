@@ -241,10 +241,8 @@ STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
 CSRF_TRUSTED_ORIGINS = [
     'https://fireshine.ml',
     'http://localhost',
-    'http://localhost:8002',
     'http://127.0.0.1',
-    'http://127.0.0.1:8000',
-    '*',
+    'http://locahost:8000',
 ]
 
 # Site
