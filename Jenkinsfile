@@ -61,17 +61,17 @@ pipeline {
                     // Add your deployment steps here
                     // This could be a Docker Compose deployment, Kubernetes deployment, or other mechanisms
                     // For Docker Compose:
-                    sh 'docker compose -f docker-compose.prod.yaml up -d'
+                    sh 'docker compose -f docker-compose.prod.yaml up --build -d'
                 }
             }
         }
     }
 
     post {
-        always {
-            // Clean up resources
-            cleanWs()  // Clean up the workspace
-        }
+        // always {
+        //     // Clean up resources
+        //     cleanWs()  // Clean up the workspace
+        // }
 
         success {
             echo "Pipeline executed successfully!"
