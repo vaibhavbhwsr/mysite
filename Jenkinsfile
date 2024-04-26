@@ -14,40 +14,40 @@ pipeline {
             }
         }
 
-        stage('Build Dev Image') {
-            steps {
-                script {
-                    docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIALS_ID) {  // Ensure DOCKER_CREDENTIALS_ID is set up in Jenkins
-                        def image = docker.build(DEV_IMAGE, '-f ./mysite/Dockerfile.dev .')
-                        // image.push()  // Push the dev image to the registry
-                    }
-                }
-            }
-        }
-
-        // stage('Test') {
+        // stage('Build Dev Image') {
         //     steps {
         //         script {
-        //             def container = docker.run(DEV_IMAGE, 'python manage.py test')
-        //             def result = container.waitFor(120)  // Set an appropriate timeout
-        //             container.logs()
-        //             if (result != 0) {
-        //                 error("Tests failed")
+        //             docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIALS_ID) {  // Ensure DOCKER_CREDENTIALS_ID is set up in Jenkins
+        //                 def image = docker.build(DEV_IMAGE, '-f ./mysite/Dockerfile.dev .')
+        //                 // image.push()  // Push the dev image to the registry
         //             }
         //         }
         //     }
         // }
 
-        stage('Build Prod Image') {
-            steps {
-                script {
-                    docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIALS_ID) {
-                        def image = docker.build(PROD_IMAGE, '-f ./mysite/Dockerfile.prod .')
-                        // image.push()  // Push the prod image to the registry
-                    }
-                }
-            }
-        }
+        // // stage('Test') {
+        // //     steps {
+        // //         script {
+        // //             def container = docker.run(DEV_IMAGE, 'python manage.py test')
+        // //             def result = container.waitFor(120)  // Set an appropriate timeout
+        // //             container.logs()
+        // //             if (result != 0) {
+        // //                 error("Tests failed")
+        // //             }
+        // //         }
+        // //     }
+        // // }
+
+        // stage('Build Prod Image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry(DOCKER_REGISTRY, DOCKER_CREDENTIALS_ID) {
+        //                 def image = docker.build(PROD_IMAGE, '-f ./mysite/Dockerfile.prod .')
+        //                 // image.push()  // Push the prod image to the registry
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Deploy to Production') {
             steps {
