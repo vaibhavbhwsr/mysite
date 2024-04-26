@@ -238,7 +238,11 @@ else:
 STATICFILES_DIRS = [Path(BASE_DIR, 'static'), ]
 
 # Security
-CSRF_TRUSTED_ORIGINS = ['https://fireshine.ml', ]  # It may already include localhost.
+CSRF_TRUSTED_ORIGINS = [
+    'https://fireshine.ml',
+    'https://localhost',
+    'https://127.0.0.1'
+]  # It may already include localhost.
 
 # Site
 BASE_URL = config('BASE_URL', 'http://localhost:8000')
