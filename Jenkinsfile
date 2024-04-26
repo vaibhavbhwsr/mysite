@@ -48,6 +48,12 @@ pipeline {
         //         }
         //     }
         // }
+        stage('Copy .env.prod') {
+            steps {
+                // Copy .env.prod in repository cloned directory
+                sh 'cp /home/ubuntu/.env.prod .'
+            }
+        }
 
         stage('Deploy to Production') {
             steps {
