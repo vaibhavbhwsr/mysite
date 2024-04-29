@@ -16,7 +16,10 @@ services:
     depends_on:
       - db
       - redis
-    # volumes:
+    volumes:
+      - static_files:/webapp/mysite/staticfiles
+      - media_files:/webapp/mysite/media
+    # volumes:  # not mounting live directory
     #   - ./mysite:/webapp
     # networks:
     #   - fireshine_network
@@ -49,7 +52,9 @@ services:
       - "80:80"
     volumes:
       - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
-      # - ./mysite:/webapp
+      - static_files:/webapp/mysite/staticfiles
+      - media_files:/webapp/mysite/media
+      # - ./mysite:/webapp  # not mounting the whole directory
     depends_on:
       - django_app
     # networks:
@@ -57,6 +62,8 @@ services:
 
 volumes:
   mysitedb:
+  static_files:
+  media_files:
 
 # # This is custom network config
 # networks:

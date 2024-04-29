@@ -1,3 +1,5 @@
+// This Jenkinsfile is only to run fireshine production container not development
+
 pipeline {
     agent any
 

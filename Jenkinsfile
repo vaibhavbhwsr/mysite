@@ -1,4 +1,4 @@
-// This file is for both dev and production to run together
+// This Jenkinsfile is for both development and production container to run together
 
 pipeline {
     agent any
