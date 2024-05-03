@@ -247,6 +247,7 @@ CSRF_TRUSTED_ORIGINS = [
     '*'
 ]
 
+
 # Site
 BASE_URL = config('BASE_URL', 'http://localhost:8000')
 
