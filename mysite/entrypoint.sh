@@ -7,7 +7,7 @@ verbose() {
 
 # Wait for PostgreSQL to become available
 verbose "Waiting for PostgreSQL to start..."
-while ! nc -z db 5432; do
+while ! nc -z localhost 5432; do
     verbose "PostgreSQL is not yet available. Retrying in 1 seconds..."
     sleep 1
 done
