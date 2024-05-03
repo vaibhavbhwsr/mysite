@@ -16,14 +16,14 @@ elif MODE == 'prod':
     from .prod import *                             # noqa: F403,F401
 
 
-# # Some lines to check setting being used
-# print()
-# print('############################### Settings Check ################################')
-# print(f'Hosts: {ALLOWED_HOSTS}')                    # noqa: F405
-# print(f'Mode: {MODE}')
-# print(f'Debug: {DEBUG}')                            # noqa: F405
-# print(f'Use S3: {USE_S3}')                          # noqa: F405
-# print(f'Static URL: {STATIC_URL}')                  # noqa: F405
-# print(f'Media URL: {MEDIA_URL}')                    # noqa: F405
-# print(f'Database: {DATABASES["default"]["HOST"]}')  # noqa: F405
-# print('###############################################################################')
+# Some lines to check setting being used
+print()
+print('############################### Settings Check ################################')
+print(f'Hosts: {ALLOWED_HOSTS}')                    # noqa: F405
+print(f'Mode: {MODE}')
+print(f'Debug: {DEBUG}')                            # noqa: F405
+print(f'Use S3: {USE_S3}')                          # noqa: F405
+print(f'Static URL: {STATIC_URL}')                  # noqa: F405
+print(f'Media URL: {MEDIA_URL}')                    # noqa: F405
+print(f'Database: {DATABASES}')  # noqa: F405
+print('###############################################################################')
