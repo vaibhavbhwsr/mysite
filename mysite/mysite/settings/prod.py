@@ -5,6 +5,7 @@ from decouple import config
 
 from .base import ALLOWED_HOSTS
 
+
 ALLOWED_HOSTS += []  # no use here managed directly though setting.ini file
 
 
