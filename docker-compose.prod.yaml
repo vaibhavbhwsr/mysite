@@ -39,6 +39,8 @@ services:
       # - ./mysite:/webapp  # not mounting the whole directory
     depends_on:
       - django_app
+    network_mode: host
+
     # networks:
     #   - fireshine_network
 
