@@ -249,6 +249,12 @@ CSRF_TRUSTED_ORIGINS = [
     'http://13.127.215.72',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'http://13.127.215.72',
+    "http://localhost:8080",
+    "http://127.0.0.1:8000",
+]
+
 
 # Site
 BASE_URL = config('BASE_URL', 'http://localhost:8000')
