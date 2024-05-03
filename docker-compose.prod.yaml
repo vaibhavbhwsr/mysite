@@ -13,14 +13,14 @@ services:
     env_file:
       - .env.prod
     entrypoint: /webapp/entrypoint.sh
-    depends_on:
-      - db
-      - redis
     volumes:
       - static_files:/webapp/mysite/staticfiles
       - media_files:/webapp/mysite/media
     network_mode: host
 
+    # depends_on:
+    #   - db
+    #   - redis
     # volumes:  # not mounting live directory
     #   - ./mysite:/webapp
     # networks:
