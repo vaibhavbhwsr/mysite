@@ -106,7 +106,7 @@ DATABASES = {
         'NAME': config('DATABASE_NAME', default='mysitedb'),
         'USER': config('DATABASE_USER', default='postgres'),
         'PASSWORD': config('DATABASE_PASSWORD', default='psql'),
-        'HOST': config('DATABASE_HOST', default='db'),
+        'HOST': config('DATABASE_HOST', default='localhost'),
         'PORT': config('DATABASE_PORT', default=5432),
     }
 }
@@ -195,7 +195,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [(config('REDIS_HOST', 'redis'), 6379)],
+            "hosts": [(config('REDIS_HOST', 'localhost'), 6379)],
         },
     },
 }

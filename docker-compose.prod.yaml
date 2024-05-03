@@ -19,28 +19,10 @@ services:
     volumes:
       - static_files:/webapp/mysite/staticfiles
       - media_files:/webapp/mysite/media
+    network_mode: host
+
     # volumes:  # not mounting live directory
     #   - ./mysite:/webapp
-    # networks:
-    #   - fireshine_network
-
-  # Database postgres
-  db:
-    container_name: postgres_container
-    image: postgres
-    volumes:
-      - mysitedb:/var/lib/postgres/data
-    environment:
-      - POSTGRES_DB=mysitedb
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=psql
-    # networks:
-    #   - fireshine_network
-
-  # Redis
-  redis:
-    container_name: redis_container
-    image: redis:alpine
     # networks:
     #   - fireshine_network
 
@@ -60,10 +42,32 @@ services:
     # networks:
     #   - fireshine_network
 
+
+  # # For database in container (not recommended)
+  # # Database postgres
+  # db:
+  #   container_name: postgres_container
+  #   image: postgres
+  #   volumes:
+  #     - mysitedb:/var/lib/postgres/data
+  #   environment:
+  #     - POSTGRES_DB=mysitedb
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=psql
+  #   # networks:
+  #   #   - fireshine_network
+
+  # # Redis
+  # redis:
+  #   container_name: redis_container
+  #   image: redis:alpine
+  #   # networks:
+  #   #   - fireshine_network
+
 volumes:
-  mysitedb:
   static_files:
   media_files:
+  # mysitedb:
 
 # # This is custom network config
 # networks:
