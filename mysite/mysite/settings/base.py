@@ -150,6 +150,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # Auth
 AUTH_USER_MODEL = 'registration.User'
 
