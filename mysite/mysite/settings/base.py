@@ -260,6 +260,10 @@ CORS_ALLOWED_ORIGINS = [
 BASE_URL = config('BASE_URL', 'http://localhost:8000')
 
 
+# Huggingface
+HUGGINGFACEHUB_API_TOKEN = config("HUGGINGFACEHUB_API_TOKEN", 'Vvv')
+
+
 # # My AGORA CREDENTIALS
 # AGORA_APP_ID = config('AGORA_APP_ID', '')
 # AGORA_CUSTOMER_KEY = config('AGORA_CUSTOMER_KEY', '')

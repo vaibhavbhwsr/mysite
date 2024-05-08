@@ -38,3 +38,7 @@ ipython
 
 # Agora
 agora-token-builder
+
+# GenAI
+langchain
+huggingface_hub

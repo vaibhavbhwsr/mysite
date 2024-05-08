@@ -1,16 +1,32 @@
-from django.shortcuts import render
+from http import HTTPStatus
+
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.shortcuts import render
 from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
+
+from . import utils
 
 # Create your views here.
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name="dispatch")
 class IndexView(TemplateView):
-    template_name = 'genai/index.html'
+    template_name = "genai/index.html"
 
 
-@method_decorator(login_required, name='dispatch')
-class GenerateContentView(TemplateView):
-    template_name = 'genai/content/index.html'
+class GenAIView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, "genai/content/index.html")
+
+    def post(self, request, *args, **kwargs):
+        input = request.POST.get('user_input')
+        generated_text = utils.ai_content_generate(input)
+        return JsonResponse(
+            {
+                "generated_text": generated_text,
+                "success": True,
+            },
+            status=HTTPStatus.CREATED,
+        )
