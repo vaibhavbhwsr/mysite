@@ -64,7 +64,7 @@ googleapis-common-protos==1.63.0
 gprof2dot==2022.7.29
 greenlet==3.0.3
 grpcio==1.63.0
-grpcio-status==1.63.0
+grpcio-status==1.62.2
 gunicorn==22.0.0
 httplib2==0.22.0
 huggingface-hub==0.23.0
@@ -97,7 +97,7 @@ mypy-extensions==1.0.0
 numpy==1.26.4
 oauthlib==3.2.2
 orjson==3.10.3
-packaging==24.0
+packaging==23.2
 parso==0.8.4
 pathspec==0.12.1
 pexpect==4.9.0
@@ -107,7 +107,7 @@ platformdirs==4.2.1
 pluggy==1.5.0
 prompt-toolkit==3.0.43
 proto-plus==1.23.0
-protobuf==5.26.1
+protobuf==4.25.3
 psycopg2-binary==2.9.9
 ptyprocess==0.7.0
 pure-eval==0.2.2
