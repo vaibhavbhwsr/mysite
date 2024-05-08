@@ -22,7 +22,7 @@
                 <a href="{% url 'create-post' %}" class="liens">Create Post</a>
                 <a href="{% url 'chat' %}" class="liens">Chat</a>
                 <a href="{% url 'profile' %}" class="liens">My Profile</a>
-                <a href="" class="liens">GenAI</a>
+                <a href="{% url 'genai' %}" class="liens">GenAI</a>
                 <a class="liens" href="{% url 'logout' %}">Log Out</a>
                 {% else %}
                 <a class="liens" href="{% url 'login' %}">Log In</a>

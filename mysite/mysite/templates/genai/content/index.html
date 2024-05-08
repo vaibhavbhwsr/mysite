@@ -1,0 +1,51 @@
+{% extends 'post/home.html' %}
+
+{% block title %}
+  Chat with Shiny AI
+{% endblock %}
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4">Chat with Shiny AI</h1>
+
+    <!-- Display area for generated content -->
+    <div id="chat-container" class="mb-4" style="max-height: 400px; overflow-y: auto;">
+      <!-- This is where the AI responses will be displayed -->
+    </div>
+
+    <!-- Input area for user text -->
+    <form id="chat-form">
+      <div class="input-group">
+        <textarea id="user_input" class="form-control" rows="2" placeholder="Type your message..."></textarea>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Script to handle form submission and append AI responses -->
+  <script>
+    $(document).ready(function() {
+        $('#chat-form').on('submit', function(event) {
+            event.preventDefault();
+
+            var userInput = $('#user_input').val();
+
+            $.ajax({
+                url: '/generate-response/',
+                method: 'POST',
+                data: { 'user_input': userInput },
+                success: function(data) {
+                    // Append the generated response to the chat container
+                    $('#chat-container').append(
+                        `<div class="card mb-2"><div class="card-body">${data.generated_text}</div></div>`
+                    );
+                    // Clear the input field
+                    $('#user_input').val('');
+                },
+                error: function(err) {
+                    console.error("Error:", err);
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
