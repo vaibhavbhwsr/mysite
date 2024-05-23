@@ -18,6 +18,7 @@ let hasRecorder = async () => {
 }
 
 let joinAndDisplayLocalStream = async () => {
+    debugger
 
   document.getElementById('room-name').innerText = CHANNEL
 

@@ -23,7 +23,6 @@ def generate_token(channel, uid):
     currentTimeStamp = time.time()
     privilegeExpiredTs = currentTimeStamp + expirtionTimeInSeconds
     role = 1  # 1 for host and 2 for guest(doesn't cared here for now)
-
     token = RtcTokenBuilder.buildTokenWithUid(APP_ID, APP_CERTIFICATE, channel, uid, role, privilegeExpiredTs)
     return token
 
