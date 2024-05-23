@@ -32,7 +32,7 @@ urlpatterns = [
     path('group/', include('group_chat.urls')),
     path('private/', include('private_chat.urls')),
     path('genai/', include('genai.urls')),
-    # path('video-chat/', include('video_chat.urls')),
+    path('video-chat/', include('video_chat.urls')),
 ]
 
 
