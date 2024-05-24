@@ -1,0 +1,101 @@
+{% extends 'post/home.html' %}
+
+{% block title %}
+  Firenshine Content Generation AI
+{% endblock %}
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4">Ask From Fireshine AI</h1>
+
+    <!-- Display area for generated content -->
+    <div id="chat-container" class="mb-4" style="max-height: 400px; overflow-y: auto;">
+      <!-- This is where the AI responses will be displayed -->
+    </div>
+
+    <!-- Input area for user text -->
+    <form id="chat-form">
+      <div class="input-group">
+        {% csrf_token %}
+        <textarea id="user_input" class="form-control" rows="2" placeholder="Type your message..."></textarea>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+{% block extra_js %}
+<script>
+    // Function to get the CSRF token from cookies
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (const cookie of cookies) {
+            const [key, value] = cookie.trim().split('=');
+        if (key === name) {
+                return decodeURIComponent(value);
+            }
+            }
+        return null;
+    }
+
+    $(document).ready(function () {
+        $('#chat-form').on('submit', function (event) {
+            event.preventDefault();
+
+            var userInput = $('#user_input').val().trim(); // Ensure trimmed input
+            if (userInput === '') {
+                // Exit early if the input is empty
+                return;
+            }
+
+            const csrfToken = getCookie('csrftoken');
+            const loadingMessageId = 'loading-' + new Date().getTime(); // Unique ID for loading message
+
+            // Clear the input field
+            $('#user_input').val('');
+
+            // Replace loading message with AI response
+            $('#chat-container').append(
+                `<div class="card mb-2 text-end">
+                    <div class="card-body bg-secondary text-white">${userInput}</div>
+                </div>`
+            );
+
+            // Append a loading message to the chat container
+            $('#chat-container').append(
+                `<div id="${loadingMessageId}" class="card mb-2 text-start">
+                <div class="card-body bg-light">Loading...</div>
+                </div>`
+            );
+
+            $.ajax({
+                url: '/genai/content/',
+                method: 'POST',
+                data: { user_input: userInput },
+                headers: { 'X-CSRFToken': csrfToken },
+                success: function (data) {
+                    const sanitizedText = data.generated_text
+                        .replace(/</g, '&lt;') // Escape dangerous characters
+                        .replace(/>/g, '&gt;')
+                        .replace(/\n/g, '<br>')
+                        .replace(/\t/g, '    ');
+
+                    // Append user's input, aligned to the right for differentiation
+                    $('#' + loadingMessageId).html(
+                        `<div class="card-body bg-light">${sanitizedText}</div>`
+                    );
+
+                    // Automatically scroll to the bottom
+                    $('#chat-container')[0].scrollTop = $('#chat-container')[0].scrollHeight;
+                },
+                error: function (err) {
+                    console.error('Error:', err);
+
+                    // Indicate an error if AJAX fails
+                    $('#' + loadingMessageId).html(
+                        `<div class="card-body bg-danger text-white">An error occurred. Please try again.</div>`
+                    );
+                },
+            });
+        });
+    });
+</script>
+{% endblock %}
