@@ -10,7 +10,7 @@ services:
     volumes:
       - ./mysite:/webapp
     ports:
-      - 7000:7000
+      - "7000:7000"
     env_file:
       - .env
     command: python manage.py runserver 0:7000

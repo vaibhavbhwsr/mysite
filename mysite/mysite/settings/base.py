@@ -250,10 +250,9 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://13.127.215.72',
     "http://localhost:8080",
     "http://127.0.0.1:8000",
-    "http://13.234.226.69/",
+    "http://13.234.226.69",
 ]
 
 
