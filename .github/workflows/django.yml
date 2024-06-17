@@ -38,12 +38,12 @@ jobs:
 
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
-      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-      DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-      DATABASE_USER: ${{ secrets.DATABASE_USER }}
-      DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+      ALLOWED_HOSTS: "localhost, 127.0.0.1"
+      DATABASE_HOST: "localhost"
+      DATABASE_NAME: "test_db"
+      DATABASE_USER: "postgres"
+      DATABASE_PORT: "5432"
+      DATABASE_PASSWORD: "postgres"
       EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
       EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
       USE_S3: ${{ secrets.USE_S3 }}
