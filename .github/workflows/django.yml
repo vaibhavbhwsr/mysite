@@ -34,10 +34,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r mysite/requirements.dev.txt
 
-    - name: Run pytest
-      run: |
-        pytest mysite/
-
     - name: Debugging Information
       run: |
         echo "Current directory:"
@@ -46,6 +42,11 @@ jobs:
         ls -al
         echo "Environment variables:"
         printenv
+
+    - name: Run pytest
+      run: |
+        pytest mysite/
+
 
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
