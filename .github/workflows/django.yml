@@ -38,6 +38,15 @@ jobs:
       run: |
         pytest mysite/
 
+    - name: Debugging Information
+      run: |
+        echo "Current directory:"
+        pwd
+        echo "List files:"
+        ls -al
+        echo "Environment variables:"
+        printenv
+
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
