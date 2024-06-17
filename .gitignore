@@ -23,3 +23,6 @@ ENV/
 # Credentials
 settings.ini
 firesbase-credentials.json
+
+# Test
+**.coverage**

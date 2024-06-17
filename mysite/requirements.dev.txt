@@ -42,3 +42,15 @@ agora-token-builder
 # GenAI
 langchain
 huggingface_hub
+
+# Testing
+pytest
+pytest-django
+# pytest plugins packages
+mixer  # can make fake data (include faker)
+pytest-cov  # coverage package (show code covered in tests with html)
+hypothesis  # create multiple possibility for one assert
+# Other pytest plugins
+pytest-sugar  # better designing while running test
+pytest-xdist  # make test run parallel and faster
+pytest-black  # test for proper formatting or not
