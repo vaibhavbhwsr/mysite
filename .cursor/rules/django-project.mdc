@@ -1,0 +1,31 @@
+---
+description: Fireshine Django repository rules for Cursor agents
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+# Fireshine Django Rules
+
+Follow the canonical project guide in `../../AGENTS.md`. This Cursor rule is a short always-applied adapter, not a replacement for the root guide.
+
+Key reminders:
+
+- Django project root: `mysite/`
+- Django package: `mysite/mysite/`
+- Apps: `core`, `genai`, `group_chat`, `post`, `private_chat`, `registration`, `video_chat`
+- Preserve the existing Django, DRF, Channels, template, Docker, and CI patterns.
+- Read relevant files before editing.
+- Make small, safe changes.
+- Add migrations only for intentional model/schema changes.
+- Update tests for behavior changes.
+- Do not commit real secrets or values from `.env`, `.env.prod`, `settings.ini`, cloud credentials, API tokens, or database passwords.
+- Mock Agora, HuggingFace, S3, email, and other external calls in tests.
+
+Useful checks from `mysite/`:
+
+```bash
+python manage.py check
+python manage.py test
+python manage.py makemigrations --check --dry-run
+```
